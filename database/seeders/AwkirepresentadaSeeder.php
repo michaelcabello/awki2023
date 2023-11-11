@@ -27,7 +27,53 @@ class AwkirepresentadaSeeder extends Seeder
             'user_id'=>5,
         ]);
 
+        Awkirepresentada::create([
+            'razonsocial' => 'TOYOTA SA',
+            'ruc' => '20557896699',
+            'address'=>'Av. Salñaverry 345 Lima',
+            'phone'=>'2554874',
+            'movil'=>'996959874',
+            'state' => 1,
+            'nota1'=>'descripcion de la nota 1',
+            'nota2'=>'descripcion de la nota 1',
+            'user_id'=>11,
+        ]);
 
+        Awkirepresentada::create([
+            'razonsocial' => 'CHEVROLET SA',
+            'ruc' => '20557776699',
+            'address'=>'Av. Salñaverry 345 Lima',
+            'phone'=>'2554874',
+            'movil'=>'996959874',
+            'state' => 1,
+            'nota1'=>'descripcion de la nota 1',
+            'nota2'=>'descripcion de la nota 1',
+            'user_id'=>10,
+        ]);
+
+        Awkirepresentada::create([
+            'razonsocial' => 'VOLVO SA',
+            'ruc' => '20553396699',
+            'address'=>'Av. PERU 345 Lima',
+            'phone'=>'2554874',
+            'movil'=>'996959874',
+            'state' => 1,
+            'nota1'=>'descripcion de la nota 1',
+            'nota2'=>'descripcion de la nota 1',
+            'user_id'=>9,
+        ]);
+
+        Awkirepresentada::create([
+            'razonsocial' => 'XYZ SA',
+            'ruc' => '20727896699',
+            'address'=>'Av. PERU 345 Lima',
+            'phone'=>'2554874',
+            'movil'=>'996959874',
+            'state' => 1,
+            'nota1'=>'descripcion de la nota 1',
+            'nota2'=>'descripcion de la nota 1',
+            'user_id'=>8,
+        ]);
 
     }
 }

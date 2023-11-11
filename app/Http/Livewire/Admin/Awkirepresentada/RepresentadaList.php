@@ -17,7 +17,7 @@ class RepresentadaList extends Component
     public $search, $razonsocial, $ruc, $direccion, $telefono, $contacto, $state;
     public $sort='id';
     public $direction='desc';
-    public $cant='3';
+    public $cant='10';
     public $open_edit = false;
     public $readyToLoad = false;//para cntrolar el preloader
     Public $flag;
@@ -26,7 +26,7 @@ class RepresentadaList extends Component
     protected $listeners = ['render', 'delete'];
 
     protected $queryString = [
-        'cant'=>['except'=>'3'],
+        'cant'=>['except'=>'10'],
         'sort'=>['except'=>'id'],
         'direction'=>['except'=>'desc'],
         'search'=>['except'=>''],

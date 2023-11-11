@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     //tutorial de one one (un usuario tiene un local asignado)
     //https://desarrolloweb.com/articulos/relaciones-1-laravel-eloquent.html
-/*     public function local()
+    /*     public function local()
     {
         return $this->hasOne(Local::class);
     } */
@@ -74,8 +74,18 @@ class User extends Authenticatable
 
 
     //relacion de uno a muchos
-    public function sales(){
+    public function sales()
+    {
         return $this->hasMany(Sale::class);
     }
 
+    public function tiendas()
+    {
+        return $this->hasMany(Awkitienda::class);
+    }
+
+    public function clientes()
+    {
+        return $this->hasManyThrough(Awkicliente::class, Awkitienda::class, 'user_id', 'awkitienda_id', 'id', 'id');
+    }
 }

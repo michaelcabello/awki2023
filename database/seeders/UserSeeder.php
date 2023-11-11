@@ -33,6 +33,16 @@ class UserSeeder extends Seeder
         Permission::create(['name'=>'Zona Update','display_name'=>'Actualizar Zonas'])->SyncRoles([$adminRole]);
         Permission::create(['name'=>'Zona Delete','display_name'=>'Eliminar Zonas'])->SyncRoles([$adminRole]);
 
+        Permission::create(['name'=>'Tienda View','display_name'=>'Ver Tiendas'])->SyncRoles([$adminRole]);
+        Permission::create(['name'=>'Tienda Create','display_name'=>'Crear Tiendas'])->SyncRoles([$adminRole]);
+        Permission::create(['name'=>'Tienda Update','display_name'=>'Actualizar Tiendas'])->SyncRoles([$adminRole]);
+        Permission::create(['name'=>'Tienda Delete','display_name'=>'Eliminar Tiendas'])->SyncRoles([$adminRole]);
+
+        Permission::create(['name'=>'Cliente View','display_name'=>'Ver Clientes'])->SyncRoles([$adminRole]);
+        Permission::create(['name'=>'Cliente Create','display_name'=>'Crear Clientes'])->SyncRoles([$adminRole]);
+        Permission::create(['name'=>'Cliente Update','display_name'=>'Actualizar Clientes'])->SyncRoles([$adminRole]);
+        Permission::create(['name'=>'Cliente Delete','display_name'=>'Eliminar Clientes'])->SyncRoles([$adminRole]);
+
 
         Permission::create(['name'=>'Category View','display_name'=>'Ver Categoria de productos'])->SyncRoles([$adminRole]);
         Permission::create(['name'=>'Category Create','display_name'=>'Crear Categoria de productos'])->SyncRoles([$adminRole]);
@@ -182,7 +192,53 @@ class UserSeeder extends Seeder
 
         ]);
 
+        $admin = User::create([
+            'name' => 'flor',
+            'email' => 'flor@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
 
+        $admin = User::create([
+            'name' => 'diana',
+            'email' => 'diana@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+        $admin = User::create([
+            'name' => 'xyz',
+            'email' => 'xyz@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+        $admin = User::create([
+            'name' => 'volvo',
+            'email' => 'volvo@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+        $admin = User::create([
+            'name' => 'chevrolet',
+            'email' => 'chevrolet@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+        $admin = User::create([
+            'name' => 'toyota',
+            'email' => 'toyota@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
 
 
         //creando usuarioa sin employee, da error al mostrar datos por eso lo comente

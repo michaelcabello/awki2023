@@ -35,12 +35,16 @@ use App\Http\Livewire\Admin\LocalproductatributestocktotalesList;
 use App\Http\Controllers\admin\SaleController;
 use App\Http\Livewire\Admin\Awkirepresentada\RepresentadaList;
 use App\Http\Livewire\Admin\Awkizona\ZonaList;
+use App\Http\Livewire\Admin\Awkitienda\TiendaList;
+use App\Http\Livewire\Admin\Awkicliente\ClienteList;
 
 //Route::get('/', [HomeController::class, 'home'])->name('admin.home');
 Route::get('/tables', [TableController::class, 'showtables'])->name('admin.showtables');
 
 Route::get('/representadas', RepresentadaList::class)->name('representada.list');
 Route::get('/zonas', ZonaList::class)->name('zona.list');
+Route::get('/tiendas', TiendaList::class)->name('tienda.list');
+Route::get('/clientes', ClienteList::class)->name('cliente.list');
 
 
 Route::get('/categories', CategoryList::class)->name('category.list');

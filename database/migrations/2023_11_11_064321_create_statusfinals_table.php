@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('awkicomprasexpedientes', function (Blueprint $table) {
+        Schema::create('statusfinals', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre')->nullable();
 
             $table->timestamps();
         });
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('awkicomprasexpedientes');
+        Schema::dropIfExists('statusfinals');
     }
 };

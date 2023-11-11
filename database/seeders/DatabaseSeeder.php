@@ -72,5 +72,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Supplier::factory(5)->create();
 
         $this->call(AwkirepresentadaSeeder::class);
+       // $this->call(AwkirepresentadasTableSeeder::class);
+        $this->call(AwkizonasTableSeeder::class);
+       // $this->call(UsersTableSeeder::class);
+        $this->call(AwkitiendasTableSeeder::class);
     }
 }

@@ -3,7 +3,7 @@
     <x-slot name="header">
         <div class="flex items-center">
             <h2 class="text-xl font-semibold leading-tight text-gray-600">
-                Lista de Clientes
+                Lista de Cuentas - Clientes
             </h2>
         </div
 

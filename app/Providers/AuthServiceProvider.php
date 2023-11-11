@@ -16,6 +16,8 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         'App\Models\Awkirepresentada' => 'App\Policies\RepresentadaPolicy',
         'App\Models\Awkizona' => 'App\Policies\ZonaPolicy',
+        'App\Models\Awkitienda' => 'App\Policies\AwkitiendaPolicy',
+        'App\Models\Awkicliente' => 'App\Policies\AwkiclientePolicy',
         'Spatie\Permission\Models\Role' => 'App\Policies\RolePolicy',
     ];
 
