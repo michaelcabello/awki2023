@@ -17,7 +17,7 @@ class ClienteList extends Component
     use AuthorizesRequests; //se pone esto con jetstream livewire
     use WithPagination;
     public $awkicliente;
-    public $search, $dni, $nombres, $apellidopaterno, $apellidomaterno, $state, $awkitienda_id;
+    public $search, $dni, $numdocumento, $numerodeplaca, $apellidopaterno, $apellidomaterno, $state, $awkitienda_id;
     public $sort = 'id';
     public $direction = 'desc';
     public $cant = '10';

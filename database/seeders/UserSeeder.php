@@ -44,6 +44,12 @@ class UserSeeder extends Seeder
         Permission::create(['name'=>'Cliente Delete','display_name'=>'Eliminar Clientes'])->SyncRoles([$adminRole]);
 
 
+        Permission::create(['name'=>'Expediente View','display_name'=>'Ver Expedientes'])->SyncRoles([$adminRole]);
+        Permission::create(['name'=>'Expediente Create','display_name'=>'Crear Expedientes'])->SyncRoles([$adminRole]);
+        Permission::create(['name'=>'Expediente Update','display_name'=>'Actualizar Expedientes'])->SyncRoles([$adminRole]);
+        Permission::create(['name'=>'Expediente Delete','display_name'=>'Eliminar Expedientes'])->SyncRoles([$adminRole]);
+
+
         Permission::create(['name'=>'Category View','display_name'=>'Ver Categoria de productos'])->SyncRoles([$adminRole]);
         Permission::create(['name'=>'Category Create','display_name'=>'Crear Categoria de productos'])->SyncRoles([$adminRole]);
         Permission::create(['name'=>'Category Update','display_name'=>'Actualizar Categoria de productos'])->SyncRoles([$adminRole]);
