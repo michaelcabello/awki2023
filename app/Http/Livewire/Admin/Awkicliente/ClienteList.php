@@ -79,24 +79,15 @@ class ClienteList extends Component
 
         $user = Auth::user();
 
+        //$usuario = User::find(2);
+        $cuenta = $user->awkirepresentada;
         if ($this->readyToLoad) {
             if ($user->hasRole('Admin')) {
-
-                /*   $clientes = Awkicliente::select('awkiclientes.*', 'awkitiendas.name as tienda_name', 'awkirepresentadas.razonsocial')
-                    ->Join('awkitiendas', 'awkiclientes.awkitienda_id', '=', 'awkitiendas.id')
-                    ->join('awkirepresentadas', 'awkiclientes.awkirepresentada_id', '=', 'awkirepresentadas.id')
-                    ->where('awkiclientes.nombres', 'like', '%' . $this->search . '%')
-                    ->where('awkiclientes.dni', 'like', '%' . $this->search . '%')
-                    ->orwhere('awkitiendas.name', 'like', '%' . $this->search . '%')
-                    ->when($this->state, function ($query) {
-                        return $query->where('awkiclientes.state', 1);
-                    })
-                    ->orderBy($this->sort, $this->direction)
-                    ->paginate($this->cant); */
 
                 $clientes = Awkicliente::select('awkiclientes.*', 'awkitiendas.name as tienda_name', 'awkirepresentadas.razonsocial')
                     ->join('awkitiendas', 'awkiclientes.awkitienda_id', '=', 'awkitiendas.id')
                     ->join('awkirepresentadas', 'awkiclientes.awkirepresentada_id', '=', 'awkirepresentadas.id')
+
                     ->where('awkiclientes.nombres', 'like', '%' . $this->search . '%')
                     ->orWhere('awkiclientes.dni', 'like', '%' . $this->search . '%')
                     ->orWhere('awkitiendas.name', 'like', '%' . $this->search . '%')
@@ -105,12 +96,16 @@ class ClienteList extends Component
                     })
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);
-            } else {
+            } elseif ($cuenta) {
+
                 $clientes = Awkicliente::query()
                     ->select('awkiclientes.*', 'awkitiendas.name as tienda_name', 'awkirepresentadas.razonsocial')
                     ->join('awkitiendas', 'awkiclientes.awkitienda_id', '=', 'awkitiendas.id')
                     ->join('awkirepresentadas', 'awkiclientes.awkirepresentada_id', '=', 'awkirepresentadas.id')
-                    ->whereIn('awkitiendas.id', $user->tiendas->pluck('id')) // Filtrar por tiendas del usuario
+                    //->join('awkiclientes', 'awkirepresentadas.id', '=', 'awkiclientes.awkirepresentada_id ')
+                    ->where('awkiclientes.awkirepresentada_id', '=', $cuenta->id)
+                    //->whereIn('awkitiendas.id', $user->tiendas->pluck('id')) // Filtrar por tiendas del usuario
+                    //->whereIn('awkirepresentadas.user_id', $cuenta->id)
                     ->where(function ($query) {
                         $query->where('awkiclientes.nombres', 'like', '%' . $this->search . '%')
                             ->orWhere('awkiclientes.dni', 'like', '%' . $this->search . '%')
@@ -119,6 +114,24 @@ class ClienteList extends Component
                     })
                     ->when($this->state, function ($query) {
                         return $query->where('awkiclientes.state', 1);
+                    })
+                    ->orderBy($this->sort, $this->direction)
+                    ->paginate($this->cant);
+            } else {
+
+                $clientes = Awkicliente::select('awkiclientes.*', 'awkitiendas.name as tienda_name', 'awkirepresentadas.razonsocial')
+                    ->join('awkitiendas', 'awkiclientes.awkitienda_id', '=', 'awkitiendas.id')
+                    ->join('awkirepresentadas', 'awkiclientes.awkirepresentada_id', '=', 'awkirepresentadas.id')
+                    ->where(function ($query) {
+                        $query->where('awkiclientes.nombres', 'like', '%' . $this->search . '%')
+                            ->orWhere('awkiclientes.dni', 'like', '%' . $this->search . '%')
+                            ->orWhere('awkitiendas.name', 'like', '%' . $this->search . '%');
+                    })
+                    ->when($this->state, function ($query) {
+                        return $query->where('awkiclientes.state', 1);
+                    })
+                    ->whereHas('awkitienda', function ($query) {
+                        $query->where('user_id', auth()->id());
                     })
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);

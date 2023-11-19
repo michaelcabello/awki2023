@@ -7,6 +7,7 @@ use App\Models\Awkizona;
 use Livewire\WithPagination;
 use App\Models\Awkirepresentada;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class ZonaList extends Component
 {
@@ -32,11 +33,11 @@ class ZonaList extends Component
         'search' => ['except' => ''],
     ];
 
-    public function mount(){
+    public function mount()
+    {
 
-        $this->awkirepresentadas = Awkirepresentada::pluck('razonsocial','id');
-
-     }
+        $this->awkirepresentadas = Awkirepresentada::pluck('razonsocial', 'id');
+    }
 
     public function updatingSearch()
     {
@@ -51,24 +52,53 @@ class ZonaList extends Component
     public function render()
     {
 
-        $this->authorize('view', new Awkizona);
+        //$this->authorize('view', new Awkizona);
+        $user = Auth::user();
+        $cuenta = $user->awkirepresentada;
         if ($this->readyToLoad) {
-            /*  $zonas = Awkizona::where('name', 'like', '%' .$this->search. '%')
-                ->when($this->state, function($query){
-                    return $query->where('state',1);
-                })
-                ->orderBy($this->sort, $this->direction)
-                ->paginate($this->cant); */
-
-            $zonas = Awkizona::select('awkizonas.*', 'awkirepresentadas.razonsocial')
-                ->leftJoin('awkirepresentadas', 'awkizonas.awkirepresentada_id', '=', 'awkirepresentadas.id')
-                ->where('awkizonas.name', 'like', '%' . $this->search . '%')
-                ->orwhere('awkirepresentadas.razonsocial', 'like', '%' . $this->search . '%')
-                ->when($this->state, function ($query) {
-                    return $query->where('awkizonas.state', 1);
-                })
-                ->orderBy($this->sort, $this->direction)
-                ->paginate($this->cant);
+            if ($user->hasRole('Admin')) {
+                $zonas = Awkizona::select('awkizonas.*', 'awkirepresentadas.razonsocial')
+                    ->leftJoin('awkirepresentadas', 'awkizonas.awkirepresentada_id', '=', 'awkirepresentadas.id')
+                    ->where('awkizonas.name', 'like', '%' . $this->search . '%')
+                    ->orwhere('awkirepresentadas.razonsocial', 'like', '%' . $this->search . '%')
+                    ->when($this->state, function ($query) {
+                        return $query->where('awkizonas.state', 1);
+                    })
+                    ->orderBy($this->sort, $this->direction)
+                    ->paginate($this->cant);
+            } elseif ($cuenta) {
+                $zonas = Awkizona::select('awkizonas.*', 'awkirepresentadas.razonsocial')
+                    ->leftJoin('awkirepresentadas', 'awkizonas.awkirepresentada_id', '=', 'awkirepresentadas.id')
+                    ->where('awkizonas.awkirepresentada_id', $cuenta->id)
+                    ->where(function ($query) {
+                        $query->where('awkizonas.name', 'like', '%' . $this->search . '%')
+                            ->orWhere('awkirepresentadas.razonsocial', 'like', '%' . $this->search . '%');
+                    })
+                    //->where('awkizonas.awkirepresentada_id', '=', $cuenta->id )//esta parte no funciona
+                    //->orWhere('awkizonas.name', 'like', '%' . $this->search . '%')
+                    //->orWhere('awkirepresentadas.razonsocial', 'like', '%' . $this->search . '%')
+                    ->when($this->state, function ($query) {
+                        return $query->where('awkizonas.state', 1);
+                    })
+                    ->orderBy($this->sort, $this->direction)
+                    ->paginate($this->cant);
+            } else {
+                $zonas = Awkizona::select('awkizonas.*', 'awkirepresentadas.razonsocial')
+                    ->leftJoin('awkirepresentadas', 'awkizonas.awkirepresentada_id', '=', 'awkirepresentadas.id')
+                    //->where('awkizonas.awkirepresentada_id', $cuenta->id)
+                    /* ->where(function ($query) {
+                        $query->where('awkizonas.name', 'like', '%' . $this->search . '%')
+                            ->orWhere('awkirepresentadas.razonsocial', 'like', '%' . $this->search . '%');
+                    }) */
+                    //->where('awkizonas.awkirepresentada_id', '=', $cuenta->id )//esta parte no funciona
+                    ->orWhere('awkizonas.name', 'like', '%' . $this->search . '%')
+                    ->orWhere('awkirepresentadas.razonsocial', 'like', '%' . $this->search . '%')
+                    ->when($this->state, function ($query) {
+                        return $query->where('awkizonas.state', 1);
+                    })
+                    ->orderBy($this->sort, $this->direction)
+                    ->paginate($this->cant);
+            }
         } else {
             $zonas = [];
         }
@@ -77,22 +107,23 @@ class ZonaList extends Component
     }
 
 
-    public function order($sort){
-        if($this->sort == $sort){
-            if($this->direction == 'desc'){
+    public function order($sort)
+    {
+        if ($this->sort == $sort) {
+            if ($this->direction == 'desc') {
                 $this->direction = 'asc';
-            }else{
+            } else {
                 $this->direction = 'desc';
             }
-        }else{
+        } else {
             $this->sort = $sort;
             $this->direction = 'asc';
         }
-
     }
 
 
-    public function activar(Awkizona $awkizona){
+    public function activar(Awkizona $awkizona)
+    {
         $this->awkizona = $awkizona;
 
         $this->awkizona->update([
@@ -100,7 +131,8 @@ class ZonaList extends Component
         ]);
     }
 
-    public function desactivar(Awkizona $awkizona){
+    public function desactivar(Awkizona $awkizona)
+    {
         $this->awkizona = $awkizona;
 
         $this->awkizona->update([
@@ -108,50 +140,46 @@ class ZonaList extends Component
         ]);
     }
 
-    public function delete(Awkizona $awkizona){
+    public function delete(Awkizona $awkizona)
+    {
         $awkizona->delete();
     }
 
 
     protected $rules = [
         'awkizona.name' => 'required',
-        'awkizona.description'=> '',
-        'awkizona.state'=> '',
-        'awkizona.awkirepresentada_id'=> '',
+        'awkizona.description' => '',
+        'awkizona.state' => '',
+        'awkizona.awkirepresentada_id' => '',
     ];
 
-    public function edit(Awkizona $zonaa){
+    public function edit(Awkizona $zonaa)
+    {
         //dd($representadaa);
         $this->awkirepresentada_id = $zonaa->awkirepresentada_id;
         $this->resetValidation();
         $this->awkizona = $zonaa;
         //dd($this->awkirepresentada);
         $this->open_edit = true;
-
     }
 
 
-    public function update(){
+    public function update()
+    {
         //dd($this->awkirepresentada);
-       // $this->validate();
+        // $this->validate();
         //  $modelId = $this->awkirepresentada->id;
-          $this->validate([
+        $this->validate([
             'awkizona.name' => 'required',
-            'awkizona.description'=> '',
-            'awkizona.state'=> '',
-            'awkizona.awkirepresentada_id'=> '',
+            'awkizona.description' => '',
+            'awkizona.state' => '',
+            'awkizona.awkirepresentada_id' => '',
         ]);
 
-       $this->awkizona->save();
-       $this->reset('open_edit');
+        $this->awkizona->save();
+        $this->reset('open_edit');
 
-       //$this->emitTo('show-posts', 'render');
-       $this->emit('alert','La Zona se modifico correctamente');
-
-   }
-
-
-
-
-
+        //$this->emitTo('show-posts', 'render');
+        $this->emit('alert', 'La Zona se modifico correctamente');
+    }
 }

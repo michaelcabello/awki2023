@@ -14,22 +14,23 @@ class ClienteCreate extends Component
 
     public $open = false;
     public $user;
-    public $dni, $nombres, $apellidopaterno, $apellidomaterno, $state, $awkirepresentada_id="", $awkizona_id = "", $awkitienda_id = "";
-    public $awkirepresentadau_id, $awkizonau_id, $awkitiendau_id;
+    public $dni, $nombres, $apellidopaterno, $apellidomaterno, $state, $awkirepresentada_id = "", $awkizona_id = "", $awkitienda_id = "";
+    public $awkirepresentadau_id, $awkizonau_id, $awkitiendau_id="";
     public $awkitiendas = [];
     //public $awkitiendasu = [];
     public $awkirepresentadas = [];
     public $awkizonas = [];
 
     protected $rules = [
-        'dni' => 'required',
+        'dni' => 'required|unique:awkiclientes',
         'nombres' => 'required',
         'apellidopaterno' => 'required',
         'apellidomaterno' => 'required',
         'state' => '',
-        'awkirepresentada_id' => 'required',
-        'awkizona_id' => 'required',
-        'awkitienda_id' => 'required',
+        //'awkirepresentada_id' => '',//estas validaciones son importantes ponerlo en nulo de lo contrario no graba en los usuarios que no son administrador
+        //'awkizona_id' => '',//estas validaciones son importantes ponerlo en nulo de lo contrario no graba en los usuarios que no son administrador
+        //'awkitienda_id' => '',
+        //'awkitiendau_id' => '',
     ];
 
 
@@ -41,35 +42,67 @@ class ClienteCreate extends Component
         //$this->awkitiendas = Awkitienda::pluck('name', 'id');
     }
 
-    public function updatedAwkirepresentadaId($value){
+    public function updatedAwkirepresentadaId($value)
+    {
         $this->awkizonas = Awkizona::where('awkirepresentada_id', $value)->get();
         $this->reset(['awkizona_id', 'awkitienda_id']);
     }
 
-     public function updatedAwkizonaId($value){
+    public function updatedAwkizonaId($value)
+    {
         $this->awkitiendas = Awkitienda::where('awkizona_id', $value)->get();
         $this->reset(['awkitienda_id']);
     }
 
+    public function cancel()
+    {
+        $this->reset(['open', 'dni', 'nombres', 'apellidopaterno', 'apellidomaterno', 'state', 'awkitienda_id', 'awkizona_id', 'awkirepresentada_id', 'awkitiendau_id']);
+    }
+
+
     public function save()
     {
-        //$this->validate();
 
-        //dd($this->state);
 
         $statee = ($this->state) ? 1 : 0;
-        //dd($this->user->hasRole('Admin'));
 
-        if ($this->user->hasRole('Admin')){
+
+        if ($this->user->hasRole('Admin')) {
+
+            $rules['awkirepresentada_id'] = 'required';
+            $rules['awkizona_id'] = 'required';
+            $rules['awkitienda_id'] = 'required';
+            $this->validate();
+
             $awkirepresentadaId = $this->awkirepresentada_id;
             $awkizonaId = $this->awkizona_id;
-        }
-        else {
+
+/*             Awkicliente::create([
+                'dni' => $this->dni,
+                'nombres' => $this->nombres,
+                'apellidopaterno' => $this->apellidopaterno,
+                'apellidomaterno' => $this->apellidomaterno,
+                'state' => $statee,
+                'awkirepresentada_id' => $awkirepresentadaId,
+                'awkizona_id' => $awkizonaId,
+                'awkitienda_id' => $this->awkitienda_id,
+            ]); */
+
+        } else {
+            $rules['awkirepresentada_id'] = '';
+            $rules['awkizona_id'] = '';
+            $rules['awkitienda_id'] = '';
+            $rules['awkitiendau_id'] = '';
+            $this->validate();
             $tienda = Awkitienda::find($this->awkitiendau_id);
+
             $awkirepresentadaId = $tienda->awkirepresentada_id;
             $awkizonaId = $tienda->awkizona_id;
             $this->awkitienda_id = $this->awkitiendau_id;
+
+
         }
+
 
         Awkicliente::create([
             'dni' => $this->dni,
@@ -79,12 +112,12 @@ class ClienteCreate extends Component
             'state' => $statee,
             'awkirepresentada_id' => $awkirepresentadaId,
             'awkizona_id' => $awkizonaId,
-            'awkitienda_id' => (int)$this->awkitienda_id,
+            'awkitienda_id' => $this->awkitienda_id,
         ]);
 
 
 
-        $this->reset(['open', 'dni', 'nombres','apellidopaterno', 'apellidomaterno', 'state', 'awkitienda_id','awkizona_id','awkirepresentada_id']);
+        $this->reset(['open', 'dni', 'nombres', 'apellidopaterno', 'apellidomaterno', 'state', 'awkitienda_id', 'awkizona_id', 'awkirepresentada_id']);
 
         $this->emitTo('admin.awkicliente.cliente-list', 'render');
 

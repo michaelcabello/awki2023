@@ -251,6 +251,11 @@
 
 
                                     <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                        {{-- <a wire:click="edit({{ $clientee }})" class="btn btn-blue">Crear</a> --}}
+
+                                        <a href="{{ route('admin.expediente.create', $clientee->id) }}"
+                                        class="btn btn-orange">
+                                        <i class="mx-2 fa-regular fa-file"></i></a>
                                         @can('Zona Update')
                                             <a wire:click="edit({{ $clientee }})" class="btn btn-green"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>

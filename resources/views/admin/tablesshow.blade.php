@@ -17,7 +17,7 @@
                         <div class="grid grid-cols-1 px-4 mx-auto mt-4 max-w-7xl sm:px-6 lg:px-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
 
 
-                                <article>
+                                {{-- <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/configuraciones.jpg')}}" alt="Configuraciones">
                                     </figure>
@@ -25,7 +25,7 @@
                                         <h1 class="text-xl text-center text-gray-700">Configuraciones</h1>
                                     </header>
 
-                                </article>
+                                </article> --}}
 
                                 <article>
                                     <figure>
@@ -62,7 +62,7 @@
 
 
 
-                                <article>
+                                {{-- <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/brands.jpg')}}" alt="">
                                     </figure>
@@ -70,7 +70,7 @@
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('brand.list')}}">Marcas</a></h1>
                                     </header>
 
-                                </article>
+                                </article> --}}
 
                                 @can('Representada View')
                                 <article>
@@ -78,7 +78,7 @@
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/categories.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('representada.list')}}">Clientes Awki</a></h1>
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('representada.list')}}">Cuentas</a></h1>
 
                                     </header>
 
@@ -101,7 +101,7 @@
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/products.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('tienda.list')}}">Tienda</a></h1>
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('tienda.list')}}">Tiendas</a></h1>
 
                                     </header>
 
@@ -134,7 +134,7 @@
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/compras.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('admin.shopping.index')}}">Compras</a></h1>
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('expediente.list')}}">Expedientes</a></h1>
                                     </header>
 
                                 </article>

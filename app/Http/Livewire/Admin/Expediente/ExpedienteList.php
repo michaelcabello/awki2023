@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Expediente;
 
+use App\Models\Expediente;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
@@ -23,8 +24,59 @@ class ExpedienteList extends Component
     public $awkitiendas;
 
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function loadExpedientes()
+    {
+        $this->readyToLoad = true;
+    }
+
+
+
     public function render()
     {
-        return view('livewire.admin.expediente.expediente-list');
+        //$this->authorize('view', new Awkicliente);
+
+        $user = Auth::user();
+
+
+        if ($this->readyToLoad) {
+            if ($user->hasRole('Admin')) {
+                $expedientes = Expediente::select('expedientes.*', 'awkitiendas.name as tienda_name', 'awkiclientes.nombres as cliente_name')
+                    ->join('awkitiendas', 'expedientes.awkitienda_id', '=', 'awkitiendas.id')
+                    ->join('awkiclientes', 'expedientes.awkicliente_id', '=', 'awkiclientes.id')
+                    ->where(function ($query) {
+                        $query->where('awkiclientes.nombres', 'like', '%' . $this->search . '%')
+                            ->orWhere('awkiclientes.dni', 'like', '%' . $this->search . '%')
+                            ->orWhere('awkitiendas.name', 'like', '%' . $this->search . '%');
+                    })
+                    /* ->when($this->state, function ($query) {
+                        return $query->where('awkiclientes.state', 1);
+                    }) */
+                    ->orderBy($this->sort, $this->direction)
+                    ->paginate($this->cant);
+            } else {
+                $expedientes = Expediente::select('expedientes.*', 'awkitiendas.name as tienda_name', 'awkiclientes.nombres as cliente_name')
+                    ->join('awkitiendas', 'expedientes.awkitienda_id', '=', 'awkitiendas.id')
+                    ->join('awkiclientes', 'expedientes.awkicliente_id', '=', 'awkiclientes.id')
+                    ->whereIn('awkitiendas.id', $user->tiendas->pluck('id')) // Filtrar por tiendas del usuario
+                    ->where(function ($query) {
+                        $query->where('awkiclientes.nombres', 'like', '%' . $this->search . '%')
+                            ->orWhere('awkiclientes.dni', 'like', '%' . $this->search . '%')
+                            ->orWhere('awkitiendas.name', 'like', '%' . $this->search . '%');
+                    })
+                    ->orderBy($this->sort, $this->direction)
+                    ->paginate($this->cant);
+            }
+        } else {
+            $expedientes = [];
+        }
+
+
+
+        return view('livewire.admin.expediente.expediente-list', compact('expedientes'));
     }
 }

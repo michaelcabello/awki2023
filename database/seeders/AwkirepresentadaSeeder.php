@@ -24,7 +24,7 @@ class AwkirepresentadaSeeder extends Seeder
             'state' => 1,
             'nota1'=>'descripcion de la nota 1',
             'nota2'=>'descripcion de la nota 1',
-            'user_id'=>5,
+            'user_id'=>3,
         ]);
 
         Awkirepresentada::create([
@@ -53,7 +53,7 @@ class AwkirepresentadaSeeder extends Seeder
 
         Awkirepresentada::create([
             'razonsocial' => 'VOLVO SA',
-            'ruc' => '20553396699',
+            'ruc' => '20093396699',
             'address'=>'Av. PERU 345 Lima',
             'phone'=>'2554874',
             'movil'=>'996959874',
@@ -65,7 +65,7 @@ class AwkirepresentadaSeeder extends Seeder
 
         Awkirepresentada::create([
             'razonsocial' => 'XYZ SA',
-            'ruc' => '20727896699',
+            'ruc' => '20727899619',
             'address'=>'Av. PERU 345 Lima',
             'phone'=>'2554874',
             'movil'=>'996959874',
@@ -73,6 +73,32 @@ class AwkirepresentadaSeeder extends Seeder
             'nota1'=>'descripcion de la nota 1',
             'nota2'=>'descripcion de la nota 1',
             'user_id'=>8,
+        ]);
+
+
+        Awkirepresentada::create([
+            'razonsocial' => 'MNP SA',
+            'ruc' => '77527896699',
+            'address'=>'Av. PERU 345 Lima',
+            'phone'=>'2554874',
+            'movil'=>'996959874',
+            'state' => 1,
+            'nota1'=>'descripcion de la nota 1',
+            'nota2'=>'descripcion de la nota 1',
+            'user_id'=>4,
+        ]);
+
+
+        Awkirepresentada::create([
+            'razonsocial' => 'OPQ SA',
+            'ruc' => '20766496699',
+            'address'=>'Av. PERU 345 Lima',
+            'phone'=>'2554874',
+            'movil'=>'996959874',
+            'state' => 1,
+            'nota1'=>'descripcion de la nota 1',
+            'nota2'=>'descripcion de la nota 1',
+            'user_id'=>5,
         ]);
 
     }

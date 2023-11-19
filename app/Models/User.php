@@ -88,4 +88,11 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Awkicliente::class, Awkitienda::class, 'user_id', 'awkitienda_id', 'id', 'id');
     }
+
+
+    public function awkirepresentada() {
+        return $this->hasOne('App\Models\Awkirepresentada');
+      }
+
+
 }

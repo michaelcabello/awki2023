@@ -10,9 +10,14 @@ class Awkicliente extends Model
     use HasFactory;
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function tienda()
+    public function awkitienda()
     {
         return $this->belongsTo(Awkitienda::class);
+    }
+
+    public function awkizona()
+    {
+        return $this->belongsTo(Awkizona::class);
     }
 
     public function user()

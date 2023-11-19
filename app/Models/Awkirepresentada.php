@@ -16,4 +16,20 @@ class Awkirepresentada extends Model
         return $this->hasMany(Awkizona::class);
     }
 
+    //relacion de uno a muchos
+    public function awkitiendas()
+    {
+        return $this->hasMany(Awkitienda::class);
+    }
+
+    //relacion de uno a muchos
+    public function awkiclientes()
+    {
+        return $this->hasMany(Awkicliente::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

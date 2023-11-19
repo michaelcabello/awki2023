@@ -6,17 +6,24 @@ use App\Models\Initialinventory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
+
+
+
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         // \App\Models\User::factory(10)->create();
+
+
+        $this->call(TipodedocumentosTableSeeder::class);
+        $this->call(TipodeventasTableSeeder::class);
+        $this->call(MarcasTableSeeder::class);
+        $this->call(ModellosTableSeeder::class);
+
 
         $this->call(CategorySeeder::class);
         $this->call(BrandSeeder::class);
@@ -49,6 +56,11 @@ class DatabaseSeeder extends Seeder
         \App\Models\Product::factory(10)->create();
         $this->call(LocalSeeder::class);
         $this->call(UserSeeder::class);
+
+        $this->call(PermissionsTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
+
+
         $this->call(InitialinventorySeeder::class);
 
 
@@ -76,5 +88,10 @@ class DatabaseSeeder extends Seeder
         $this->call(AwkizonasTableSeeder::class);
        // $this->call(UsersTableSeeder::class);
         $this->call(AwkitiendasTableSeeder::class);
+        $this->call(AwkiclientesTableSeeder::class);
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+
     }
 }

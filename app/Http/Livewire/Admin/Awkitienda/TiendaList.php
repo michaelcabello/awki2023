@@ -8,6 +8,7 @@ use App\Models\Awkizona;
 use App\Models\Awkitienda;
 use Livewire\WithPagination;
 use App\Models\Awkirepresentada;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TiendaList extends Component
@@ -67,9 +68,11 @@ class TiendaList extends Component
     {
 
         $this->authorize('view', new Awkitienda);
+        $user = Auth::user();
+        $cuenta = $user->awkirepresentada;
+
         if ($this->readyToLoad) {
-
-
+            if ($user->hasRole('Admin')) {
             $tiendas = Awkitienda::select('awkitiendas.id as tienda_id', 'awkitiendas.name as tienda_name', 'awkitiendas.address', 'awkitiendas.state', 'awkizonas.name as zona_name', 'awkirepresentadas.razonsocial as razonsocial', 'users.name as user_name')
                 ->leftJoin('awkizonas', 'awkitiendas.awkizona_id', '=', 'awkizonas.id')
                 ->leftJoin('awkirepresentadas', 'awkitiendas.awkirepresentada_id', '=', 'awkirepresentadas.id')
@@ -81,9 +84,46 @@ class TiendaList extends Component
                 })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate($this->cant);
+            } elseif ($cuenta) {
+
+                $tiendas = Awkitienda::select('awkitiendas.id as tienda_id', 'awkitiendas.name as tienda_name', 'awkitiendas.address', 'awkitiendas.state', 'awkizonas.name as zona_name', 'awkirepresentadas.razonsocial as razonsocial', 'users.name as user_name')
+                ->leftJoin('awkizonas', 'awkitiendas.awkizona_id', '=', 'awkizonas.id')
+                ->leftJoin('awkirepresentadas', 'awkitiendas.awkirepresentada_id', '=', 'awkirepresentadas.id')
+                ->leftJoin('users', 'awkitiendas.user_id', '=', 'users.id')
+                ->where('awkitiendas.awkirepresentada_id', $cuenta->id)
+                ->where(function ($query) {
+                    $query->where('awkitiendas.name', 'like', '%' . $this->search . '%')
+                        ->orWhere('awkizonas.name', 'like', '%' . $this->search . '%');
+                })
+                ->when($this->state, function ($query) {
+                    return $query->where('awkitiendas.state', 1);
+                })
+                ->orderBy($this->sort, $this->direction)
+                ->paginate($this->cant);
+
+            } else {
+
+
+                $tiendas = Awkitienda::select('awkitiendas.id as tienda_id', 'awkitiendas.name as tienda_name', 'awkitiendas.address', 'awkitiendas.state', 'awkizonas.name as zona_name', 'awkirepresentadas.razonsocial as razonsocial', 'users.name as user_name')
+                ->leftJoin('awkizonas', 'awkitiendas.awkizona_id', '=', 'awkizonas.id')
+                ->leftJoin('awkirepresentadas', 'awkitiendas.awkirepresentada_id', '=', 'awkirepresentadas.id')
+                ->leftJoin('users', 'awkitiendas.user_id', '=', 'users.id')
+                //->where('awkitiendas.awkirepresentada_id', $cuenta->id)
+                ->where(function ($query) {
+                    $query->where('awkitiendas.name', 'like', '%' . $this->search . '%')
+                        ->orWhere('awkizonas.name', 'like', '%' . $this->search . '%');
+                })
+                ->when($this->state, function ($query) {
+                    return $query->where('awkitiendas.state', 1);
+                })
+                ->orderBy($this->sort, $this->direction)
+                ->paginate($this->cant);
+            }
         } else {
             $tiendas = [];
         }
+
+
 
         return view('livewire.admin.awkitienda.tienda-list', compact('tiendas'));
     }

@@ -37,7 +37,9 @@ use App\Http\Livewire\Admin\Awkirepresentada\RepresentadaList;
 use App\Http\Livewire\Admin\Awkizona\ZonaList;
 use App\Http\Livewire\Admin\Awkitienda\TiendaList;
 use App\Http\Livewire\Admin\Awkicliente\ClienteList;
-
+use App\Http\Controllers\admin\ExpedienteController;
+use App\Models\Expediente;
+use App\Http\Livewire\Admin\Expediente\ExpedienteList;
 //Route::get('/', [HomeController::class, 'home'])->name('admin.home');
 Route::get('/tables', [TableController::class, 'showtables'])->name('admin.showtables');
 
@@ -46,6 +48,12 @@ Route::get('/zonas', ZonaList::class)->name('zona.list');
 Route::get('/tiendas', TiendaList::class)->name('tienda.list');
 Route::get('/clientes', ClienteList::class)->name('cliente.list');
 
+//Route::resource('expediente', ExpedienteController::class)->except(['create','index'])->names('admin.expediente');
+Route::get('expediente/{clientee}', [ExpedienteController::class, 'create'])->name('admin.expediente.create');
+Route::post('expediente/', [ExpedienteController::class, 'store'])->name('admin.expediente.store');
+Route::put('expediente/{expedientee}', [ExpedienteController::class, 'update'])->name('admin.expediente.update');
+Route::get('expediente/{expedientee}/edit', [ExpedienteController::class, 'edit'])->name('admin.expediente.edit');
+Route::get('/expedientes', ExpedienteList::class)->name('expediente.list');
 
 Route::get('/categories', CategoryList::class)->name('category.list');
 Route::get('/modelos', ModeloList::class)->name('modelo.list');
@@ -120,6 +128,8 @@ Route::post('/dropzone', [ProductatributeController::class, 'dropzoneok'])->name
 
 //Route::resource('usuarios', UserController::class)->names('admin.usuarios');
 Route::resource('user', UserController::class)->names('admin.user');
+
+
 
 Route::put('users/{user}/roles', [UsersRolesController::class, 'update'])->name('admin.user.roles.update')->middleware('role:Admin');
 Route::put('users/{user}/permissions', [UsersPermissionsController::class, 'update'])->name('admin.users.permissions.update')->middleware('role:Admin');

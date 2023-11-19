@@ -21,4 +21,9 @@ class Awkitienda extends Model
         return $this->belongsTo(Awkizona::class);
     }
 
+    public function awkirepresentada()
+{
+    return $this->belongsTo(Awkirepresentada::class);
+}
+
 }

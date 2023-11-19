@@ -36,57 +36,56 @@
                 <x-jet-input-error for="apellidomaterno" />
             </div>
 
-            @if($user->hasRole('Admin'))
+            @if ($user->hasRole('Admin'))
 
-            <div class="mb-4">
-                <x-jet-label value="Cuentas" />
-                <select wire:model="awkirepresentada_id" class="py-0.7 rounded" style="height:100%; width:100%">
-                    <option value="" selected disabled>Seleccione</option>
-                    @foreach ($awkirepresentadas as $id => $razonsocial)
-                        <option value="{{ $id }}">{{ $razonsocial }}</option>
-                    @endforeach
+                <div class="mb-4">
+                    <x-jet-label value="Cuentas" />
+                    <select wire:model="awkirepresentada_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                        <option value="" selected disabled>Seleccione</option>
+                        @foreach ($awkirepresentadas as $id => $razonsocial)
+                            <option value="{{ $id }}">{{ $razonsocial }}</option>
+                        @endforeach
 
-                </select>
-                <x-jet-input-error for="awkirepresentada_id" />
-            </div>
+                    </select>
+                    <x-jet-input-error for="awkirepresentada_id" />
+                </div>
 
-            <div class="mb-4">
-                <x-jet-label value="Zonas" />
-                <select wire:model="awkizona_id" class="py-0.7 rounded" style="height:100%; width:100%">
-                    <option value="" selected disabled>Seleccione</option>
-                    @foreach ($awkizonas as $zona)
-                        <option value="{{ $zona->id }}">{{ $zona->name }}</option>
-                    @endforeach
+                <div class="mb-4">
+                    <x-jet-label value="Zonas" />
+                    <select wire:model="awkizona_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                        <option value="" selected disabled>Seleccione</option>
+                        @foreach ($awkizonas as $zona)
+                            <option value="{{ $zona->id }}">{{ $zona->name }}</option>
+                        @endforeach
 
-                </select>
-                <x-jet-input-error for="awkizona_id" />
-            </div>
+                    </select>
+                    <x-jet-input-error for="awkizona_id" />
+                </div>
 
-            <div class="mb-4">
-                <x-jet-label value="Tienda" />
-                <select wire:model="awkitienda_id" class="py-0.7 rounded" style="height:100%; width:100%">
-                    <option value="" selected disabled>Seleccione</option>
-                    @foreach ($awkitiendas as $tienda)
-                        <option value="{{ $tienda->id }}">{{ $tienda->name }}</option>
-                    @endforeach
+                <div class="mb-4">
+                    <x-jet-label value="Tienda" />
+                    <select wire:model="awkitienda_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                        <option value="" selected disabled>Seleccione</option>
+                        @foreach ($awkitiendas as $tienda)
+                            <option value="{{ $tienda->id }}">{{ $tienda->name }}</option>
+                        @endforeach
 
-                </select>
-                <x-jet-input-error for="awkitienda_id" />
-            </div>
+                    </select>
+                    <x-jet-input-error for="awkitienda_id" />
+                </div>
             @else
+                <div class="mb-4">
+                    <x-jet-label value="Tienda" />
+                    <select wire:model="awkitiendau_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                        <option value="" selected disabled>Seleccione</option>
+                        @foreach ($user->tiendas as $tienda)
+                            <option value="{{ $tienda->id }}">{{ $tienda->name }}</option>
+                        @endforeach
 
-            <div class="mb-4">
-                <x-jet-label value="Tienda" />
-                <select wire:model="awkitiendau_id" class="py-0.7 rounded" style="height:100%; width:100%">
-                    <option value="" selected disabled>Seleccione</option>
-                    @foreach ($user->tiendas as $tienda)
-                        <option value="{{ $tienda->id }}">{{ $tienda->name }}</option>
-                    @endforeach
-
-                </select>
-                <x-jet-input-error for="awkitiendau_id" />
-            </div>
-            {{ $awkitiendau_id }}
+                    </select>
+                    <x-jet-input-error for="awkitiendau_id" />
+                </div>
+                {{ $awkitiendau_id }}
             @endif
 
             <div>
@@ -99,14 +98,15 @@
 
         <x-slot name="footer">
 
-            <x-jet-button wire:click="$set('open', false)" class="mr-2">
+            {{-- <x-jet-button wire:click="$set('open', false)" class="mr-2"> --}}
+            <x-jet-button wire:click="cancel" class="mr-2">
                 <i class="mx-2 fa-sharp fa-solid fa-xmark"></i>Cancelar
-                </x-jet-secondary-button>
+            </x-jet-button>
 
-                <x-jet-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save"
-                    class="disabled:opacity-25">
-                    <i class="mx-2 fa-regular fa-floppy-disk"></i> Guardar
-                </x-jet-danger-button>
+            <x-jet-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save"
+                class="disabled:opacity-25">
+                <i class="mx-2 fa-regular fa-floppy-disk"></i> Guardar
+            </x-jet-danger-button>
 
         </x-slot>
 
