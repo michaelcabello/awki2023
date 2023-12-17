@@ -15,66 +15,76 @@
                     <div class="card-body box-profile">
                         <div>
                             <h3 class="mt-4 text-center profile-username">Datos del Cliente</h3>
-                            <div class="mt-4 mb-4 hidden">
+                            <div class="hidden mt-4 mb-4">
                                 <x-jet-label value="ID:" />
-                                <x-jet-input type="text" name="awkicliente_id" value="{{ $clientee->id }}" readonly class="w-full" />
-                                    <x-jet-input type="text" name="awkitienda_id" value="{{ $clientee->awkitienda_id}}" readonly class="w-full" />
-                                        <x-jet-input type="text" name="awkizona_id" value="{{ $clientee->awkizona_id }}" readonly class="w-full" />
+                                <x-jet-input type="text" name="awkicliente_id" value="{{ $clientee->id }}" readonly
+                                    class="w-full" />
+                                <x-jet-input type="text" name="awkitienda_id" value="{{ $clientee->awkitienda_id }}"
+                                    readonly class="w-full" />
+                                <x-jet-input type="text" name="awkizona_id" value="{{ $clientee->awkizona_id }}"
+                                    readonly class="w-full" />
 
                             </div>
 
                             <div class="mt-4 mb-4">
                                 <x-jet-label value="DNI:" />
                                 <x-jet-input type="text" name="dni" value="{{ $clientee->dni }}" readonly
-                                   class="w-full" />
+                                    class="w-full" />
                                 {{-- <x-jet-input-error for="dni" /> --}}
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Nombres:" />
-                                <x-jet-input type="text" name="nombres" value="{{ $clientee->nombres  }}" readonly
+                                <x-jet-input type="text" name="nombres" value="{{ $clientee->nombres }}" readonly
                                     class="w-full" />
-                              {{--   <x-jet-input-error for="nombres" /> --}}
+                                {{--   <x-jet-input-error for="nombres" /> --}}
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Tienda:" />
-                                <x-jet-input type="text" name="tienda" value="{{ $clientee->awkitienda->name }}" readonly
-                                    class="w-full" />
+                                <x-jet-input type="text" name="tienda" value="{{ $clientee->awkitienda->name }}"
+                                    readonly class="w-full" />
                                 {{-- <x-jet-input-error for="tienda" /> --}}
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Zona:" />
-                                <x-jet-input type="text" name="zona" value="{{ $clientee->awkizona->name }}" readonly
-                                    class="w-full" />
+                                <x-jet-input type="text" name="zona" value="{{ $clientee->awkizona->name }}"
+                                    readonly class="w-full" />
                                 {{-- <x-jet-input-error for="zona" /> --}}
                             </div>
 
 
                             <div class="mb-4">
                                 <x-jet-label value="Tipo Documento" />
-                                <select name="tipodedocumento_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                                <select name="tipodedocumento_id" class="py-0.7 rounded"
+                                    style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                  @foreach($tipodedocumentos as $id=>$tipodedocumento)
-                                    <option value="{{$id}}">{{$tipodedocumento}}</option>
-                                  @endforeach
+                                    @foreach ($tipodedocumentos as $id => $tipodedocumento)
+                                        <option value="{{ $id }}">{{ $tipodedocumento }}</option>
+                                    @endforeach
                                 </select>
                                 <x-jet-input-error for="tipodedocumento_id" />
-                                 {{-- {!! $errors->first('category_id','<span class="help-block">:message</span>') !!} --}}
+                                {{-- {!! $errors->first('category_id','<span class="help-block">:message</span>') !!} --}}
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Número de Documento:" />
-                                <x-jet-input type="text" name="numdocumento" value="{{ $clientee->awkitienda->serief }}  {{ $clientee->awkitienda->serieb }}"
-                                    class="w-full" />
+                                <x-jet-input type="text" name="numdocumento"
+                                     {{-- value="{{ $clientee->awkitienda->serief }}  {{ $clientee->awkitienda->serieb }}" --}}
+                                     value="{{ old('numdocumento') }}" class="w-full" />
                                 <x-jet-input-error for="numdocumento" />
                             </div>
 
+
+
+
+
                             <div class="mb-4">
                                 <x-jet-label value="Fecha de Venta:" />
-                                <x-jet-input type="text" name="fechaventa" value="{{ old('fechaventa') }}"
-                                    class="w-full" />
+
+                                <x-jet-input type="text" id="datepicker" name="fechaventa"
+                                    value="{{ old('fechaventa') }}" class="w-full" />
                                 <x-jet-input-error for="fechaventa" />
                             </div>
 
@@ -87,8 +97,8 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Pago Administrativo:" />
-                                <x-jet-input type="text" name="pagoadministrativo" value="{{ old('pagoadministrativo') }}"
-                                    class="w-full" />
+                                <x-jet-input type="text" name="pagoadministrativo"
+                                    value="{{ old('pagoadministrativo') }}" class="w-full" />
                                 <x-jet-input-error for="pagoadministrativo" />
                             </div>
 
@@ -96,12 +106,12 @@
                                 <x-jet-label value="Tipo de venta" />
                                 <select name="tipodeventa_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                  @foreach($tipodeventas as $id=>$tipodeventa)
-                                    <option value="{{$id}}">{{$tipodeventa}}</option>
-                                  @endforeach
+                                    @foreach ($tipodeventas as $id => $tipodeventa)
+                                        <option value="{{ $id }}">{{ $tipodeventa }}</option>
+                                    @endforeach
                                 </select>
                                 <x-jet-input-error for="tipodeventa_id" />
-                                 {{-- {!! $errors->first('category_id','<span class="help-block">:message</span>') !!} --}}
+                                {{-- {!! $errors->first('category_id','<span class="help-block">:message</span>') !!} --}}
                             </div>
 
 
@@ -141,9 +151,9 @@
                                 <x-jet-label value="Marca" />
                                 <select name="marca_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                  @foreach($marcas as $id=>$marca)
-                                    <option value="{{$id}}">{{$marca}}</option>
-                                  @endforeach
+                                    @foreach ($marcas as $id => $marca)
+                                        <option value="{{ $id }}">{{ $marca }}</option>
+                                    @endforeach
                                 </select>
                                 <x-jet-input-error for="marca_id" />
                             </div>
@@ -152,9 +162,9 @@
                                 <x-jet-label value="Modelo" />
                                 <select name="modello_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                  @foreach($modellos as $id=>$modello)
-                                    <option value="{{$id}}">{{$modello}}</option>
-                                  @endforeach
+                                    @foreach ($modellos as $id => $modello)
+                                        <option value="{{ $id }}">{{ $modello }}</option>
+                                    @endforeach
                                 </select>
                                 <x-jet-input-error for="modello_id" />
                             </div>
@@ -175,11 +185,11 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Color" />
-                                 <select name="color_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                                <select name="color_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                  @foreach($colors as $id=>$color)
-                                    <option value="{{$id}}">{{$color}}</option>
-                                  @endforeach
+                                    @foreach ($colors as $id => $color)
+                                        <option value="{{ $id }}">{{ $color }}</option>
+                                    @endforeach
                                 </select>
                                 <x-jet-input-error for="color_id" />
                             </div>
@@ -187,22 +197,22 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Año" />
-                                 <select name="anio_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                                <select name="anio_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                  @foreach($anios as $id=>$anio)
-                                    <option value="{{$id}}">{{$anio}}</option>
-                                  @endforeach
+                                    @foreach ($anios as $id => $anio)
+                                        <option value="{{ $id }}">{{ $anio }}</option>
+                                    @endforeach
                                 </select>
                                 <x-jet-input-error for="anio_id" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Categoria" />
-                                 <select name="categoria_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                                <select name="categoria_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                  @foreach($categorias as $id=>$categoria)
-                                    <option value="{{$id}}">{{$categoria}}</option>
-                                  @endforeach
+                                    @foreach ($categorias as $id => $categoria)
+                                        <option value="{{ $id }}">{{ $categoria }}</option>
+                                    @endforeach
                                 </select>
                                 <x-jet-input-error for="categoria_id" />
                             </div>
@@ -230,8 +240,9 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Archivo Certificado:" />
-                                <x-jet-input type="text" name="archivocertificado" value="{{ old('archivocertificado') }}"
-                                    placeholder="Archivo Certificado" class="w-full" />
+                                <x-jet-input type="text" name="archivocertificado"
+                                    value="{{ old('archivocertificado') }}" placeholder="Archivo Certificado"
+                                    class="w-full" />
                                 <x-jet-input-error for="archivocertificado" />
                             </div>
 
@@ -264,11 +275,12 @@
 
                             <div class="mt-4 mb-4 ">
                                 <x-jet-label value="Oficina Registral" />
-                                <select name="oficinaregistral_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                                <select name="oficinaregistral_id" class="py-0.7 rounded"
+                                    style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                  @foreach($oficinaregistrals as $id=>$oficinaregistral)
-                                    <option value="{{$id}}">{{$oficinaregistral}}</option>
-                                  @endforeach
+                                    @foreach ($oficinaregistrals as $id => $oficinaregistral)
+                                        <option value="{{ $id }}">{{ $oficinaregistral }}</option>
+                                    @endforeach
                                 </select>
                                 <x-jet-input-error for="oficinaregistral_id" />
                             </div>
@@ -289,8 +301,9 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Código de Verificación:" />
-                                <x-jet-input type="text" name="codigodeverificacion" value="{{ old('codigodeverificacion') }}"
-                                    placeholder="Código de Verificación" class="w-full" />
+                                <x-jet-input type="text" name="codigodeverificacion"
+                                    value="{{ old('codigodeverificacion') }}" placeholder="Código de Verificación"
+                                    class="w-full" />
                                 <x-jet-input-error for="codigodeverificacion" />
                             </div>
 
@@ -311,11 +324,12 @@
 
                             <div class="mt-4 mb-4 ">
                                 <x-jet-label value="Status Sunarp" />
-                                <select name="statussunarp_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                                <select name="statussunarp_id" class="py-0.7 rounded"
+                                    style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                  @foreach($statussunarps as $id=>$statussunarp)
-                                    <option value="{{$id}}">{{$statussunarp}}</option>
-                                  @endforeach
+                                    @foreach ($statussunarps as $id => $statussunarp)
+                                        <option value="{{ $id }}">{{ $statussunarp }}</option>
+                                    @endforeach
                                 </select>
                                 <x-jet-input-error for="statussunarp_id" />
                             </div>
@@ -351,7 +365,8 @@
                                     placeholder="tu  nombre" class="w-full" /> --}}
 
 
-                                <x-jet-input type="file" name="tarjetadepropiedad" placeholder="Tarjeta de Propiedad" />
+                                <x-jet-input type="file" name="tarjetadepropiedad"
+                                    placeholder="Tarjeta de Propiedad" />
                                 <x-jet-input-error for="tarjetadepropiedad" />
 
                             </div>
@@ -385,8 +400,9 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Guia de Remision:" />
-                                <x-jet-input type="text" name="guiaderemision" value="{{ old('guiaderemision') }}"
-                                    placeholder="Guia de Remision" class="w-full" />
+                                <x-jet-input type="text" name="guiaderemision"
+                                    value="{{ old('guiaderemision') }}" placeholder="Guia de Remision"
+                                    class="w-full" />
                                 <x-jet-input-error for="guiaderemision" />
                             </div>
 
@@ -399,9 +415,9 @@
                                 <x-jet-label value="Status Final" />
                                 <select name="statusfinal_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                  @foreach($statusfinals as $id=>$statusfinal)
-                                    <option value="{{$id}}">{{$statusfinal}}</option>
-                                  @endforeach
+                                    @foreach ($statusfinals as $id => $statusfinal)
+                                        <option value="{{ $id }}">{{ $statusfinal }}</option>
+                                    @endforeach
                                 </select>
                                 <x-jet-input-error for="statusfinal_id" />
                             </div>
@@ -441,4 +457,53 @@
 
         </div>
     </form>
+
+
+    @push('styles')
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    @endpush
+
+    @push('scripts')
+        <!-- Moment.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+        <!-- Pikaday -->
+        <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+
+
+
+
+
+        <script>
+            /*  new Pikaday({
+                                                            field: document.getElementById('datepicker'),
+                                                            format: 'D MMM YYYY',
+
+                                                        }); */
+
+            new Pikaday({
+                field: document.getElementById('datepicker2'),
+                format: 'D MMM YYYY',
+
+            });
+        </script>
+
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker = new Pikaday({
+                    field: document.getElementById('datepicker'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+        </script>
+    @endpush
+
+
+
 </x-app-layout>

@@ -24,7 +24,10 @@ return new class extends Migration
             $table->boolean('state')->default(true);
 
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+
+            $table->unsignedBigInteger('user2_id')->nullable();
+            $table->foreign('user2_id')->references('id')->on('users')->onDelete('set null');
 
             $table->unsignedBigInteger('awkizona_id')->nullable();
             $table->foreign('awkizona_id')->references('id')->on('awkizonas')->onDelete('cascade');

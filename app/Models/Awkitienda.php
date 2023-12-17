@@ -22,8 +22,13 @@ class Awkitienda extends Model
     }
 
     public function awkirepresentada()
-{
-    return $this->belongsTo(Awkirepresentada::class);
-}
+    {
+        return $this->belongsTo(Awkirepresentada::class);
+    }
 
+    //uno a muchos
+    public function expedientes()
+    {
+        return $this->hasMany(Expediente::class);
+    }
 }

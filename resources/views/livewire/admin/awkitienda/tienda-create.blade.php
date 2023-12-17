@@ -87,7 +87,7 @@
 
 
             <div class="mb-4">
-                <x-jet-label value="Usuario" />
+                <x-jet-label value="Usuario Gestor" />
                 <select wire:model="user_id" class="py-0.7 rounded" style="height:100%; width:100%">
                     <option value="" selected disabled>Seleccione</option>
                     @foreach ($users as $id => $name)
@@ -96,6 +96,18 @@
 
                 </select>
                 <x-jet-input-error for="user_id" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Usuario Cliente" />
+                <select wire:model="user2_id" class="py-0.7 rounded" style="height:100%; width:100%">
+                    <option value="" selected disabled>Seleccione</option>
+                    @foreach ($users as $id => $name)
+                        <option value="{{ $id }}">{{ $name }}</option>
+                    @endforeach
+
+                </select>
+                <x-jet-input-error for="user2_id" />
             </div>
 
 

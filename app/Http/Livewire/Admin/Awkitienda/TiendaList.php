@@ -170,7 +170,7 @@ class TiendaList extends Component
     public function edit(Awkitienda $tienda){
         //dd($tienda);
 
-        $this->resetValidation();
+        //$this->resetValidation();
         $this->awkitienda = $tienda;
         //dd($this->awkirepresentada);
         $this->open_edit = true;

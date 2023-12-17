@@ -26,7 +26,7 @@
                                     </header>
 
                                 </article> --}}
-
+                                @can('User View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/usuarios.jpg')}}" alt="">
@@ -36,8 +36,9 @@
                                     </header>
 
                                 </article>
+                                @endcan
 
-
+                                @can('Permission View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/permisos.jpg')}}" alt="">
@@ -47,8 +48,9 @@
                                     </header>
 
                                 </article>
+                                @endcan
 
-
+                                @can('Role View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/roles.jpg')}}" alt="">
@@ -58,7 +60,7 @@
                                     </header>
 
                                 </article>
-
+                                @endcan
 
 
 
@@ -85,7 +87,7 @@
                                 </article>
                                 @endcan
 
-
+                                @can('Zona View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/modelos.jpg')}}" alt="">
@@ -95,7 +97,10 @@
                                     </header>
 
                                 </article>
+                                @endcan
 
+
+                                @can('Tienda View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/products.jpg')}}" alt="">
@@ -106,7 +111,9 @@
                                     </header>
 
                                 </article>
+                                @endcan
 
+                                @can('Cliente View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/inventarioinicial.jpg')}}" alt="">
@@ -116,6 +123,20 @@
                                     </header>
 
                                 </article>
+                                @endcan
+
+                                @can('Cliente Viewd')
+                                <article>
+                                    <figure>
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/inventarioinicial.jpg')}}" alt="">
+                                    </figure>
+                                    <header class="mt-2">
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('cliente.list2')}}">Clientes - Cuentas</a></h1>
+                                    </header>
+
+                                </article>
+                                @endcan
+
 
  {{--                                <article>
                                     <figure>
@@ -128,7 +149,7 @@
                                 </article> --}}
 
 
-
+                                @can('Expediente View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/compras.jpg')}}" alt="">
@@ -138,49 +159,10 @@
                                     </header>
 
                                 </article>
-
-                                {{-- <article>
-                                    <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ingresodemercaderias.jpg')}}" alt="">
-                                    </figure>
-                                    <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700">Ingreso de Mercaderias</h1>
-                                    </header>
-
-                                </article>
-
-                                <article>
-                                    <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/trasladodemercaderias.jpg')}}" alt="Envio de Mercaderias">
-                                    </figure>
-                                    <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('admin.shipment.index')}}">Envío de Mercaderias</a></h1>
-                                    </header>
-
-                                </article> --}}
+                                @endcan
 
 
-                               {{--  <article>
-                                    <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/recepciondemercaderias.jpg')}}" alt="Recepción de Mercaderias">
-                                    </figure>
-                                    <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('admin.reception.index')}}">Recepción de Mercaderias</a></h1>
-                                    </header>
-
-                                </article>
-
-                                <article>
-                                    <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/pos.jpg')}}" alt="">
-                                    </figure>
-                                    <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('admin.sale.index')}}">POS</a></h1>
-                                    </header>
-
-                                </article> --}}
-
-
+                                @can('Tipodedocumento View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
@@ -190,6 +172,7 @@
                                     </header>
 
                                 </article>
+                                @endcan
 
                                 {{-- <article>
                                     <figure>
@@ -200,18 +183,19 @@
                                     </header>
 
                                 </article> --}}
-
+                                @can('Marca View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700">Marcas</h1>
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('marca.list')}}">Marcas</a></h1>
                                     </header>
 
                                 </article>
+                                @endcan
 
-
+                                @can('Tipodeventa View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
@@ -221,18 +205,19 @@
                                     </header>
 
                                 </article>
-
-
+                                @endcan
+                                @can('Statusfinal View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700">Status Final</h1>
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('statusfinal.list')}}">Status Final</a></h1>
                                     </header>
 
                                 </article>
-
+                                @endcan
+                                @can('Oficinaregistral View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
@@ -242,8 +227,8 @@
                                     </header>
 
                                 </article>
-
-
+                                @endcan
+                                @can('Statussunarp View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
@@ -253,7 +238,8 @@
                                     </header>
 
                                 </article>
-
+                                @endcan
+                                @can('Categoria View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
@@ -263,7 +249,7 @@
                                     </header>
 
                                 </article>
-
+                                @endcan
 
                         </div>
                 {{-- </div> --}}

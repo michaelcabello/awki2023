@@ -151,7 +151,11 @@
 
                                     </th>
 
+                                    <th scope="col"
+                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase ">
+                                        Tiendas
 
+                                    </th>
 
 
                                     <th scope="col"
@@ -190,7 +194,19 @@
 
 
 
+
                                         <td>{{ $userr->getRoleNames()->implode(', ') }}</td>
+
+                                        <td>
+                                            @foreach ($userr->tiendas as $tienda)
+                                               [ {{ $tienda->name }} ]-
+                                            @endforeach
+
+                                            @foreach ($userr->tiendass as $tienda)
+                                            [ {{ $tienda->name }} ]-
+                                            @endforeach
+
+                                        </td>
 
                                         <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                             {{-- <a class="btn btn-blue"><i class="fa-sharp fa-solid fa-eye"></i></a> --}}

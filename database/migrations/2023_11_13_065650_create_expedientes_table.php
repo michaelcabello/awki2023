@@ -15,17 +15,20 @@ return new class extends Migration
             //$table->string('codigoverificacion')->nullable();
             //$table->date('fecharevision')->nullable();
 
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+
             $table->unsignedBigInteger('awkicliente_id')->nullable();
-            $table->foreign('awkicliente_id')->references('id')->on('awkiclientes')->onDelete('cascade');
+            $table->foreign('awkicliente_id')->references('id')->on('awkiclientes')->onDelete('set null');
 
             $table->unsignedBigInteger('awkitienda_id')->nullable();
-            $table->foreign('awkitienda_id')->references('id')->on('awkitiendas')->onDelete('cascade');
+            $table->foreign('awkitienda_id')->references('id')->on('awkitiendas')->onDelete('set null');
 
             $table->unsignedBigInteger('awkizona_id')->nullable();
-            $table->foreign('awkizona_id')->references('id')->on('awkizonas')->onDelete('cascade');
+            $table->foreign('awkizona_id')->references('id')->on('awkizonas')->onDelete('set null');
 
             $table->unsignedBigInteger('tipodedocumento_id')->nullable();
-            $table->foreign('tipodedocumento_id')->references('id')->on('tipodedocumentos')->onDelete('cascade');
+            $table->foreign('tipodedocumento_id')->references('id')->on('tipodedocumentos')->onDelete('set null');
 
             $table->string('numdocumento')->nullable();
 
@@ -36,28 +39,28 @@ return new class extends Migration
 
 
             $table->unsignedBigInteger('tipodeventa_id')->nullable();
-            $table->foreign('tipodeventa_id')->references('id')->on('tipodeventas')->onDelete('cascade');
+            $table->foreign('tipodeventa_id')->references('id')->on('tipodeventas')->onDelete('set null');
 
             $table->string('montodelacompra')->nullable();
 
             $table->unsignedBigInteger('marca_id')->nullable();
-            $table->foreign('marca_id')->references('id')->on('marcas')->onDelete('cascade');
+            $table->foreign('marca_id')->references('id')->on('marcas')->onDelete('set null');
 
             $table->unsignedBigInteger('modello_id')->nullable();
-            $table->foreign('modello_id')->references('id')->on('modellos')->onDelete('cascade');
+            $table->foreign('modello_id')->references('id')->on('modellos')->onDelete('set null');
 
 
             $table->string('chasis')->nullable();
             $table->string('motor')->nullable();
 
             $table->unsignedBigInteger('color_id')->nullable();
-            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('set null');
 
             $table->unsignedBigInteger('anio_id')->nullable();
-            $table->foreign('anio_id')->references('id')->on('anios')->onDelete('cascade');
+            $table->foreign('anio_id')->references('id')->on('anios')->onDelete('set null');
 
             $table->unsignedBigInteger('categoria_id')->nullable();
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('set null');
 
             $table->string('dua')->nullable();
             $table->string('item')->nullable();
@@ -65,7 +68,7 @@ return new class extends Migration
             $table->string('archivocertificado')->nullable();
 
             $table->unsignedBigInteger('oficinaregistral_id')->nullable();
-            $table->foreign('oficinaregistral_id')->references('id')->on('oficinaregistrals')->onDelete('cascade');
+            $table->foreign('oficinaregistral_id')->references('id')->on('oficinaregistrals')->onDelete('set null');
 
             $table->date('fechaingreso')->nullable();
 
@@ -76,7 +79,7 @@ return new class extends Migration
             $table->string('importe')->nullable();
 
             $table->unsignedBigInteger('statussunarp_id')->nullable();
-            $table->foreign('statussunarp_id')->references('id')->on('statussunarps')->onDelete('cascade');
+            $table->foreign('statussunarp_id')->references('id')->on('statussunarps')->onDelete('set null');
 
             $table->string('tarjetadepropiedad')->nullable();
             $table->string('cargoenvio')->nullable();
@@ -88,10 +91,10 @@ return new class extends Migration
 
 
             $table->unsignedBigInteger('legalizacion_id')->nullable();
-            $table->foreign('legalizacion_id')->references('id')->on('legalizacions')->onDelete('cascade');
+            $table->foreign('legalizacion_id')->references('id')->on('legalizacions')->onDelete('set null');
 
             $table->unsignedBigInteger('statusfinal_id')->nullable();
-            $table->foreign('statusfinal_id')->references('id')->on('statusfinals')->onDelete('cascade');
+            $table->foreign('statusfinal_id')->references('id')->on('statusfinals')->onDelete('set null');
 
 
             $table->timestamps();

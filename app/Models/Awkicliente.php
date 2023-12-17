@@ -25,5 +25,12 @@ class Awkicliente extends Model
         return $this->belongsTo(User::class);
     }
 
+    //uno a muchos
+    public function expedientes()
+    {
+        return $this->hasMany(Expediente::class);
+    }
+
+
 
 }

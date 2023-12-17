@@ -37,9 +37,16 @@ use App\Http\Livewire\Admin\Awkirepresentada\RepresentadaList;
 use App\Http\Livewire\Admin\Awkizona\ZonaList;
 use App\Http\Livewire\Admin\Awkitienda\TiendaList;
 use App\Http\Livewire\Admin\Awkicliente\ClienteList;
+use App\Http\Livewire\Admin\Awkicliente\ClienteList2;
 use App\Http\Controllers\admin\ExpedienteController;
 use App\Models\Expediente;
 use App\Http\Livewire\Admin\Expediente\ExpedienteList;
+use App\Http\Livewire\Admin\Consulta\ConsultaList;
+use App\Http\Livewire\Admin\Statusfinal\StatusfinalList;
+use App\Http\Livewire\Admin\Marca\MarcaList;
+use App\Http\Livewire\Admin\Tipodedocumento\TipodedocumentoList;
+use App\Models\Tipodedocumento;
+
 //Route::get('/', [HomeController::class, 'home'])->name('admin.home');
 Route::get('/tables', [TableController::class, 'showtables'])->name('admin.showtables');
 
@@ -47,6 +54,7 @@ Route::get('/representadas', RepresentadaList::class)->name('representada.list')
 Route::get('/zonas', ZonaList::class)->name('zona.list');
 Route::get('/tiendas', TiendaList::class)->name('tienda.list');
 Route::get('/clientes', ClienteList::class)->name('cliente.list');
+Route::get('/clientes2', ClienteList2::class)->name('cliente.list2');
 
 //Route::resource('expediente', ExpedienteController::class)->except(['create','index'])->names('admin.expediente');
 Route::get('expediente/{clientee}', [ExpedienteController::class, 'create'])->name('admin.expediente.create');
@@ -54,10 +62,16 @@ Route::post('expediente/', [ExpedienteController::class, 'store'])->name('admin.
 Route::put('expediente/{expedientee}', [ExpedienteController::class, 'update'])->name('admin.expediente.update');
 Route::get('expediente/{expedientee}/edit', [ExpedienteController::class, 'edit'])->name('admin.expediente.edit');
 Route::get('/expedientes', ExpedienteList::class)->name('expediente.list');
+Route::get('/marcas', MarcaList::class)->name('marca.list');
+
+Route::get('/consultas', ConsultaList::class)->name('consulta.list');
+
+Route::get('/statusfinal', StatusfinalList::class)->name('statusfinal.list');
+Route::get('/tipodedocumentos', TipodedocumentoList::class)->name('tipodedocumento.list');
 
 Route::get('/categories', CategoryList::class)->name('category.list');
 Route::get('/modelos', ModeloList::class)->name('modelo.list');
-Route::get('/marcas', BrandList::class)->name('brand.list');
+//Route::get('/marcas', BrandList::class)->name('brand.list');
 //Route::get('/empezarinventarioinicial', InventoryList::class)->name('inventory.list');
 Route::get('/inventarioinicial', InventoryList::class)->name('inventory.list');//lista los inventarios
 /* no usaremos porque lo controlaresmos con primarykey de laravel */

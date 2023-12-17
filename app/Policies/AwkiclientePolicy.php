@@ -30,6 +30,12 @@ class AwkiclientePolicy
     }
 
 
+    public function viewd(User $user, Awkicliente $awkicliente)
+    {
+        return $user->hasPermissionTo('Cliente Viewd');
+        //return $user->id === $post->user_id || $user->hasPermissionTo('view Post');
+    }
+
     public function create(User $user)
     {
         return $user->hasPermissionTo('Cliente Create');

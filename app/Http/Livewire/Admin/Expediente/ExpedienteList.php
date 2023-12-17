@@ -45,13 +45,16 @@ class ExpedienteList extends Component
 
         if ($this->readyToLoad) {
             if ($user->hasRole('Admin')) {
-                $expedientes = Expediente::select('expedientes.*', 'awkitiendas.name as tienda_name', 'awkiclientes.nombres as cliente_name')
+                $expedientes = Expediente::select('expedientes.*', 'users.name as gestor_name', 'awkitiendas.name as tienda_name', 'awkiclientes.dni as cliente_dni', 'awkiclientes.nombres as cliente_name', 'awkiclientes.apellidopaterno as cliente_apaterno', 'awkiclientes.apellidomaterno as cliente_amaterno')
                     ->join('awkitiendas', 'expedientes.awkitienda_id', '=', 'awkitiendas.id')
                     ->join('awkiclientes', 'expedientes.awkicliente_id', '=', 'awkiclientes.id')
+                    ->join('users', 'expedientes.user_id', '=', 'users.id')
                     ->where(function ($query) {
                         $query->where('awkiclientes.nombres', 'like', '%' . $this->search . '%')
                             ->orWhere('awkiclientes.dni', 'like', '%' . $this->search . '%')
-                            ->orWhere('awkitiendas.name', 'like', '%' . $this->search . '%');
+                            ->orWhere('awkitiendas.name', 'like', '%' . $this->search . '%')
+                            ->orWhere('users.name', 'like', '%' . $this->search . '%')
+                            ->orWhere('expedientes.numerodeplaca', 'like', '%' . $this->search . '%');
                     })
                     /* ->when($this->state, function ($query) {
                         return $query->where('awkiclientes.state', 1);

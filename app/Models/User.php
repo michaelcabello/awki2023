@@ -81,7 +81,12 @@ class User extends Authenticatable
 
     public function tiendas()
     {
-        return $this->hasMany(Awkitienda::class);
+        return $this->hasMany(Awkitienda::class, 'user_id');
+    }
+
+    public function tiendass()//relacion para mostrar tiendas del cliente
+    {
+        return $this->hasMany(Awkitienda::class, 'user2_id');
     }
 
     public function clientes()

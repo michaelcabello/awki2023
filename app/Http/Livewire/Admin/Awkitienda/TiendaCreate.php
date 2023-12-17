@@ -12,7 +12,7 @@ class TiendaCreate extends Component
 {
 
     public $open = false;
-    public $name, $address, $description, $serief, $serieb, $email, $state, $user_id="", $awkizona_id="", $awkirepresentada_id = "";
+    public $name, $address, $description, $serief, $serieb, $email, $state, $user2_id="", $user_id="", $awkizona_id="", $awkirepresentada_id = "";
     public $awkirepresentadas = [];
     public $awkizonas = [];
     public $users = [];
@@ -58,6 +58,7 @@ class TiendaCreate extends Component
             'email' => $this->email,
             'state' => $statee,
             'user_id' => $this->user_id,
+            'user2_id' => $this->user2_id,
             'awkizona_id' => $this->awkizona_id,
             'awkirepresentada_id' => $this->awkirepresentada_id,
         ]);
