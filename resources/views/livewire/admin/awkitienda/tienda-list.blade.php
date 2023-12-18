@@ -45,11 +45,11 @@
                          <input type="checkbox" class="flex items-center mr-2 leading-tight" wire-model="state"> Activos
                     </div> --}}
 
-                    <div class="flex items-center justify-center px-2 mt-2 mr-4 md:mt-0">
+                    {{-- <div class="flex items-center justify-center px-2 mt-2 mr-4 md:mt-0">
 
                         <x-jet-input type="checkbox" wire:model="state" class="mx-1" />
                         Activos
-                    </div>
+                    </div> --}}
 
                 </div>
 
@@ -63,11 +63,9 @@
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
-
+                                    wire:click="order('tienda_id')">
                                     ID
-
-                                    @if ($sort == 'id')
+                                    @if ($sort == 'tienda_id')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -80,10 +78,10 @@
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    wire:click="order('tienda_name')">
 
                                     Nombre
-                                    @if ($sort == 'name')
+                                    @if ($sort == 'tienda_name')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -98,10 +96,10 @@
 
                                 <th scope="col"
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                wire:click="order('name')">
+                                wire:click="order('razonsocial')">
 
                                 Cuenta
-                                @if ($sort == 'name')
+                                @if ($sort == 'razonsocial')
                                     @if ($direction == 'asc')
                                         <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                     @else
@@ -360,8 +358,8 @@
                     <x-jet-label value="Zona" />
                     <select wire:model="awkitienda.awkizona_id" class="py-0.7 rounded" style="height:100%; width:100%">
                         <option value="" selected disabled>Seleccione</option>
-                        @foreach ($awkizonas as $id => $name)
-                        <option value="{{ $id }}">{{ $name }}</option>
+                        @foreach ($awkizonas as $awkizona)
+                        <option value="{{ $awkizona->id }}">{{ $awkizona->name }}</option>
                         @endforeach
                     </select>
                     <x-jet-input-error for="awkitienda.awkizona_id" />

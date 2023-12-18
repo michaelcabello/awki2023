@@ -43,7 +43,7 @@ class RepresentadaCreate extends Component
             'nota1' => $this->nota1,
             'nota2' => $this->nota2,
             'state' => $statee,
-            'user_id' => $this->user_id,
+            'user_id' => $this->user_id,//usuario externo que va entrar al sistema y tendra acceso solo de lectura
         ]);
 
         $this->reset(['open','razonsocial','ruc','address','phone','movil', 'nota1', 'nota2','state','user_id']);

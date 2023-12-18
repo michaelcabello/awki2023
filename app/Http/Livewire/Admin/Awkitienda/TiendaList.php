@@ -41,15 +41,15 @@ class TiendaList extends Component
     public function mount()
     {
 
-        $this->awkizonas = Awkizona::pluck('name', 'id');
-        $this->awkirepresentadas = Awkirepresentada::pluck('razonsocial', 'id');
+        //$this->awkizonas = Awkizona::pluck('name', 'id');
+        //$this->awkirepresentadas = Awkirepresentada::pluck('razonsocial', 'id');
+        $this->awkirepresentadas = [];
+        $this->awkizonas = [];
+
         $this->users = User::pluck('name', 'id');
     }
 
-    public function updatedAwkirepresentadaId($value){
-        $this->awkizonas = Awkizona::where('awkirepresentada_id', $value)->get();
-        $this->reset(['awkitienda.awkizona_id']);
-    }
+
 
 
     public function updatingSearch()
@@ -153,6 +153,7 @@ class TiendaList extends Component
 
     protected $rules = [
         'awkitienda.name' => 'required|unique:awkitiendas,name',
+        //'awkitienda.name' => 'required|unique:awkitiendas,name,' . $awkitienda->id,
         'awkitienda.description'=> 'required',
         'awkitienda.address'=> '',
         'awkitienda.serief'=> '',
@@ -166,16 +167,80 @@ class TiendaList extends Component
     ];
 
 
+/*     public function updatedAwkirepresentadaId($value){
+        $this->awkizonas = Awkizona::where('awkirepresentada_id', $value)->get();
+        $this->reset(['awkitienda.awkizona_id']);
+    } */
 
-    public function edit(Awkitienda $tienda){
+
+    public function updatedAwkitiendaAwkirepresentadaId($value)
+    {
+        $this->awkitienda['awkizona_id'] = '';
+        //$this->awkicliente['awkitienda_id'] = '';
+        $this->awkizonas = [];
+        //$this->awkitiendas = [];
+        $this->awkizonas = Awkizona::where('awkirepresentada_id', $value)->get();
+        //$this->awkizonas = Awkizona::pluck('name', 'id');
+
+        //$this->reset(['awkicliente.awkizona_id', 'awkicliente.awkitienda_id']);
+
+    }
+
+
+    public function edit(Awkitienda $awkitienda){
         //dd($tienda);
-
+        $this->awkitienda = $awkitienda;
+        $this->awkirepresentadas = Awkirepresentada::pluck('razonsocial', 'id');
+        $this->awkizonas = Awkizona::where('awkirepresentada_id', $awkitienda->awkirepresentada_id)->get();
         //$this->resetValidation();
-        $this->awkitienda = $tienda;
+        //$this->awkitienda = $tienda;
         //dd($this->awkirepresentada);
         $this->open_edit = true;
 
     }
+
+
+    public function update()
+    {
+
+        //es otra forma de actualizar
+        //'awkitienda.name' => 'required|unique:awkitiendas,name,' . $awkitienda->id;
+        //if ($this->user->hasRole('Admin')) {
+            $this->validate();
+
+            //$awkicliente['awkitiendau_id']='';
+            //$this->awkitienda['awkitienda_id'] = $this->awkitiendau_id;
+
+            //dd($this->awkicliente);
+            //$this->awkitienda_id = $this->awkitiendau_id;
+            //$this->validate();
+       // }
+
+        $this->awkitienda->save();
+
+
+        $this->reset('open_edit');
+        //$this->emitTo('show-brands', 'render');
+        $this->emit('alert', 'La tienda se actualiizó correctamente');
+    }
+
+
+
+    public function order($sort){
+        if($this->sort == $sort){
+            if($this->direction == 'desc'){
+                $this->direction = 'asc';
+            }else{
+                $this->direction = 'desc';
+            }
+        }else{
+            $this->sort = $sort;
+            $this->direction = 'asc';
+        }
+
+    }
+
+
 
 
 }

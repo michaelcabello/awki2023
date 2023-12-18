@@ -46,11 +46,11 @@
                          <input type="checkbox" class="flex items-center mr-2 leading-tight" wire-model="state"> Activos
                     </div> --}}
 
-                    <div class="flex items-center justify-center px-2 mt-2 mr-4 md:mt-0">
+                    {{-- <div class="flex items-center justify-center px-2 mt-2 mr-4 md:mt-0">
 
-                        <x-jet-input type="checkbox" wire:model="state" class="mx-1" />
+                        <x-jet-input type="checkbox" wire:model="awkizona.state" class="mx-1" />
                         Activos
-                    </div>
+                    </div> --}}
 
                 </div>
 
@@ -98,10 +98,10 @@
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    wire:click="order('razonsocial')">
 
                                     Empresa
-                                    @if ($sort == 'name')
+                                    @if ($sort == 'razonsocial')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -159,7 +159,7 @@
                                             @case(0)
                                                 <span wire:click="activar({{ $zonaa }})"
                                                     class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full cursor-pointer">
-                                                    inactivoinactivo
+                                                    inactivo
                                                 </span>
                                             @break
 

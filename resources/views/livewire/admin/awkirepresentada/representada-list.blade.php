@@ -72,9 +72,7 @@
                                         <th scope="col"
                                             class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
                                             wire:click="order('id')">
-
                                             ID
-
                                                 @if ($sort == 'id')
                                                     @if ($direction == 'asc')
                                                     <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
@@ -88,7 +86,7 @@
 
                                         <th scope="col"
                                             class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                            wire:click="order('name')">
+                                            wire:click="order('razonsocial')">
 
                                             Razon Social
                                             @if ($sort == 'razonsocial')
@@ -147,7 +145,7 @@
                                                     @case(0)
                                                         <span wire:click="activar({{ $representadaa }})"
                                                             class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full cursor-pointer">
-                                                            inactivoinactivo
+                                                            inactivo
                                                         </span>
                                                     @break
                                                     @case(1)
