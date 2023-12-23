@@ -34,31 +34,13 @@ use App\Http\Controllers\SubcategoryController;
 
 
 Route::get('/', WelcomeController::class);
-Route::get('/products/{subcategory}', LpaList::class)->name('product.list.ecommerce');
-Route::get('/productsd/{subcategory}', LpaListd::class)->name('product.listd.ecommerce');
-Route::get('/productst/{subcategory}', LpaListt::class)->name('product.listt.ecommerce');
-Route::get('/productdetail/{product}', ProductDetail::class)->name('product.detail.ecommerce');
-Route::get('/productsingle/{product}', ProductSingle::class)->name('product.single.ecommerce');
-Route::get('/productsingled/{product}', ProductSingled::class)->name('product.singled.ecommerce');
-Route::get('/productsinglet/{product}', ProductSinglet::class)->name('product.singlet.ecommerce');
-
-Route::get('/shoppingcart', ShoppingCart::class)->name('shoppingcart.ecommerce');
-
-
-Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
-Route::get('search', SearchController::class)->name('search');
-//lista de todas las categorias
-Route::get('/categorias', [CategoryController::class, 'index'])->name('category.list.ecommerce');
-//listta subcategorias que pertenecen a una categoria
-Route::get('/subcategorias/{category}', [SubcategoryController::class, 'index'])->name('subcategory.list.ecommerce');
-
 
 
 
 //para cargar stock en locales
 //usamos sync para poner stock 0
 //sucerera cuando se crea el local
-Route::get('cargar/', function () {
+/* Route::get('cargar/', function () {
     $productatributes = Productatribute::all();
 
         foreach ($productatributes as $productatribute) {
@@ -73,7 +55,7 @@ Route::get('cargar/', function () {
 
 Route::get('limpiar/', function () {
     session()->forget('carttx');
-});
+}); */
 
 
 
@@ -103,9 +85,10 @@ Route::group(['middleware'=>['auth:sanctum','verified'],'prefix'=>'admin'], func
 
     Route::get('/categories', CategoryList::class)->name('category.list');
 
-    Route::get('/brands', function () {
+    /* Route::get('/brands', function () {
         return view('admin.brands');
-    })->name('admin.brands');
+    })->name('admin.brands'); */
+
     /* de esta forma no es necesario poner el slot y los divs */
 
     Route::get('/comprobantes', ComprobanteList::class)->name('comprobante.list');
@@ -115,16 +98,4 @@ Route::group(['middleware'=>['auth:sanctum','verified'],'prefix'=>'admin'], func
 });
 
 
-/*
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.categories');
-    })->name('admin.categories');
-
-});
- */

@@ -253,10 +253,17 @@
                                         {{-- <a href="{{ route('admin.expediente.create', $clientee->id) }}"
                                         class="btn btn-orange">
                                         <i class="mx-2 fa-regular fa-file"></i></a> --}}
-                                        @can('Cliente Update')
+                                        {{-- @can('Cliente Viewd')
                                             <a wire:click="edit({{ $clientee }})" class="btn btn-green"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
+                                        @endcan --}}
+
+                                        @can('Cliente Viewd')
+                                        <a href="{{ route('expediente.list.user', $clientee->id) }}"
+                                            class="btn btn-blue">
+                                            <i class="fa-sharp fa-solid fa-eye"></i></a>
                                         @endcan
+
                                         {{-- @can('Cliente Delete')
                                             <a class="btn btn-red"
                                                 wire:click="$emit('deleteCliente', {{ $clientee->id }})">

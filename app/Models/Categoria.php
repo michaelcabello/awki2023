@@ -9,6 +9,10 @@ class Categoria extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombre'
+    ];
+
     //uno a muchos
     public function expedientes()
     {

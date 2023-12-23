@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('oficinaregistrals', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->nullable();
-            $table->string('direccion')->nullable();
+            /* $table->string('direccion')->nullable();
             $table->string('correo')->nullable();
             $table->string('telefono')->nullable();
-            $table->string('celular')->nullable();
+            $table->string('celular')->nullable(); */
+            $table->boolean('state')->default(true);
             $table->timestamps();
         });
     }

@@ -152,8 +152,9 @@ class TiendaList extends Component
 
 
     protected $rules = [
-        'awkitienda.name' => 'required|unique:awkitiendas,name',
-        //'awkitienda.name' => 'required|unique:awkitiendas,name,' . $awkitienda->id,
+        'awkitienda.name' => 'required',
+        //'awkitienda.name' => 'required|unique:awkitiendas,name',
+        //'awkitienda.name' => 'required|unique:awkitiendas,name,'.$awkitienda->id,
         'awkitienda.description'=> 'required',
         'awkitienda.address'=> '',
         'awkitienda.serief'=> '',
@@ -206,6 +207,7 @@ class TiendaList extends Component
         //es otra forma de actualizar
         //'awkitienda.name' => 'required|unique:awkitiendas,name,' . $awkitienda->id;
         //if ($this->user->hasRole('Admin')) {
+            //$this->rules['name'] = 'required|unique:awkitiendas,name,'.$this->awkitienda->id;
             $this->validate();
 
             //$awkicliente['awkitiendau_id']='';

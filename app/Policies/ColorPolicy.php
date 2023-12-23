@@ -10,83 +10,50 @@ class ColorPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
+    public function before($user)
+    {
+        if($user->hasRole('Admin'))
+        {
+            return true;
+        }
+    }
+
     public function viewAny(User $user)
     {
-        //
+
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Color  $color
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
+
     public function view(User $user, Color $color)
     {
-        //
+        return $user->hasPermissionTo('view Color');
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
+
     public function create(User $user)
     {
-        //
+        return $user->hasPermissionTo('create Color');
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Color  $color
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
+
     public function update(User $user, Color $color)
     {
-        //
+        return $user->hasPermissionTo('update Color');
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Color  $color
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
+
     public function delete(User $user, Color $color)
     {
-        //
+        return $user->hasPermissionTo('delete Color');
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Color  $color
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
+
     public function restore(User $user, Color $color)
     {
         //
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Color  $color
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
+
     public function forceDelete(User $user, Color $color)
     {
         //

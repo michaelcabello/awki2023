@@ -18,6 +18,11 @@ class Expediente extends Model
         return $this->belongsTo(Tipodedocumento::class);
     }
 
+    public function tipodeventa()
+    {
+        return $this->belongsTo(Tipodeventa::class);
+    }
+
     public function awkicliente()
     {
         return $this->belongsTo(Awkicliente::class);

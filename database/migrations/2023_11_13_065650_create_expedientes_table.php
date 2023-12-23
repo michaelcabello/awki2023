@@ -36,6 +36,7 @@ return new class extends Migration
             $table->date('fecharecepcion')->nullable();
             //$table->string('estadocivil')->nullable();
             $table->string('pagoadministrativo')->nullable();
+            $table->text('observacion')->nullable();
 
 
             $table->unsignedBigInteger('tipodeventa_id')->nullable();

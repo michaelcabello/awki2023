@@ -14,20 +14,35 @@ class TipodedocumentosTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('tipodedocumentos')->delete();
-        
+
         \DB::table('tipodedocumentos')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'nombre' => 'FACTURA',
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+            1 =>
+            array (
+                'id' => 2,
+                'nombre' => 'BOLETA',
+                'created_at' => NULL,
+                'updated_at' => NULL,
+            ),
+            1 =>
+            array (
+                'id' => 2,
+                'nombre' => 'GUIA',
+                'created_at' => NULL,
+                'updated_at' => NULL,
+            ),
+
         ));
-        
-        
+
+
     }
 }

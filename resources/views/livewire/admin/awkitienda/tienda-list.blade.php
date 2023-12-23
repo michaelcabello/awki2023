@@ -114,10 +114,10 @@
 
                             <th scope="col"
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                wire:click="order('name')">
+                                wire:click="order('user_name')">
 
                                 Usuario
-                                @if ($sort == 'name')
+                                @if ($sort == 'user_name')
                                     @if ($direction == 'asc')
                                         <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                     @else
@@ -131,10 +131,10 @@
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    wire:click="order('zona_name')">
 
                                     Zona
-                                    @if ($sort == 'name')
+                                    @if ($sort == 'zona_name')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else

@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ModeloSeeder::class);
 
-        $this->call(ConfigurationSeeder::class);
+        //$this->call(ConfigurationSeeder::class);
         $this->call(CurrencySeeder::class);
         $this->call(CtacteSeeder::class);
 

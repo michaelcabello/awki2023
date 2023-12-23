@@ -81,7 +81,7 @@ class ClienteList2 extends Component
         $user = Auth::user();
 
         //$usuario = User::find(2);
-        $cuenta = $user->awkirepresentada;
+        $cuenta = $user->awkirepresentada;//usuario de la representada
         if ($this->readyToLoad) {
             if ($user->hasRole('Admin')) {
 

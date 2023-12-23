@@ -38,6 +38,7 @@ class UserSeeder extends Seeder
         Permission::create(['name'=>'Tienda Update','display_name'=>'Actualizar Tiendas'])->SyncRoles([$adminRole]);
         Permission::create(['name'=>'Tienda Delete','display_name'=>'Eliminar Tiendas'])->SyncRoles([$adminRole]);
 
+        Permission::create(['name'=>'Consulta View','display_name'=>'Ver Consulta'])->SyncRoles([$adminRole]);
         Permission::create(['name'=>'Cliente View','display_name'=>'Ver Clientes'])->SyncRoles([$adminRole]);
         Permission::create(['name'=>'Cliente Viewd','display_name'=>'Ver Clientesd'])->SyncRoles([$adminRole]);
         Permission::create(['name'=>'Cliente Create','display_name'=>'Crear Clientes'])->SyncRoles([$adminRole]);

@@ -41,7 +41,6 @@
                 </div>
 
 
-
                 @if (count($expedientes))
 
                     <table class="min-w-full divide-y divide-gray-200">
@@ -65,9 +64,9 @@
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    wire:click="order('dni')">
                                     DNI
-                                    @if ($sort == 'id')
+                                    @if ($sort == 'dni')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -80,9 +79,9 @@
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    wire:click="order('cliente_name')">
                                     CLIENTES
-                                    @if ($sort == 'id')
+                                    @if ($sort == 'cliente_name')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -95,9 +94,9 @@
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    wire:click="order('tienda_name')">
                                     TIENDA
-                                    @if ($sort == 'name')
+                                    @if ($sort == 'tienda_name')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -110,27 +109,19 @@
                                 </th>
 
                                 <th scope="col"
-                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase "
+                                    >
                                     GESTOR
-                                    @if ($sort == 'name')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
 
                                 </th>
 
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    wire:click="order('numdocumento')">
                                     NUM DOCUMENTO B/F
-                                    @if ($sort == 'name')
+                                    @if ($sort == 'numdocumento')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -145,9 +136,9 @@
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    wire:click="order('titulo')">
                                     TITULO
-                                    @if ($sort == 'id')
+                                    @if ($sort == 'titulo')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -162,9 +153,9 @@
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    wire:click="order('codigodeverificacion')">
                                     CODIGO DE VERIFICACION
-                                    @if ($sort == 'id')
+                                    @if ($sort == 'codigodeverificacion')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -177,25 +168,17 @@
 
 
                                 <th scope="col"
-                                    class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                                    >
                                     TIPO VENTA
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    wire:click="order('numerodeplaca')">
                                     PLACA
-                                    @if ($sort == 'id')
+                                    @if ($sort == 'numerodeplaca')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -207,26 +190,18 @@
                                 </th>
 
                                 <th scope="col"
-                                    class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                                    >
                                     CATEGORIA
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    wire:click="order('certificado')">
                                     CERTIFICADO
-                                    @if ($sort == 'id')
+                                    @if ($sort == 'certificado')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -238,18 +213,10 @@
                                 </th>
 
                                 <th scope="col"
-                                    class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                                    >
                                     STATUS FINAL
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
                                 {{-- <th scope="col"
@@ -331,7 +298,10 @@
 
 
                                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                        {{ $expedientee->tipodeventa_id }}
+                                        @if($expedientee->tipodeventa)
+                                            {{ $expedientee->tipodeventa->nombre }}
+                                        @endif
+
                                     </td>
 
                                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
@@ -339,14 +309,20 @@
                                     </td>
 
                                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                        {{ $expedientee->categoria_id }}
+                                        @if($expedientee->categoria)
+                                            {{ $expedientee->categoria->nombre }}
+                                        @endif
+                                        {{-- {{ $expedientee->categoria_id }} --}}
                                     </td>
                                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $expedientee->certificado }}
                                     </td>
 
                                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                        {{ $expedientee->statusfinal_id }}
+                                        {{-- {{ $expedientee->statusfinal_id }} --}}
+                                        @if($expedientee->statusfinall)
+                                            {{ $expedientee->statusfinall->nombre }}
+                                        @endif
                                     </td>
 
                                     <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
@@ -395,6 +371,8 @@
                                     d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z" />
                             </svg>
                         </div>
+
+
 
                     </div>
 

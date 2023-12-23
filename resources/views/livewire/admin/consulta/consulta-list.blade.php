@@ -1,5 +1,5 @@
 <div>
-    @dump($filters)
+    {{-- @dump($filters) --}}
     <x-slot name="header">
         <div class="flex items-center">
             {{-- <h2 class="text-xl font-semibold leading-tight text-gray-600">
@@ -19,7 +19,6 @@
                 <x-jet-input-error for="awkitienda_id" />
 
             </div> --}}
-
 
         </div>
     </x-slot>

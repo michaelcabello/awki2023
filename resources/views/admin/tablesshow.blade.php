@@ -162,7 +162,22 @@
                                 @endcan
 
 
-                                @can('Tipodedocumento View')
+
+                                @can('Consulta View')
+                                <article>
+                                    <figure>
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/compras.jpg')}}" alt="">
+                                    </figure>
+                                    <header class="mt-2">
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('consulta.list')}}">Consultas</a></h1>
+                                    </header>
+
+                                </article>
+                                @endcan
+
+
+                                {{-- factura boleta --}}
+                                {{-- @can('Tipodedocumento View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
@@ -172,17 +187,9 @@
                                     </header>
 
                                 </article>
-                                @endcan
+                                @endcan --}}
 
-                                {{-- <article>
-                                    <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/stockdeproductos.jpg')}}" alt="">
-                                    </figure>
-                                    <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('localproductatributestock.list', auth()->user()->employee->local->id )}}">Stock</a></h1>
-                                    </header>
 
-                                </article> --}}
                                 @can('Marca View')
                                 <article>
                                     <figure>
@@ -195,7 +202,20 @@
                                 </article>
                                 @endcan
 
-                                @can('Tipodeventa View')
+                                @can('Modello View')
+                                <article>
+                                    <figure>
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                    </figure>
+                                    <header class="mt-2">
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('modello.list')}}">Modelos</a></h1>
+                                    </header>
+
+                                </article>
+                                @endcan
+
+                                {{-- contado, credito --}}
+                                {{-- @can('Tipodeventa View')
                                 <article>
                                     <figure>
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
@@ -205,7 +225,8 @@
                                     </header>
 
                                 </article>
-                                @endcan
+                                @endcan --}}
+
                                 @can('Statusfinal View')
                                 <article>
                                     <figure>
@@ -223,7 +244,7 @@
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700">Oficina registral</h1>
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('oficinaregistral.list')}}">Oficina registral</a></h1>
                                     </header>
 
                                 </article>
@@ -234,7 +255,8 @@
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700">Status Sunarp</h1>
+
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('statussunarp.list')}}">Status Sunarp</a></h1>
                                     </header>
 
                                 </article>
@@ -245,11 +267,36 @@
                                         <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
-                                        <h1 class="text-xl text-center text-gray-700">Categorias</h1>
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('categoria.list')}}">Categorias</a></h1>
                                     </header>
 
                                 </article>
                                 @endcan
+
+                                @can('Anio View')
+                                <article>
+                                    <figure>
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                    </figure>
+                                    <header class="mt-2">
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('anio.list')}}">Años</a></h1>
+                                    </header>
+
+                                </article>
+                                @endcan
+
+                                @can('Color View')
+                                <article>
+                                    <figure>
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                    </figure>
+                                    <header class="mt-2">
+                                        <h1 class="text-xl text-center text-gray-700"><a href="{{route('color.list')}}">Colores</a></h1>
+                                    </header>
+
+                                </article>
+                                @endcan
+
 
                         </div>
                 {{-- </div> --}}

@@ -38,6 +38,10 @@ class PermissionList extends Component
         $this->resetPage();
     }
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
 
     public function loadPermissions(){
         $this->readyToLoad = true;

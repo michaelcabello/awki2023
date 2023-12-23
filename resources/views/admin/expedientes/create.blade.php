@@ -441,6 +441,8 @@
 
             </div>
 
+
+
             {{--  <div class="px-3 py-4 bg-white md:col-span-2">
                         <p class="text-lg font-bold underline underline-offset-2">Roles</p>
                         <div class="mb-4">
@@ -455,6 +457,18 @@
                         </div>
                     </div> --}}
 
+        </div>
+        <div class="grid grid-cols-1 px-4 mx-auto mt-4 bg-white sm:px-6 lg:px-8 gap-x-6 gap-y-8">
+            <div class="mb-4">
+                <x-jet-label value="Observaciones del expediente:" />
+
+
+                <textarea
+                name="observacion"
+                class="w-full form-control"
+                rows="5">{{ old('observacion') }}</textarea>
+
+            </div>
         </div>
     </form>
 

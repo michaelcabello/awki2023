@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use App\Models\Tipodedocumento;
 use App\Models\Oficinaregistral;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ExpedienteController extends Controller
 {
@@ -89,6 +90,7 @@ class ExpedienteController extends Controller
             'statusfinal' => 'nullable',
             'legalizacion_id' => 'nullable',
             'statusfinal_id' => 'nullable',
+            'observacion' => 'nullable',
         ]);
 
         $data['user_id'] = Auth()->user()->id; //le pasamos el usuario autentificado
@@ -113,6 +115,20 @@ class ExpedienteController extends Controller
         }
 
 
+
+        if($request->file('tarjetadepropiedad')){
+            $expedientee->tarjetadepropiedad = Storage::disk('s3')->put('tarjetadepropiedad', $request->file('tarjetadepropiedad'), 'public');
+        }else{
+            $expedientee->tarjetadepropiedad = null;
+        }
+
+        if($request->file('cargoenvio')){
+            $expedientee->cargoenvio = Storage::disk('s3')->put('cargoenvio', $request->file('cargoenvio'), 'public');
+        }else{
+            $expedientee->cargoenvio = null;
+        }
+
+        $expedientee->save();
 
 
 
@@ -141,6 +157,7 @@ class ExpedienteController extends Controller
         $oficinaregistrals = Oficinaregistral::pluck('nombre', 'id');
         $statussunarps = Statussunarp::pluck('nombre', 'id');
         $statusfinals = Statusfinal::pluck('nombre', 'id');
+
 
         if ($expedientee->fecharecepcion) {
             // Convertir y formatear la fecha si existe
@@ -239,6 +256,23 @@ class ExpedienteController extends Controller
         else{
             $fechadeenvio = null;
         }
+
+
+
+        if($request->hasFile('tarjetadepropiedad')){
+            $tarjetadepropiedad = Storage::disk('s3')->put('tarjetadepropiedad', $request->file('tarjetadepropiedad'), 'public');
+            $expedientee->update([
+                'tarjetadepropiedad' => $tarjetadepropiedad
+            ]);
+        }
+
+        if($request->hasFile('cargoenvio')){
+            $cargoenvio = Storage::disk('s3')->put('cargoenvio', $request->file('cargoenvio'), 'public');
+            $expedientee->update([
+                'cargoenvio' => $cargoenvio
+            ]);
+        }
+
 
 
         //$fecharecepcion = Carbon::createFromFormat('d-m-Y', $request->input('fecharecepcion'))->format('Y-m-d');

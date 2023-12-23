@@ -25,7 +25,8 @@ class MarcaCreate extends Component
     ];
 
     public function save(){
-       // $this->authorize('create', new Marca);
+        $this->authorize('create', new Marca);
+
         $this->validate();
 
         $statee = ($this->state) ? 1 : 0 ;

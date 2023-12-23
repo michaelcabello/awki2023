@@ -23,10 +23,12 @@ class WelcomeController extends Controller
 
         } */
 
-        $categories = Category::where('state', 1)->get();
+        //$categories = Category::where('state', 1)->get();
 
         //return view('welcomed', compact('categories'))->layout('layouts.appwebd');
-        return view('welcomet', compact('categories'))->layout('layouts.appwebt');
+        //return view('welcomet', compact('categories'))->layout('layouts.appwebt');
+        return redirect('/login');
+
 
     }
 }

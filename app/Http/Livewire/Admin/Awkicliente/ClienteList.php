@@ -168,7 +168,7 @@ class ClienteList extends Component
     }
 
     protected $rules = [
-        'awkicliente.dni' => 'required',
+        'awkicliente.dni' => 'required',//falta restringir para que no se repita
         'awkicliente.nombres' => 'required',
         'awkicliente.apellidopaterno' => '',
         'awkicliente.apellidomaterno' => '',
@@ -255,4 +255,21 @@ class ClienteList extends Component
         //$this->emitTo('show-brands', 'render');
         $this->emit('alert', 'El Cliente se actualiizó correctamente');
     }
+
+    public function order($sort){
+        if($this->sort == $sort){
+            if($this->direction == 'desc'){
+                $this->direction = 'asc';
+            }else{
+                $this->direction = 'desc';
+            }
+        }else{
+            $this->sort = $sort;
+            $this->direction = 'asc';
+        }
+
+    }
+
+
+
 }

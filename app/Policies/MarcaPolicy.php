@@ -17,6 +17,7 @@ class MarcaPolicy
             return true;
         }
     }
+
     public function viewAny(User $user)
     {
         //
@@ -25,7 +26,7 @@ class MarcaPolicy
 
     public function view(User $user, Marca $marca)
     {
-        return $user->hasPermissionTo('Marca view');
+        return $user->hasPermissionTo('Marca View');
     }
 
 

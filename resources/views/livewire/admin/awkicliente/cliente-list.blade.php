@@ -45,11 +45,11 @@
                          <input type="checkbox" class="flex items-center mr-2 leading-tight" wire-model="state"> Activos
                     </div> --}}
 
-                    <div class="flex items-center justify-center px-2 mt-2 mr-4 md:mt-0">
+                    {{-- <div class="flex items-center justify-center px-2 mt-2 mr-4 md:mt-0">
 
                         <x-jet-input type="checkbox" wire:model="state" class="mx-1" />
                         Activos
-                    </div>
+                    </div> --}}
 
                 </div>
 
@@ -64,6 +64,7 @@
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
                                     wire:click="order('id')">
+
                                     ID
                                     @if ($sort == 'id')
                                         @if ($direction == 'asc')
@@ -78,9 +79,9 @@
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    wire:click="order('dni')">
                                     DNI
-                                    @if ($sort == 'id')
+                                    @if ($sort == 'dni')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -93,9 +94,9 @@
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    wire:click="order('nombres')">
                                     Nombres
-                                    @if ($sort == 'name')
+                                    @if ($sort == 'nombres')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -110,9 +111,9 @@
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    wire:click="order('apellidopaterno')">
                                     Apellido Paterno
-                                    @if ($sort == 'name')
+                                    @if ($sort == 'apellidopaterno')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -127,9 +128,9 @@
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    wire:click="order('apellidomaterno')">
                                     Apellido Materno
-                                    @if ($sort == 'name')
+                                    @if ($sort == 'apellidomaterno')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -143,10 +144,10 @@
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    wire:click="order('tienda_name')">
 
                                     Tienda
-                                    @if ($sort == 'name')
+                                    @if ($sort == 'tienda_name')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -159,10 +160,10 @@
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    wire:click="order('razonsocial')">
 
                                     Cuenta
-                                    @if ($sort == 'name')
+                                    @if ($sort == 'razonsocial')
                                         @if ($direction == 'asc')
                                             <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
                                         @else
@@ -252,21 +253,30 @@
 
                                     <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                         {{-- <a wire:click="edit({{ $clientee }})" class="btn btn-blue">Crear</a> --}}
+                                        @can('Cliente Update')
+                                        <a href="{{ route('expediente.list.user', $clientee->id) }}"
+                                            class="btn btn-blue">
+                                            <i class="fa-sharp fa-solid fa-eye"></i></a>
 
+                                        @endcan
+
+                                        @can('Cliente Update')
                                         <a href="{{ route('admin.expediente.create', $clientee->id) }}"
                                             class="btn btn-orange">
-                                            <i class="mx-2 fa-regular fa-file"></i></a>
+                                            <i class="fa-regular fa-file"></i></a>
+                                        @endcan
                                         @can('Cliente Update')
                                             <a wire:click="edit({{ $clientee }})" class="btn btn-green"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                         @endcan
-                                        @can('Cliente Delete')
+
+                                        {{-- @can('Cliente Delete')
                                             <a class="btn btn-red"
                                                 wire:click="$emit('deleteCliente', {{ $clientee->id }})">
                                                 <i class="fa-solid fa-trash-can"></i>
 
                                             </a>
-                                        @endcan
+                                        @endcan --}}
 
                                     </td>
                                 </tr>

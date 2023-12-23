@@ -35,6 +35,22 @@ class ExpedienteList extends Component
     }
 
 
+    public function order($sort)
+    {
+        if ($this->sort == $sort) {
+            if ($this->direction == 'desc') {
+                $this->direction = 'asc';
+            } else {
+                $this->direction = 'desc';
+            }
+        } else {
+            $this->sort = $sort;
+            $this->direction = 'asc';
+        }
+    }
+
+
+
 
     public function render()
     {

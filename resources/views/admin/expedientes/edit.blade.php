@@ -171,8 +171,8 @@
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($marcas as $id => $marca)
                                         <option value="{{ $id }}"
-                                        {{ old('marca_id', $expedientee->marca_id) == $id ? 'selected' : '' }}>
-                                        {{ $marca }}</option>
+                                            {{ old('marca_id', $expedientee->marca_id) == $id ? 'selected' : '' }}>
+                                            {{ $marca }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="marca_id" />
@@ -187,8 +187,8 @@
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($modellos as $id => $modello)
                                         <option value="{{ $id }}"
-                                        {{ old('modello_id', $expedientee->modello_id) == $id ? 'selected' : '' }}>
-                                        {{ $modello }}</option>
+                                            {{ old('modello_id', $expedientee->modello_id) == $id ? 'selected' : '' }}>
+                                            {{ $modello }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="modello_id" />
@@ -196,15 +196,17 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Chasis:" />
-                                <x-jet-input type="text" name="chasis" value="{{ old('chasis',$expedientee->chasis) }}"
-                                    placeholder="Chasis" class="w-full" />
+                                <x-jet-input type="text" name="chasis"
+                                    value="{{ old('chasis', $expedientee->chasis) }}" placeholder="Chasis"
+                                    class="w-full" />
                                 <x-jet-input-error for="chasis" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Motor:" />
-                                <x-jet-input type="text" name="motor" value="{{ old('motor',$expedientee->motor) }}"
-                                    placeholder="Motor" class="w-full" />
+                                <x-jet-input type="text" name="motor"
+                                    value="{{ old('motor', $expedientee->motor) }}" placeholder="Motor"
+                                    class="w-full" />
                                 <x-jet-input-error for="motor" />
                             </div>
 
@@ -214,8 +216,8 @@
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($colors as $id => $color)
                                         <option value="{{ $id }}"
-                                        {{ old('color_id', $expedientee->color_id) == $id ? 'selected' : '' }}>
-                                        {{ $color }}</option>
+                                            {{ old('color_id', $expedientee->color_id) == $id ? 'selected' : '' }}>
+                                            {{ $color }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="color_id" />
@@ -228,7 +230,8 @@
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($anios as $id => $anio)
                                         <option value="{{ $id }}"
-                                        {{ old('anio_id', $expedientee->anio_id) == $id ? 'selected' : '' }}>{{ $anio }}</option>
+                                            {{ old('anio_id', $expedientee->anio_id) == $id ? 'selected' : '' }}>
+                                            {{ $anio }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="anio_id" />
@@ -240,7 +243,8 @@
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($categorias as $id => $categoria)
                                         <option value="{{ $id }}"
-                                        {{ old('categoria_id', $expedientee->categoria_id) == $id ? 'selected' : '' }}>{{ $categoria }}</option>
+                                            {{ old('categoria_id', $expedientee->categoria_id) == $id ? 'selected' : '' }}>
+                                            {{ $categoria }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="categoria_id" />
@@ -248,21 +252,23 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Dua:" />
-                                <x-jet-input type="text" name="dua" value="{{ old('dua',$expedientee->dua) }}"
-                                    placeholder="Dua" class="w-full" />
+                                <x-jet-input type="text" name="dua"
+                                    value="{{ old('dua', $expedientee->dua) }}" placeholder="Dua" class="w-full" />
                                 <x-jet-input-error for="dua" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Item:" />
-                                <x-jet-input type="text" name="item" value="{{ old('item',$expedientee->item) }}"
-                                    placeholder="Item" class="w-full" />
+                                <x-jet-input type="text" name="item"
+                                    value="{{ old('item', $expedientee->item) }}" placeholder="Item"
+                                    class="w-full" />
                                 <x-jet-input-error for="item" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Certificado:" />
-                                <x-jet-input type="text" name="certificado" value="{{ old('certificado', $expedientee->certificado) }}"
+                                <x-jet-input type="text" name="certificado"
+                                    value="{{ old('certificado', $expedientee->certificado) }}"
                                     placeholder="Certificado" class="w-full" />
                                 <x-jet-input-error for="certificado" />
                             </div>
@@ -270,8 +276,8 @@
                             <div class="mb-4">
                                 <x-jet-label value="Archivo Certificado:" />
                                 <x-jet-input type="text" name="archivocertificado"
-                                    value="{{ old('archivocertificado', $expedientee->archivocertificado) }}" placeholder="Archivo Certificado"
-                                    class="w-full" />
+                                    value="{{ old('archivocertificado', $expedientee->archivocertificado) }}"
+                                    placeholder="Archivo Certificado" class="w-full" />
                                 <x-jet-input-error for="archivocertificado" />
                             </div>
 
@@ -309,7 +315,8 @@
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($oficinaregistrals as $id => $oficinaregistral)
                                         <option value="{{ $id }}"
-                                        {{ old('oficinaregistral_id', $expedientee->oficinaregistral_id) == $id ? 'selected' : '' }}>{{ $oficinaregistral }}</option>
+                                            {{ old('oficinaregistral_id', $expedientee->oficinaregistral_id) == $id ? 'selected' : '' }}>
+                                            {{ $oficinaregistral }}</option>
                                     @endforeach
 
                                 </select>
@@ -339,22 +346,24 @@
                             <div class="mb-4">
                                 <x-jet-label value="Código de Verificación:" />
                                 <x-jet-input type="text" name="codigodeverificacion"
-                                    value="{{ old('codigodeverificacion', $expedientee->codigodeverificacion) }}" placeholder="Código de Verificación"
-                                    class="w-full" />
+                                    value="{{ old('codigodeverificacion', $expedientee->codigodeverificacion) }}"
+                                    placeholder="Código de Verificación" class="w-full" />
                                 <x-jet-input-error for="codigodeverificacion" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Recibo:" />
-                                <x-jet-input type="text" name="recibo" value="{{ old('recibo', $expedientee->recibo) }}"
-                                    placeholder="Recibo" class="w-full" />
+                                <x-jet-input type="text" name="recibo"
+                                    value="{{ old('recibo', $expedientee->recibo) }}" placeholder="Recibo"
+                                    class="w-full" />
                                 <x-jet-input-error for="recibo" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Importe:" />
-                                <x-jet-input type="text" name="importe" value="{{ old('importe', $expedientee->importe) }}"
-                                    placeholder="Importe" class="w-full" />
+                                <x-jet-input type="text" name="importe"
+                                    value="{{ old('importe', $expedientee->importe) }}" placeholder="Importe"
+                                    class="w-full" />
                                 <x-jet-input-error for="importe" />
                             </div>
 
@@ -366,7 +375,8 @@
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($statussunarps as $id => $statussunarp)
                                         <option value="{{ $id }}"
-                                        {{ old('statussunarp_id', $expedientee->statussunarp_id) == $id ? 'selected' : '' }}>{{ $statussunarp }}</option>
+                                            {{ old('statussunarp_id', $expedientee->statussunarp_id) == $id ? 'selected' : '' }}>
+                                            {{ $statussunarp }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="statussunarp_id" />
@@ -402,6 +412,11 @@
                                 {{-- <x-jet-input type="text" name="name" value="{{ old('name') }}"
                                     placeholder="tu  nombre" class="w-full" /> --}}
 
+                                @if ($expedientee->tarjetadepropiedad)
+                                    <a href="{{ Storage::disk('s3')->url($expedientee->tarjetadepropiedad) }} "
+                                        target="_blank"><img src="/images/logopdf.jpg"
+                                            alt="{{ $expedientee->name }}"></a>
+                                @endif
 
                                 <x-jet-input type="file" name="tarjetadepropiedad"
                                     placeholder="Tarjeta de Propiedad" />
@@ -417,6 +432,12 @@
                                 {{-- <x-jet-input type="text" name="name" value="{{ old('name') }}"
                                     placeholder="tu  nombre" class="w-full" /> --}}
 
+                                @if ($expedientee->cargoenvio)
+                                    <a href="{{ Storage::disk('s3')->url($expedientee->cargoenvio) }} "
+                                        target="_blank"><img src="/images/logopdf.jpg"
+                                            alt="{{ $expedientee->name }}"></a>
+                                @endif
+
 
                                 <x-jet-input type="file" name="cargoenvio" placeholder="Cargo Envío" />
                                 <x-jet-input-error for="cargoenvio" />
@@ -427,7 +448,8 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Numero de Placa:" />
-                                <x-jet-input type="text" name="numerodeplaca" value="{{ old('numerodeplaca', $expedientee->numerodeplaca) }}"
+                                <x-jet-input type="text" name="numerodeplaca"
+                                    value="{{ old('numerodeplaca', $expedientee->numerodeplaca) }}"
                                     placeholder="Numero de Placa" class="w-full" />
                                 <x-jet-input-error for="numerodeplaca" />
                             </div>
@@ -445,8 +467,8 @@
                             <div class="mb-4">
                                 <x-jet-label value="Guia de Remision:" />
                                 <x-jet-input type="text" name="guiaderemision"
-                                    value="{{ old('guiaderemision', $expedientee->guiaderemision) }}" placeholder="Guia de Remision"
-                                    class="w-full" />
+                                    value="{{ old('guiaderemision', $expedientee->guiaderemision) }}"
+                                    placeholder="Guia de Remision" class="w-full" />
                                 <x-jet-input-error for="guiaderemision" />
                             </div>
 
@@ -461,7 +483,8 @@
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($statusfinals as $id => $statusfinal)
                                         <option value="{{ $id }}"
-                                        {{ old('statusfinal_id', $expedientee->statusfinal_id) == $id ? 'selected' : '' }}>{{ $statusfinal }}</option>
+                                            {{ old('statusfinal_id', $expedientee->statusfinal_id) == $id ? 'selected' : '' }}>
+                                            {{ $statusfinal }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="statusfinal_id" />
@@ -501,6 +524,19 @@
                     </div> --}}
 
         </div>
+
+        <div class="grid grid-cols-1 px-4 mx-auto mt-4 bg-white sm:px-6 lg:px-8 gap-x-6 gap-y-8">
+            <div class="mb-4">
+                <x-jet-label value="Observaciones del expediente:" />
+
+
+                <textarea name="observacion" class="w-full form-control" rows="5">{{ old('observacion', $expedientee->observacion) }}</textarea>
+
+            </div>
+        </div>
+
+
+
     </form>
 
 
@@ -530,10 +566,10 @@
 
         <script>
             /*  new Pikaday({
-                                                                        field: document.getElementById('datepicker'),
-                                                                        format: 'D MMM YYYY',
+                                                                                        field: document.getElementById('datepicker'),
+                                                                                        format: 'D MMM YYYY',
 
-                                                                    }); */
+                                                                                    }); */
 
             /* new Pikaday({
                 field: document.getElementById('datepicker2'),
