@@ -350,7 +350,9 @@
                                     </td>
 
                                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                        @if($expedientee->statusfinall)
                                         {{ $expedientee->statusfinall->nombre }}
+                                        @endif
                                     </td>
 
                                     <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">

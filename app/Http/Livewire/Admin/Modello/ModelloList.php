@@ -54,6 +54,12 @@ class ModelloList extends Component
     }
 
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
+
+
     protected $rules = [
         'modello.nombre' => 'required',
         'modello.state' => '',

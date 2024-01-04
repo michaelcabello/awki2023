@@ -15,7 +15,7 @@
         <x-slot name="content">
 
             <div class="mb-4">
-                <x-jet-label value="Status Sunarp" />
+                <x-jet-label value="Año" />
                 <x-jet-input type="text" class="w-full" wire:model="nombre" />
                 <x-jet-input-error for="nombre"/>
             </div>

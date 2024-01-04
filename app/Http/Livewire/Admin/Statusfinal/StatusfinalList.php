@@ -56,6 +56,12 @@ class StatusfinalList extends Component
     }
 
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
+
+
     protected $rules = [
         'statusfinal.nombre' => 'required',
     ];

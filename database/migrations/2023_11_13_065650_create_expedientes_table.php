@@ -90,6 +90,25 @@ return new class extends Migration
             $table->string('guiaderemision')->nullable();
             $table->string('statusfinal')->nullable();
 
+            $table->date('fechaderevision')->nullable();
+            $table->string('confirmaciondeplaca')->nullable();
+            $table->string('placa')->nullable();
+            $table->string('codigoplaca')->nullable();
+            $table->string('monto')->nullable();
+            $table->date('fechadepago')->nullable();
+            $table->string('facturaapp')->nullable();
+
+
+            $table->string('confirmaciondeenvio')->nullable();
+            $table->string('confirmaciondecobro')->nullable();
+            $table->string('confirmarfindetramite')->nullable();
+
+            $table->string('factura')->nullable();
+            $table->date('fechadefacturacion')->nullable();
+            $table->date('fechadeabonoaap')->nullable();
+            $table->string('abonoaap')->nullable();
+            $table->string('pendientedepago')->nullable();
+
 
             $table->unsignedBigInteger('legalizacion_id')->nullable();
             $table->foreign('legalizacion_id')->references('id')->on('legalizacions')->onDelete('set null');

@@ -44,6 +44,11 @@ class ZonaList extends Component
         $this->resetPage();
     }
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
+
     public function loadZonas()
     {
         $this->readyToLoad = true;

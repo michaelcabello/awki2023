@@ -54,6 +54,13 @@ class OficinaregistralList extends Component
     }
 
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
+
+
+
     protected $rules = [
         'oficinaregistral.nombre' => 'required',
         'oficinaregistral.state' => '',

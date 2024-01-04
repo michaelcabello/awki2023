@@ -57,6 +57,12 @@ class TiendaList extends Component
         $this->resetPage();
     }
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
+
+
     public function loadTiendas()
     {
         $this->readyToLoad = true;

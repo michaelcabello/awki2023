@@ -55,6 +55,12 @@ class StatussunarpList extends Component
     }
 
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
+
+
     protected $rules = [
         'statussunarp.nombre' => 'required',
     ];

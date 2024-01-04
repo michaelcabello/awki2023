@@ -24,11 +24,6 @@ class ExpedienteList extends Component
     public $awkitiendas;
 
 
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
     public function loadExpedientes()
     {
         $this->readyToLoad = true;
@@ -50,6 +45,14 @@ class ExpedienteList extends Component
     }
 
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingCant(){
+        $this->resetPage();
+    }
 
 
     public function render()

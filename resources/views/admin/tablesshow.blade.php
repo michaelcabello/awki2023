@@ -90,7 +90,7 @@
                                 @can('Zona View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/modelos.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/zona.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('zona.list')}}">Zonas</a></h1>
@@ -103,7 +103,7 @@
                                 @can('Tienda View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/products.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/tienda.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('tienda.list')}}">Tiendas</a></h1>
@@ -116,7 +116,7 @@
                                 @can('Cliente View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/inventarioinicial.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/cliente.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('cliente.list')}}">Clientes</a></h1>
@@ -128,7 +128,7 @@
                                 @can('Cliente Viewd')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/inventarioinicial.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/clientescuentas.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('cliente.list2')}}">Clientes - Cuentas</a></h1>
@@ -152,7 +152,7 @@
                                 @can('Expediente View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/compras.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/expedientes.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('expediente.list')}}">Expedientes</a></h1>
@@ -166,7 +166,7 @@
                                 @can('Consulta View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/compras.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/consultas.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('consulta.list')}}">Consultas</a></h1>
@@ -193,7 +193,7 @@
                                 @can('Marca View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/marcas.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('marca.list')}}">Marcas</a></h1>
@@ -205,7 +205,7 @@
                                 @can('Modello View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/modelos.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('modello.list')}}">Modelos</a></h1>
@@ -230,7 +230,7 @@
                                 @can('Statusfinal View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/statusfinal.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('statusfinal.list')}}">Status Final</a></h1>
@@ -241,7 +241,7 @@
                                 @can('Oficinaregistral View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/oficinaregistral.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('oficinaregistral.list')}}">Oficina registral</a></h1>
@@ -252,7 +252,7 @@
                                 @can('Statussunarp View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/statussunarp.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
 
@@ -264,7 +264,7 @@
                                 @can('Categoria View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/categorias.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('categoria.list')}}">Categorias</a></h1>
@@ -276,7 +276,7 @@
                                 @can('Anio View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/anio.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('anio.list')}}">Años</a></h1>
@@ -288,7 +288,7 @@
                                 @can('Color View')
                                 <article>
                                     <figure>
-                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/ecommerce.jpg')}}" alt="">
+                                        <img class="object-cover w-full rounded-xl h-36" src="{{asset('img/color.jpg')}}" alt="">
                                     </figure>
                                     <header class="mt-2">
                                         <h1 class="text-xl text-center text-gray-700"><a href="{{route('color.list')}}">Colores</a></h1>

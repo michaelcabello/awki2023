@@ -87,4 +87,5 @@ class ConsultaList extends Component
         $this->expedientes = Expediente::filter($this->filters)->get();
         return view('livewire.admin.consulta.consulta-list');
     }
+
 }

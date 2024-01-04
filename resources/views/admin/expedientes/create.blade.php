@@ -6,8 +6,7 @@
     </x-slot>
     <form method="POST" action="{{ route('admin.expediente.store') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <div
-            class="grid grid-cols-1 px-4 mx-auto mt-4 sm:px-6 lg:px-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
+        <div class="grid grid-cols-1 px-4 mx-auto mt-4 sm:px-6 lg:px-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
 
             <div class="px-3 bg-white">
 
@@ -90,7 +89,7 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Fecha de Recepción:" />
-                                <x-jet-input type="text" name="fecharecepcion" value="{{ old('fecharecepcion') }}"
+                                <x-jet-input type="text" id="datepickerfr" name="fecharecepcion" value="{{ old('fecharecepcion') }}"
                                     class="w-full" />
                                 <x-jet-input-error for="fecharecepcion" />
                             </div>
@@ -287,7 +286,7 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Fecha de Ingreso:" />
-                                <x-jet-input type="text" name="fechaingreso" value="{{ old('fechaingreso') }}"
+                                <x-jet-input type="text" id="datepickerfi" name="fechaingreso" value="{{ old('fechaingreso') }}"
                                     placeholder="Fecha de Ingreso" class="w-full" />
                                 <x-jet-input-error for="fechaingreso" />
                             </div>
@@ -319,6 +318,69 @@
                                 <x-jet-input type="text" name="importe" value="{{ old('importe') }}"
                                     placeholder="Importe" class="w-full" />
                                 <x-jet-input-error for="importe" />
+                            </div>
+
+
+
+
+
+                            <div class="mb-4">
+                                <x-jet-label value="Fecha de Revisión:" />
+                                <x-jet-input type="text" id="datepickerfecharevision" name="fechaderevision" value="{{ old('fechaderevision') }}"
+                                    placeholder="Fecha de Revision" class="w-full" />
+                                <x-jet-input-error for="fechaderevision" />
+                            </div>
+
+
+                            <div class="mt-4 mb-4 ">
+                                <x-jet-label value="Confirmación de Placa" />
+                                <select name="confirmaciondeplaca" class="py-0.7 rounded"
+                                    style="height:100%; width:100%">
+                                    <option value="" selected disabled>Seleccione</option>
+                                    <option value="si">SI</option>
+                                    <option value="no">NO</option>
+                                </select>
+                                <x-jet-input-error for="statussunarp_id" />
+                            </div>
+
+                            <div class="mb-4">
+                                <x-jet-label value="Placa:" />
+                                <x-jet-input type="text" name="placa" value="{{ old('placa') }}"
+                                    placeholder="Placa" class="w-full" />
+                                <x-jet-input-error for="placa" />
+                            </div>
+
+                            <div class="mb-4">
+                                <x-jet-label value="Código Placa:" />
+                                <x-jet-input type="text" name="codigoplaca" value="{{ old('codigoplaca') }}"
+                                    placeholder="Código Placa" class="w-full" />
+                                <x-jet-input-error for="codigoplaca" />
+                            </div>
+
+                            <div class="mb-4">
+                                <x-jet-label value="Monto:" />
+                                <x-jet-input type="text" name="monto" value="{{ old('monto') }}"
+                                    placeholder="Monto" class="w-full" />
+                                <x-jet-input-error for="monto" />
+                            </div>
+
+
+
+                            <div class="mb-4">
+                                <x-jet-label value="Fecha de Pago:" />
+                                <x-jet-input type="text" id="datepickerfechadepago" name="fechadepago" value="{{ old('fechadepago') }}"
+                                    placeholder="Fecha de Pago" class="w-full" />
+                                <x-jet-input-error for="fechadepago" />
+                            </div>
+
+
+
+
+                            <div class="mb-4">
+                                <x-jet-label value="Factura App:" />
+                                <x-jet-input type="text" name="facturaapp" value="{{ old('facturaapp') }}"
+                                    placeholder="Factura App" class="w-full" />
+                                <x-jet-input-error for="facturaapp" />
                             </div>
 
 
@@ -393,7 +455,7 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Fecha de Envío:" />
-                                <x-jet-input type="text" name="fechadeenvio" value="{{ old('fechadeenvio') }}"
+                                <x-jet-input type="text" id="datepickerfe" name="fechadeenvio" value="{{ old('fechadeenvio') }}"
                                     placeholder="Fecha de Envío" class="w-full" />
                                 <x-jet-input-error for="fechadeenvio" />
                             </div>
@@ -405,6 +467,82 @@
                                     class="w-full" />
                                 <x-jet-input-error for="guiaderemision" />
                             </div>
+
+
+
+                            <div class="mt-4 mb-4 ">
+                                <x-jet-label value="Confirmación de Envio" />
+                                <select name="confirmaciondeenvio" class="py-0.7 rounded"
+                                    style="height:100%; width:100%">
+                                    <option value="" selected disabled>Seleccione</option>
+                                    <option value="si">SI</option>
+                                    <option value="no">NO</option>
+                                </select>
+                                <x-jet-input-error for="confirmaciondeenvio" />
+                            </div>
+
+
+
+                            <div class="mt-4 mb-4 ">
+                                <x-jet-label value="Confirmación de Cobro" />
+                                <select name="confirmaciondecobro" class="py-0.7 rounded"
+                                    style="height:100%; width:100%">
+                                    <option value="" selected disabled>Seleccione</option>
+                                    <option value="si">SI</option>
+                                    <option value="no">NO</option>
+                                </select>
+                                <x-jet-input-error for="confirmaciondecobro" />
+                            </div>
+
+                            <div class="mt-4 mb-4 ">
+                                <x-jet-label value="Confirmación fin de Tramite" />
+                                <select name="confirmarfindetramite" class="py-0.7 rounded"
+                                    style="height:100%; width:100%">
+                                    <option value="" selected disabled>Seleccione</option>
+                                    <option value="si">SI</option>
+                                    <option value="no">NO</option>
+                                </select>
+                                <x-jet-input-error for="confirmarfindetramite" />
+                            </div>
+
+                            <div class="mb-4">
+                                <x-jet-label value="Factura:" />
+                                <x-jet-input type="text" name="factura"
+                                    value="{{ old('factura') }}" placeholder="Factura"
+                                    class="w-full" />
+                                <x-jet-input-error for="factura" />
+                            </div>
+
+                            <div class="mb-4">
+                                <x-jet-label value="Fecha de Facturación:" />
+                                <x-jet-input type="text" id="datepickerfechadefacturacion" name="fechadefacturacion" value="{{ old('fechadefacturacion') }}"
+                                    placeholder="Fecha de Facturación" class="w-full" />
+                                <x-jet-input-error for="fechadefacturacion" />
+                            </div>
+
+                            <div class="mb-4">
+                                <x-jet-label value="Fecha de Abono AAp:" />
+                                <x-jet-input type="text" id="datepickerfechadeabonoaap" name="fechadeabonoaap" value="{{ old('fechadeabonoaap') }}"
+                                    placeholder="Fecha de Envío" class="w-full" />
+                                <x-jet-input-error for="fechadeabonoaap" />
+                            </div>
+
+                            <div class="mb-4">
+                                <x-jet-label value="Abono AAp:" />
+                                <x-jet-input type="text" name="abonoaap"
+                                    value="{{ old('abonoaap') }}" placeholder="abonoaap"
+                                    class="w-full" />
+                                <x-jet-input-error for="abonoaap" />
+                            </div>
+
+                            <div class="mb-4">
+                                <x-jet-label value="Pendiente de Pago:" />
+                                <x-jet-input type="text" name="pendientedepago"
+                                    value="{{ old('pendientedepago') }}" placeholder="pendientedepago"
+                                    class="w-full" />
+                                <x-jet-input-error for="pendientedepago" />
+                            </div>
+
 
 
 
@@ -505,6 +643,32 @@
 
 
         <script>
+
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker = new Pikaday({
+                    field: document.getElementById('datepickerfechadefacturacion'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker = new Pikaday({
+                    field: document.getElementById('datepickerfechadeabonoaap'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+
+
             document.addEventListener('DOMContentLoaded', function() {
                 var picker = new Pikaday({
                     field: document.getElementById('datepicker'),
@@ -515,6 +679,53 @@
 
 
             });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker = new Pikaday({
+                    field: document.getElementById('datepickerfr'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker = new Pikaday({
+                    field: document.getElementById('datepickerfi'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker = new Pikaday({
+                    field: document.getElementById('datepickerfe'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker = new Pikaday({
+                    field: document.getElementById('datepickerfecharevision'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+
         </script>
     @endpush
 

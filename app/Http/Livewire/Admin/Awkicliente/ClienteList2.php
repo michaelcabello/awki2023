@@ -53,6 +53,11 @@ class ClienteList2 extends Component
         $this->readyToLoad = true;
     }
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
+
     public function activar(Awkicliente $awkicliente)
     {
         $this->awkicliente = $awkicliente;

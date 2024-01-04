@@ -53,6 +53,8 @@ class ExpedienteController extends Controller
     public function store(Request $request)
     {
         //validar
+        //dd($request->confirmaciondeplaca);
+
         $data = $request->validate([
             'awkicliente_id' => 'required',
             'awkitienda_id' => 'nullable',
@@ -91,11 +93,30 @@ class ExpedienteController extends Controller
             'legalizacion_id' => 'nullable',
             'statusfinal_id' => 'nullable',
             'observacion' => 'nullable',
+            'confirmaciondeplaca' => 'nullable',
+            'fechaderevision' => 'nullable',
+            'placa' => 'nullable',
+            'codigoplaca' => 'nullable',
+            'monto' => 'nullable',
+            'fechadepago' => 'nullable',
+            'facturaapp' => 'nullable',
+            'confirmaciondeenvio' => 'nullable',
+            'confirmaciondecobro' => 'nullable',
+            'confirmarfindetramite' => 'nullable',
+           'factura' => 'nullable',
+           'fechadefacturacion' => 'nullable',
+           'fechadeabonoaap' => 'nullable',
+           'abonoaap' => 'nullable',
+           'pendientedepago' => 'nullable',
+
+
+
+
         ]);
 
         $data['user_id'] = Auth()->user()->id; //le pasamos el usuario autentificado
 
-        $datafinal = Arr::except($data, ['fechaventa', 'fecharecepcion', 'fechaingreso']);
+        $datafinal = Arr::except($data, ['fechaventa', 'fecharecepcion', 'fechaingreso', 'fechaderevision']);
         //$user_id = Auth()->user()->id;
 
         // dd($user_id);
@@ -110,6 +131,16 @@ class ExpedienteController extends Controller
 
             $expedientee->update([
                 'fechaventa' => $fechaVenta,
+                // Añade otros campos aquí según sea necesario
+            ]);
+        }
+
+
+        if ($data['fechaderevision']) { //validamos cuando no ingresan fecha
+            $fechaderevision = Carbon::createFromFormat('d-m-Y', $request->input('fechaderevision'))->format('Y-m-d');
+
+            $expedientee->update([
+                'fechaderevision' => $fechaderevision,
                 // Añade otros campos aquí según sea necesario
             ]);
         }
@@ -179,12 +210,35 @@ class ExpedienteController extends Controller
             $expedientee->fechadeenvio = Carbon::parse($expedientee->fechadeenvio)->format('d-m-Y');
         }
 
+        if ($expedientee->fechaderevision) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fechaderevision = Carbon::parse($expedientee->fechaderevision)->format('d-m-Y');
+        }
+
+        if ($expedientee->fechadepago) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fechadepago = Carbon::parse($expedientee->fechadepago)->format('d-m-Y');
+        }
+
+        if ($expedientee->fechadefacturacion) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fechadefacturacion = Carbon::parse($expedientee->fechadefacturacion)->format('d-m-Y');
+        }
+
+        if ($expedientee->fechadeabonoaap) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fechadeabonoaap = Carbon::parse($expedientee->fechadeabonoaap)->format('d-m-Y');
+        }
+
+
         return view('admin.expedientes.edit', compact('expedientee', 'tipodedocumentos', 'tipodeventas', 'marcas', 'modellos', 'colors', 'categorias', 'oficinaregistrals', 'statussunarps', 'statusfinals', 'anios', 'clientee'));
     }
 
 
     public function update(Request $request, Expediente $expedientee)
     {
+
+        //dd($request);
 
         //validar
         $request->validate([
@@ -224,10 +278,14 @@ class ExpedienteController extends Controller
             'statusfinal' => 'nullable',
             'legalizacion_id' => 'nullable',
             'statusfinal_id' => 'nullable',
+            'fechaderevision' => 'nullable',
+            'fechadepago' => 'nullable',
+            'fechadefacturacion' => 'nullable',
+            'fechadeabonoaap' => 'nullable',
         ]);
         //dd($expedientee);
         //$expedientee->update($request->all());
-        $expedientee->update($request->except(['fechaventa', 'fecharecepcion', 'fechaingreso', 'fechadeenvio'])); //actualiza todos los campos excepto fechaventa
+        $expedientee->update($request->except(['fechaventa', 'fecharecepcion', 'fechaingreso', 'fechadeenvio', 'fechaderevision', 'fechadepago', 'fechadefacturacion', 'fechadeabonoaap'])); //actualiza todos los campos excepto fechaventa
 
         if ($request->input('fechaventa')) {//verificamos que exista los datos
             $fechaventa = Carbon::createFromFormat('d-m-Y', $request->input('fechaventa'))->format('Y-m-d');
@@ -258,6 +316,38 @@ class ExpedienteController extends Controller
         }
 
 
+        if ($request->input('fechaderevision')) {//verificamos que exista los datos
+            $fechaderevision = Carbon::createFromFormat('d-m-Y', $request->input('fechaderevision'))->format('Y-m-d');
+        }
+        else{
+            $fechaderevision = null;
+        }
+
+        if ($request->input('fechadepago')) {//verificamos que exista los datos
+            $fechadepago = Carbon::createFromFormat('d-m-Y', $request->input('fechadepago'))->format('Y-m-d');
+        }
+        else{
+            $fechadepago = null;
+        }
+
+        if ($request->input('fechadefacturacion')) {//verificamos que exista los datos
+            $fechadefacturacion = Carbon::createFromFormat('d-m-Y', $request->input('fechadefacturacion'))->format('Y-m-d');
+        }
+        else{
+            $fechadefacturacion = null;
+        }
+
+
+        //dd($request->fechadeabonoapp);
+
+        if ($request->input('fechadeabonoaap')) {
+            $fechadeabonoaap = Carbon::createFromFormat('d-m-Y', $request->input('fechadeabonoaap'))->format('Y-m-d');
+        }
+        else{
+            $fechadeabonoaap = null;
+        }
+
+        //dd($fechadeabonoapp);
 
         if($request->hasFile('tarjetadepropiedad')){
             $tarjetadepropiedad = Storage::disk('s3')->put('tarjetadepropiedad', $request->file('tarjetadepropiedad'), 'public');
@@ -284,6 +374,11 @@ class ExpedienteController extends Controller
             'fecharecepcion' => $fecharecepcion,
             'fechaingreso' => $fechaingreso,
             'fechadeenvio' => $fechadeenvio,
+            'fechaderevision' => $fechaderevision,
+            'fechadepago' => $fechadepago,
+            'fechadefacturacion' => $fechadefacturacion,
+            'fechadeabonoaap' => $fechadeabonoaap,
+
             // Añade otros campos aquí según sea necesario
         ]);
 

@@ -55,6 +55,12 @@ class AnioList extends Component
         $this->resetPage();
     }
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
+
+
 
     protected $rules = [
         'anio.nombre' => 'required',

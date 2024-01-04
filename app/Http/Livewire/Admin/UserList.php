@@ -47,6 +47,11 @@ class UserList extends Component
         //RESETEA la paginación, updating() cuando se cambia una de las propiedades  updatingSearch() cuando se cambia la propiedad search
     }
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
+
 
 /*       'brand.name'=> 'required',Rule::unique('brands')->ignore($this->brand->id) */
 
