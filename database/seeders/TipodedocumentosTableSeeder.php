@@ -33,9 +33,9 @@ class TipodedocumentosTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            1 =>
+            2 =>
             array (
-                'id' => 2,
+                'id' => 3,
                 'nombre' => 'GUIA',
                 'created_at' => NULL,
                 'updated_at' => NULL,
