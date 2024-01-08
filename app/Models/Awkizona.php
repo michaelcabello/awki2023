@@ -20,7 +20,7 @@ class Awkizona extends Model
     //relacion de uno a muchos inversa
     public function representada()
     {
-        return $this->belongsTo(Awkirepresentada::class);
+        return $this->belongsTo(Awkirepresentada::class, 'awkirepresentada_id');
     }
 
 }

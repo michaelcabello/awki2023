@@ -270,12 +270,15 @@
                                         {{ $expedientee->id }}
                                     </td>
 
+
                                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $expedientee->cliente_dni  }}
+                                        {{-- {{ $expedientee->awkizona->representada->razonsocial }} --}}
                                     </td>
 
                                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $expedientee->cliente_name ." ". $expedientee->cliente_apaterno ." ". $expedientee->cliente_amaterno }}
+
                                     </td>
 
                                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">

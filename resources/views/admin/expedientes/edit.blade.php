@@ -59,6 +59,16 @@
 
 
                             <div class="mb-4">
+                                <x-jet-label value="Empresa:" />
+                                <x-jet-input type="text" name="empresa" value="{{ $clientee->awkizona->representada->razonsocial }}"
+                                    readonly class="w-full" />
+                                {{-- <x-jet-input-error for="zona" /> --}}
+                            </div>
+
+
+
+
+                            <div class="mb-4">
                                 <x-jet-label value="Tipo Documento" />
                                 <select name="tipodedocumento_id" class="py-0.7 rounded"
                                     style="height:100%; width:100%">
@@ -618,7 +628,7 @@
                                 <x-jet-input-error for="fechadefacturacion" />
                             </div>
 
-                            <div class="mb-4">
+                           {{--  <div class="mb-4">
                                 <x-jet-label value="Fecha de Abono AAp:" />
                                 <x-jet-input type="text" id="datepicker8" name="fechadeabonoaap"
                                     value="{{ old('fechadeabonoaap', $expedientee->fechadeabonoaap) }}"
@@ -640,7 +650,7 @@
                                     value="{{ old('pendientedepago', $expedientee->pendientedepago) }}"
                                     placeholder="pendientedepago" class="w-full" />
                                 <x-jet-input-error for="pendientedepago" />
-                            </div>
+                            </div> --}}
 
 
 

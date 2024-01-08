@@ -52,7 +52,12 @@
                                     readonly class="w-full" />
                                 {{-- <x-jet-input-error for="zona" /> --}}
                             </div>
-
+                            <div class="mb-4">
+                                <x-jet-label value="Empresa:" />
+                                <x-jet-input type="text" name="empresa" value="{{ $clientee->awkizona->representada->razonsocial }}"
+                                    readonly class="w-full" />
+                                {{-- <x-jet-input-error for="zona" /> --}}
+                            </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Tipo Documento" />
@@ -520,7 +525,7 @@
                                 <x-jet-input-error for="fechadefacturacion" />
                             </div>
 
-                            <div class="mb-4">
+                            {{-- <div class="mb-4">
                                 <x-jet-label value="Fecha de Abono AAp:" />
                                 <x-jet-input type="text" id="datepickerfechadeabonoaap" name="fechadeabonoaap" value="{{ old('fechadeabonoaap') }}"
                                     placeholder="Fecha de Envío" class="w-full" />
@@ -541,7 +546,7 @@
                                     value="{{ old('pendientedepago') }}" placeholder="pendientedepago"
                                     class="w-full" />
                                 <x-jet-input-error for="pendientedepago" />
-                            </div>
+                            </div> --}}
 
 
 
@@ -725,6 +730,21 @@
 
 
             });
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker2 = new Pikaday({
+                    field: document.getElementById('datepickerfechadepago'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+
+
+
 
         </script>
     @endpush

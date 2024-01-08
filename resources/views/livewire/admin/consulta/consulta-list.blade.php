@@ -398,7 +398,9 @@
 
 
                         <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->tipodeventa_id }}
+                            {{-- {{ $expedientee->tipodeventa_id }} --}}
+                            {{-- {{ $expedientee->tipodeventa_id === 1 ? 'FACTURA' : ($expedientee->tipodeventa_id === 2 ? 'BOLETA' : 'OTRO') }} --}}
+                            {{ $expedientee->tipodeventa->nombre }}
                         </td>
 
                         <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">

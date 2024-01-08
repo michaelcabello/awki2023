@@ -105,9 +105,9 @@ return new class extends Migration
 
             $table->string('factura')->nullable();
             $table->date('fechadefacturacion')->nullable();
-            $table->date('fechadeabonoaap')->nullable();
+            /* $table->date('fechadeabonoaap')->nullable();
             $table->string('abonoaap')->nullable();
-            $table->string('pendientedepago')->nullable();
+            $table->string('pendientedepago')->nullable(); */
 
 
             $table->unsignedBigInteger('legalizacion_id')->nullable();

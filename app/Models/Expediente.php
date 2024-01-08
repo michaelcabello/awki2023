@@ -23,6 +23,7 @@ class Expediente extends Model
         return $this->belongsTo(Tipodeventa::class);
     }
 
+
     public function awkicliente()
     {
         return $this->belongsTo(Awkicliente::class);
@@ -33,14 +34,44 @@ class Expediente extends Model
         return $this->belongsTo(Awkitienda::class);
     }
 
+    public function awkizona()
+    {
+        return $this->belongsTo(Awkizona::class);
+    }
+
     public function categoria()
     {
         return $this->belongsTo(Categoria::class);
     }
 
+    public function marca()
+    {
+        return $this->belongsTo(Marca::class);
+    }
+
+    public function modello()
+    {
+        return $this->belongsTo(Modello::class);
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(Color::class);
+    }
+
     public function statusfinall()//le agregue un l porque se confunde con un campo del mismo nombre y agregue statusfinal_id
     {
         return $this->belongsTo(Statusfinal::class, 'statusfinal_id');
+    }
+
+    public function oficinaregistral()
+    {
+        return $this->belongsTo(Oficinaregistral::class);
+    }
+
+    public function statusfinal()
+    {
+        return $this->belongsTo(Statusfinal::class);
     }
 
     //query Scope
