@@ -16,7 +16,6 @@ use App\Http\Livewire\Admin\PermissionList;
 use App\Http\Livewire\Admin\Color\ColorList;
 use App\Http\Livewire\Admin\Marca\MarcaList;
 use App\Http\Livewire\Admin\InventoryListdos;
-//use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SaleController;
 use App\Http\Controllers\admin\UserController;
