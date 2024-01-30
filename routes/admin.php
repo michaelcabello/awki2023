@@ -49,6 +49,7 @@ use App\Http\Controllers\admin\ProductatributeController;
 use App\Http\Controllers\admin\UsersPermissionsController;
 use App\Http\Livewire\Admin\LocalproductatributestockList;
 use App\Http\Livewire\Admin\Statussunarp\StatussunarpList;
+use App\Http\Livewire\Admin\Expediente\ExpedienteListuser2;
 use App\Http\Livewire\Admin\Awkirepresentada\RepresentadaList;
 use App\Http\Livewire\Admin\Tipodedocumento\TipodedocumentoList;
 use App\Http\Livewire\Admin\LocalproductatributestocktotalesList;
@@ -69,10 +70,12 @@ Route::get('expediente/{clientee}', [ExpedienteController::class, 'create'])->na
 Route::post('expediente/', [ExpedienteController::class, 'store'])->name('admin.expediente.store');
 Route::put('expediente/{expedientee}', [ExpedienteController::class, 'update'])->name('admin.expediente.update');
 Route::get('expediente/{expedientee}/edit', [ExpedienteController::class, 'edit'])->name('admin.expediente.edit');
+Route::get('expediente/{expedientee}/edit2', [ExpedienteController::class, 'edit2'])->name('admin.expediente.edit2');
 Route::get('/expedientes', ExpedienteList::class)->name('expediente.list');
 
 
 Route::get('/expedientes/{cliente}', ExpedienteListuser::class)->name('expediente.list.user');//lista de expediente del cliente
+Route::get('/expedientess/{cliente}', ExpedienteListuser2::class)->name('expediente.list.user2');//lista de expediente del cliente
 
 Route::get('/marcas', MarcaList::class)->name('marca.list');
 Route::get('/modellos', ModelloList::class)->name('modello.list');

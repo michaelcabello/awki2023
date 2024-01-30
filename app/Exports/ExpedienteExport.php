@@ -44,6 +44,7 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
     {
         return [
             $expediente->awkicliente_id,
+            $expediente->awkicliente->awkizona->representada->razonsocial ?? null,
             $expediente->awkicliente->nombres ?? null,
             $expediente->awkitienda->name ?? null,
             $expediente->awkizona->name ?? null,
@@ -129,6 +130,7 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
     {
         return [
             'ID',
+            'Empresa',
             'Nombres',
             'Tienda',
             'Zona',

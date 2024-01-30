@@ -1,12 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Expediente') }}
+            {{ __('Editando Expediente CE') }}
         </h2>
     </x-slot>
-    <form method="POST" action="{{ route('admin.expediente.store') }}" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        <div class="grid grid-cols-1 px-4 mx-auto mt-4 sm:px-6 lg:px-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
+
+
+    <form method="POST" action="{{ route('admin.expediente.update', $expedientee) }} " enctype="multipart/form-data">
+        {{ csrf_field() }} {{ method_field('PUT') }}
+        <div
+            class="grid grid-cols-1 px-4 mx-auto mt-4 sm:px-6 lg:px-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
 
             <div class="px-3 bg-white">
 
@@ -16,11 +19,11 @@
                             <h3 class="mt-4 text-center profile-username">Datos del Cliente</h3>
                             <div class="hidden mt-4 mb-4">
                                 <x-jet-label value="ID:" />
-                                <x-jet-input type="text" name="awkicliente_id" value="{{ $clientee->id }}" readonly
-                                    class="w-full" />
-                                <x-jet-input type="text" name="awkitienda_id" value="{{ $clientee->awkitienda_id }}"
-                                    readonly class="w-full" />
-                                <x-jet-input type="text" name="awkizona_id" value="{{ $clientee->awkizona_id }}"
+                                <x-jet-input type="text" name="awkicliente_id"
+                                    value="{{ $expedientee->awkicliente_id }}" readonly class="w-full" />
+                                <x-jet-input type="text" name="awkitienda_id"
+                                    value="{{ $expedientee->awkitienda_id }}" readonly class="w-full" />
+                                <x-jet-input type="text" name="awkizona_id" value="{{ $expedientee->awkizona_id }}"
                                     readonly class="w-full" />
 
                             </div>
@@ -34,8 +37,9 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Nombres:" />
-                                <x-jet-input type="text" name="nombres" value="{{ $clientee->nombres }}" readonly
-                                    class="w-full" />
+                                <x-jet-input type="text" name="nombres"
+                                    value="{{ $clientee->nombres . ' ' . $clientee->apellidopaterno . ' ' . $clientee->apellidomaterno }}"
+                                    readonly class="w-full" />
                                 {{--   <x-jet-input-error for="nombres" /> --}}
                             </div>
 
@@ -52,6 +56,8 @@
                                     readonly class="w-full" />
                                 {{-- <x-jet-input-error for="zona" /> --}}
                             </div>
+
+
                             <div class="mb-4">
                                 <x-jet-label value="Empresa:" />
                                 <x-jet-input type="text" name="empresa" value="{{ $clientee->awkizona->representada->razonsocial }}"
@@ -59,11 +65,8 @@
                                 {{-- <x-jet-input-error for="zona" /> --}}
                             </div>
 
-                            {{-- <div class="mb-4">
-                                <x-jet-label value="Empresa:" />
-                                <x-jet-input type="hidden" name="awkirepresentada_id" value="{{ $clientee->awkizona->representada->id }}"
-                                    readonly class="w-full" />
-                            </div> --}}
+
+
 
                             <div class="mb-4">
                                 <x-jet-label value="Tipo Documento" />
@@ -71,36 +74,45 @@
                                     style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($tipodedocumentos as $id => $tipodedocumento)
-                                        <option value="{{ $id }}">{{ $tipodedocumento }}</option>
+                                        <option value="{{ $id }}"
+                                            {{ old('tipodedocumento_id', $expedientee->tipodedocumento_id) == $id ? 'selected' : '' }}>
+                                            {{ $tipodedocumento }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="tipodedocumento_id" />
-                                {{-- {!! $errors->first('category_id','<span class="help-block">:message</span>') !!} --}}
+
                             </div>
+                            {{-- <div class="flex"> --}}
+                            {{--  <div class="mb-4 mr-2">
+                                    <x-jet-label value="Serie" />
+                                    <x-jet-input type="text" name="numdocumento"
+                                        value="{{ $clientee->awkitienda->serief }}  {{ $clientee->awkitienda->serieb }}"
+                                        class="w-full" readonly />
+                                    <x-jet-input-error for="numdocumento" />
+                                </div> --}}
 
                             <div class="mb-4">
                                 <x-jet-label value="Número de Documento:" />
                                 <x-jet-input type="text" name="numdocumento"
-                                     {{-- value="{{ $clientee->awkitienda->serief }}  {{ $clientee->awkitienda->serieb }}" --}}
-                                     value="{{ old('numdocumento') }}" class="w-full" />
+                                    value="{{ old('numdocumento', $expedientee->numdocumento) }}" class="w-full" />
                                 <x-jet-input-error for="numdocumento" />
                             </div>
-
-
-
-
+                            {{-- </div> --}}
 
                             <div class="mb-4">
                                 <x-jet-label value="Fecha de Venta:" />
 
-                                <x-jet-input type="text" id="datepicker" name="fechaventa"
-                                    value="{{ old('fechaventa') }}" class="w-full" />
+                                <x-jet-input type="text" id="datepicker" name="fechaventa" {{-- value="{{ old('fechaventa', \Carbon\Carbon::parse($expedientee->fechaventa)->format('d-m-Y')) }}" --}}
+                                    value="{{ old('fechaventa', $expedientee->fechaventa ?? '') }}" class="w-full" />
                                 <x-jet-input-error for="fechaventa" />
                             </div>
 
+
                             <div class="mb-4">
                                 <x-jet-label value="Fecha de Recepción:" />
-                                <x-jet-input type="text" id="datepickerfr" name="fecharecepcion" value="{{ old('fecharecepcion') }}"
+
+                                <x-jet-input type="text" id="datepicker2" name="fecharecepcion" {{-- value="{{ old('fecharecepcion', \Carbon\Carbon::parse($expedientee->fecharecepcion)->format('d-m-Y')) }}" --}}
+                                    value="{{ old('fecharecepcion', $expedientee->fecharecepcion ?? '') }}"
                                     class="w-full" />
                                 <x-jet-input-error for="fecharecepcion" />
                             </div>
@@ -108,7 +120,8 @@
                             <div class="mb-4">
                                 <x-jet-label value="Pago Administrativo:" />
                                 <x-jet-input type="text" name="pagoadministrativo"
-                                    value="{{ old('pagoadministrativo') }}" class="w-full" />
+                                    value="{{ old('pagoadministrativo', $expedientee->pagoadministrativo) }}"
+                                    class="w-full" />
                                 <x-jet-input-error for="pagoadministrativo" />
                             </div>
 
@@ -117,8 +130,11 @@
                                 <select name="tipodeventa_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($tipodeventas as $id => $tipodeventa)
-                                        <option value="{{ $id }}">{{ $tipodeventa }}</option>
+                                        <option value="{{ $id }}"
+                                            {{ old('tipodeventa_id', $expedientee->tipodeventa_id) == $id ? 'selected' : '' }}>
+                                            {{ $tipodeventa }}</option>
                                     @endforeach
+
                                 </select>
                                 <x-jet-input-error for="tipodeventa_id" />
                                 {{-- {!! $errors->first('category_id','<span class="help-block">:message</span>') !!} --}}
@@ -127,7 +143,8 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Monto de la Compra:" />
-                                <x-jet-input type="text" name="montodelacompra" value="{{ old('montodelacompra') }}"
+                                <x-jet-input type="text" name="montodelacompra"
+                                    value="{{ old('montodelacompra', $expedientee->montodelacompra) }}"
                                     class="w-full" />
                                 <x-jet-input-error for="montodelacompra" />
                             </div>
@@ -157,23 +174,31 @@
                     <div class="card-body box-profile">
                         <div>
                             <h3 class="mt-4 text-center profile-username">Datos del Vehiculo</h3>
+
                             <div class="mt-4 mb-4">
                                 <x-jet-label value="Marca" />
                                 <select name="marca_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($marcas as $id => $marca)
-                                        <option value="{{ $id }}">{{ $marca }}</option>
+                                        <option value="{{ $id }}"
+                                            {{ old('marca_id', $expedientee->marca_id) == $id ? 'selected' : '' }}>
+                                            {{ $marca }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="marca_id" />
                             </div>
+
+
+
 
                             <div class="mb-4">
                                 <x-jet-label value="Modelo" />
                                 <select name="modello_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($modellos as $id => $modello)
-                                        <option value="{{ $id }}">{{ $modello }}</option>
+                                        <option value="{{ $id }}"
+                                            {{ old('modello_id', $expedientee->modello_id) == $id ? 'selected' : '' }}>
+                                            {{ $modello }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="modello_id" />
@@ -181,15 +206,17 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Chasis:" />
-                                <x-jet-input type="text" name="chasis" value="{{ old('chasis') }}"
-                                    placeholder="Chasis" class="w-full" />
+                                <x-jet-input type="text" name="chasis"
+                                    value="{{ old('chasis', $expedientee->chasis) }}" placeholder="Chasis"
+                                    class="w-full" />
                                 <x-jet-input-error for="chasis" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Motor:" />
-                                <x-jet-input type="text" name="motor" value="{{ old('motor') }}"
-                                    placeholder="Motor" class="w-full" />
+                                <x-jet-input type="text" name="motor"
+                                    value="{{ old('motor', $expedientee->motor) }}" placeholder="Motor"
+                                    class="w-full" />
                                 <x-jet-input-error for="motor" />
                             </div>
 
@@ -198,7 +225,9 @@
                                 <select name="color_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($colors as $id => $color)
-                                        <option value="{{ $id }}">{{ $color }}</option>
+                                        <option value="{{ $id }}"
+                                            {{ old('color_id', $expedientee->color_id) == $id ? 'selected' : '' }}>
+                                            {{ $color }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="color_id" />
@@ -210,7 +239,9 @@
                                 <select name="anio_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($anios as $id => $anio)
-                                        <option value="{{ $id }}">{{ $anio }}</option>
+                                        <option value="{{ $id }}"
+                                            {{ old('anio_id', $expedientee->anio_id) == $id ? 'selected' : '' }}>
+                                            {{ $anio }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="anio_id" />
@@ -221,7 +252,9 @@
                                 <select name="categoria_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($categorias as $id => $categoria)
-                                        <option value="{{ $id }}">{{ $categoria }}</option>
+                                        <option value="{{ $id }}"
+                                            {{ old('categoria_id', $expedientee->categoria_id) == $id ? 'selected' : '' }}>
+                                            {{ $categoria }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="categoria_id" />
@@ -229,21 +262,23 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Dua:" />
-                                <x-jet-input type="text" name="dua" value="{{ old('dua') }}"
-                                    placeholder="Dua" class="w-full" />
+                                <x-jet-input type="text" name="dua"
+                                    value="{{ old('dua', $expedientee->dua) }}" placeholder="Dua" class="w-full" />
                                 <x-jet-input-error for="dua" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Item:" />
-                                <x-jet-input type="text" name="item" value="{{ old('item') }}"
-                                    placeholder="Item" class="w-full" />
+                                <x-jet-input type="text" name="item"
+                                    value="{{ old('item', $expedientee->item) }}" placeholder="Item"
+                                    class="w-full" />
                                 <x-jet-input-error for="item" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Certificado:" />
-                                <x-jet-input type="text" name="certificado" value="{{ old('certificado') }}"
+                                <x-jet-input type="text" name="certificado"
+                                    value="{{ old('certificado', $expedientee->certificado) }}"
                                     placeholder="Certificado" class="w-full" />
                                 <x-jet-input-error for="certificado" />
                             </div>
@@ -251,8 +286,8 @@
                             {{-- <div class="mb-4">
                                 <x-jet-label value="Archivo Certificado:" />
                                 <x-jet-input type="text" name="archivocertificado"
-                                    value="{{ old('archivocertificado') }}" placeholder="Archivo Certificado"
-                                    class="w-full" />
+                                    value="{{ old('archivocertificado', $expedientee->archivocertificado) }}"
+                                    placeholder="Archivo Certificado" class="w-full" />
                                 <x-jet-input-error for="archivocertificado" />
                             </div> --}}
 
@@ -261,7 +296,7 @@
 
 
                             {{-- <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
-                                <i class="mx-2 fa-regular fa-floppy-disk"></i> Crear Usuario
+                                <i class="mx-2 fa-regular fa-floppy-disk"></i> Actualizar Expediente
                             </x-jet-danger-button> --}}
 
 
@@ -289,58 +324,76 @@
                                     style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($oficinaregistrals as $id => $oficinaregistral)
-                                        <option value="{{ $id }}">{{ $oficinaregistral }}</option>
+                                        <option value="{{ $id }}"
+                                            {{ old('oficinaregistral_id', $expedientee->oficinaregistral_id) == $id ? 'selected' : '' }}>
+                                            {{ $oficinaregistral }}</option>
                                     @endforeach
+
                                 </select>
                                 <x-jet-input-error for="oficinaregistral_id" />
                             </div>
 
+
                             <div class="mb-4">
+
+
                                 <x-jet-label value="Fecha de Ingreso:" />
-                                <x-jet-input type="text" id="datepickerfi" name="fechaingreso" value="{{ old('fechaingreso') }}"
+                                <x-jet-input type="text" id="datepicker3" name="fechaingreso"
+                                    {{-- value="{{ old('fechaingreso', \Carbon\Carbon::parse($expedientee->fechaingreso)->format('d-m-Y')) }}" --}}
+                                    value="{{ old('fechaingreso', $expedientee->fechaingreso ?? '') }}"
                                     placeholder="Fecha de Ingreso" class="w-full" />
                                 <x-jet-input-error for="fechaingreso" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Titulo:" />
-                                <x-jet-input type="text" name="titulo" value="{{ old('titulo') }}"
-                                    placeholder="Título" class="w-full" />
+                                <x-jet-input type="text" name="titulo"
+                                    value="{{ old('titulo', $expedientee->titulo) }}" placeholder="Título"
+                                    class="w-full" />
                                 <x-jet-input-error for="titulo" />
                             </div>
 
                             <div class="mb-4">
+                                <x-jet-label value="Placa:" />
+                                <x-jet-input type="text" name="placa"
+                                    value="{{ old('placa', $expedientee->placa) }}" placeholder="Placa"
+                                    class="w-full" />
+                                <x-jet-input-error for="placa" />
+                            </div>
+
+                            {{-- <div class="mb-4">
                                 <x-jet-label value="Código de Verificación:" />
                                 <x-jet-input type="text" name="codigodeverificacion"
-                                    value="{{ old('codigodeverificacion') }}" placeholder="Código de Verificación"
-                                    class="w-full" />
+                                    value="{{ old('codigodeverificacion', $expedientee->codigodeverificacion) }}"
+                                    placeholder="Código de Verificación" class="w-full" />
                                 <x-jet-input-error for="codigodeverificacion" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Recibo:" />
-                                <x-jet-input type="text" name="recibo" value="{{ old('recibo') }}"
-                                    placeholder="Recibo" class="w-full" />
+                                <x-jet-input type="text" name="recibo"
+                                    value="{{ old('recibo', $expedientee->recibo) }}" placeholder="Recibo"
+                                    class="w-full" />
                                 <x-jet-input-error for="recibo" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Importe:" />
-                                <x-jet-input type="text" name="importe" value="{{ old('importe') }}"
-                                    placeholder="Importe" class="w-full" />
+                                <x-jet-input type="text" name="importe"
+                                    value="{{ old('importe', $expedientee->importe) }}" placeholder="Importe"
+                                    class="w-full" />
                                 <x-jet-input-error for="importe" />
                             </div>
 
 
-
-
-
                             <div class="mb-4">
                                 <x-jet-label value="Fecha de Revisión:" />
-                                <x-jet-input type="text" id="datepickerfecharevision" name="fechaderevision" value="{{ old('fechaderevision') }}"
+                                <x-jet-input type="text" id="datepicker5" name="fechaderevision"
+                                    value="{{ old('fechaderevision', $expedientee->fechaderevision ?? '') }}"
                                     placeholder="Fecha de Revision" class="w-full" />
                                 <x-jet-input-error for="fechaderevision" />
                             </div>
+
 
 
                             <div class="mt-4 mb-4 ">
@@ -348,30 +401,32 @@
                                 <select name="confirmaciondeplaca" class="py-0.7 rounded"
                                     style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                    <option value="si">SI</option>
-                                    <option value="no">NO</option>
+                                    <option value="si"
+                                        {{ old('confirmaciondeplaca', $expedientee->confirmaciondeplaca) == 'si' ? 'selected' : '' }}>
+                                        SI</option>
+                                    <option value="no"
+                                        {{ old('confirmaciondeplaca', $expedientee->confirmaciondeplaca) == 'no' ? 'selected' : '' }}>
+                                        NO</option>
                                 </select>
                                 <x-jet-input-error for="statussunarp_id" />
                             </div>
 
-                            <div class="mb-4">
-                                <x-jet-label value="Placa:" />
-                                <x-jet-input type="text" name="placa" value="{{ old('placa') }}"
-                                    placeholder="Placa" class="w-full" />
-                                <x-jet-input-error for="placa" />
-                            </div>
+
+
 
                             <div class="mb-4">
                                 <x-jet-label value="Código Placa:" />
-                                <x-jet-input type="text" name="codigoplaca" value="{{ old('codigoplaca') }}"
+                                <x-jet-input type="text" name="codigoplaca"
+                                    value="{{ old('codigoplaca', $expedientee->codigoplaca) }}"
                                     placeholder="Código Placa" class="w-full" />
                                 <x-jet-input-error for="codigoplaca" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Monto:" />
-                                <x-jet-input type="text" name="monto" value="{{ old('monto') }}"
-                                    placeholder="Monto" class="w-full" />
+                                <x-jet-input type="text" name="monto"
+                                    value="{{ old('monto', $expedientee->monto) }}" placeholder="Monto"
+                                    class="w-full" />
                                 <x-jet-input-error for="monto" />
                             </div>
 
@@ -379,7 +434,8 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Fecha de Pago:" />
-                                <x-jet-input type="text" id="datepickerfechadepago" name="fechadepago" value="{{ old('fechadepago') }}"
+                                <x-jet-input type="text" id="datepickerfechadepago" name="fechadepago"
+                                    value="{{ old('fechadepago', $expedientee->fechadepago ?? '') }}"
                                     placeholder="Fecha de Pago" class="w-full" />
                                 <x-jet-input-error for="fechadepago" />
                             </div>
@@ -389,10 +445,16 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Factura App:" />
-                                <x-jet-input type="text" name="facturaapp" value="{{ old('facturaapp') }}"
+                                <x-jet-input type="text" name="facturaapp"
+                                    value="{{ old('facturaapp', $expedientee->facturaapp) }}"
                                     placeholder="Factura App" class="w-full" />
                                 <x-jet-input-error for="facturaapp" />
-                            </div>
+                            </div> --}}
+
+
+
+
+
 
 
                             {{-- <div class="mt-4 mb-4 ">
@@ -401,16 +463,18 @@
                                     style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($statussunarps as $id => $statussunarp)
-                                        <option value="{{ $id }}">{{ $statussunarp }}</option>
+                                        <option value="{{ $id }}"
+                                            {{ old('statussunarp_id', $expedientee->statussunarp_id) == $id ? 'selected' : '' }}>
+                                            {{ $statussunarp }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="statussunarp_id" />
-                            </div>
+                            </div> --}}
 
                             <hr>
 
-                            <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
-                                <i class="mx-2 fa-regular fa-floppy-disk"></i> Crear Usuario
+                            {{-- <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
+                                <i class="mx-2 fa-regular fa-floppy-disk"></i> Actualizar Expediente
                             </x-jet-danger-button> --}}
 
 
@@ -429,7 +493,7 @@
                     <div class="card-body box-profile">
                         <div>
 
-                            <h3 class="mt-4 text-center profile-username">Datos del Entrega</h3>
+                            <h3 class="mt-4 text-center profile-username">Datos de Entrega</h3>
 
 
                             <div class="mt-4 mb-4">
@@ -437,6 +501,11 @@
                                 {{-- <x-jet-input type="text" name="name" value="{{ old('name') }}"
                                     placeholder="tu  nombre" class="w-full" /> --}}
 
+                                @if ($expedientee->tarjetadepropiedad)
+                                    <a href="{{ Storage::disk('s3')->url($expedientee->tarjetadepropiedad) }} "
+                                        target="_blank"><img src="/images/logopdf.jpg"
+                                            alt="{{ $expedientee->name }}"></a>
+                                @endif
 
                                 <x-jet-input type="file" name="tarjetadepropiedad"
                                     placeholder="Tarjeta de Propiedad" />
@@ -444,10 +513,19 @@
 
                             </div>
 
+
+
+
                             <div class="mt-4 mb-4">
                                 <x-jet-label value="Cargo Envío:" />
                                 {{-- <x-jet-input type="text" name="name" value="{{ old('name') }}"
                                     placeholder="tu  nombre" class="w-full" /> --}}
+
+                                @if ($expedientee->cargoenvio)
+                                    <a href="{{ Storage::disk('s3')->url($expedientee->cargoenvio) }} "
+                                        target="_blank"><img src="/images/logopdf.jpg"
+                                            alt="{{ $expedientee->name }}"></a>
+                                @endif
 
 
                                 <x-jet-input type="file" name="cargoenvio" placeholder="Cargo Envío" />
@@ -459,26 +537,29 @@
 
                             <div class="mb-4">
                                 <x-jet-label value="Numero de Placa:" />
-                                <x-jet-input type="text" name="numerodeplaca" value="{{ old('numerodeplaca') }}"
+                                <x-jet-input type="text" name="numerodeplaca"
+                                    value="{{ old('numerodeplaca', $expedientee->numerodeplaca) }}"
                                     placeholder="Numero de Placa" class="w-full" />
                                 <x-jet-input-error for="numerodeplaca" />
                             </div>
 
+
                             <div class="mb-4">
                                 <x-jet-label value="Fecha de Envío:" />
-                                <x-jet-input type="text" id="datepickerfe" name="fechadeenvio" value="{{ old('fechadeenvio') }}"
+                                <x-jet-input type="text" id="datepicker4" name="fechadeenvio"
+                                    value="{{ old('fechadeenvio', $expedientee->fechadeenvio ?? '') }}"
                                     placeholder="Fecha de Envío" class="w-full" />
                                 <x-jet-input-error for="fechadeenvio" />
+
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Guia de Remision:" />
                                 <x-jet-input type="text" name="guiaderemision"
-                                    value="{{ old('guiaderemision') }}" placeholder="Guia de Remision"
-                                    class="w-full" />
+                                    value="{{ old('guiaderemision', $expedientee->guiaderemision) }}"
+                                    placeholder="Guia de Remision" class="w-full" />
                                 <x-jet-input-error for="guiaderemision" />
                             </div>
-
 
 
                             <div class="mt-4 mb-4 ">
@@ -486,10 +567,18 @@
                                 <select name="confirmaciondeenvio" class="py-0.7 rounded"
                                     style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                    <option value="si">SI</option>
-                                    <option value="no">NO</option>
+                                    <option value="si"
+                                        {{ old('confirmaciondeenvio', $expedientee->confirmaciondeenvio) == 'si' ? 'selected' : '' }}>
+                                        SI</option>
+                                    <option value="no"
+                                        {{ old('confirmaciondeenvio', $expedientee->confirmaciondeenvio) == 'no' ? 'selected' : '' }}>
+                                        NO</option>
                                 </select>
                                 <x-jet-input-error for="confirmaciondeenvio" />
+
+
+
+
                             </div>
 
 
@@ -499,56 +588,62 @@
                                 <select name="confirmaciondecobro" class="py-0.7 rounded"
                                     style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                    <option value="si">SI</option>
-                                    <option value="no">NO</option>
+                                    <option value="si"
+                                        {{ old('confirmaciondecobro', $expedientee->confirmaciondecobro) == 'si' ? 'selected' : '' }}>
+                                        SI</option>
+                                    <option value="no"
+                                        {{ old('confirmaciondecobro', $expedientee->confirmaciondecobro) == 'no' ? 'selected' : '' }}>
+                                        NO</option>
                                 </select>
                                 <x-jet-input-error for="confirmaciondecobro" />
                             </div>
 
 
-
                             <div class="mb-4">
                                 <x-jet-label value="Factura:" />
                                 <x-jet-input type="text" name="factura"
-                                    value="{{ old('factura') }}" placeholder="Factura"
+                                    value="{{ old('factura', $expedientee->factura) }}" placeholder="Factura"
                                     class="w-full" />
                                 <x-jet-input-error for="factura" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Fecha de Facturación:" />
-                                <x-jet-input type="text" id="datepickerfechadefacturacion" name="fechadefacturacion" value="{{ old('fechadefacturacion') }}"
+                                <x-jet-input type="text" id="datepickerfechadefacturacion"
+                                    name="fechadefacturacion"
+                                    value="{{ old('fechadefacturacion', $expedientee->fechadefacturacion) }}"
                                     placeholder="Fecha de Facturación" class="w-full" />
                                 <x-jet-input-error for="fechadefacturacion" />
                             </div>
-
-
-
 
                             <div class="mt-4 mb-4 ">
                                 <x-jet-label value="Confirmación fin de Tramite" />
                                 <select name="confirmarfindetramite" class="py-0.7 rounded"
                                     style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
-                                    <option value="si">SI</option>
-                                    <option value="no">NO</option>
+                                    <option value="si"
+                                        {{ old('confirmaciondecobro', $expedientee->confirmaciondecobro) == 'si' ? 'selected' : '' }}>
+                                        SI</option>
+                                    <option value="no"
+                                        {{ old('confirmaciondecobro', $expedientee->confirmaciondecobro) == 'no' ? 'selected' : '' }}>
+                                        NO</option>
                                 </select>
                                 <x-jet-input-error for="confirmarfindetramite" />
                             </div>
 
 
-
-                            {{-- <div class="mb-4">
+                           {{--  <div class="mb-4">
                                 <x-jet-label value="Fecha de Abono AAp:" />
-                                <x-jet-input type="text" id="datepickerfechadeabonoaap" name="fechadeabonoaap" value="{{ old('fechadeabonoaap') }}"
-                                    placeholder="Fecha de Envío" class="w-full" />
+                                <x-jet-input type="text" id="datepicker8" name="fechadeabonoaap"
+                                    value="{{ old('fechadeabonoaap', $expedientee->fechadeabonoaap) }}"
+                                    placeholder="Fecha de Abono App" class="w-full" />
                                 <x-jet-input-error for="fechadeabonoaap" />
                             </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Abono AAp:" />
                                 <x-jet-input type="text" name="abonoaap"
-                                    value="{{ old('abonoaap') }}" placeholder="abonoaap"
+                                    value="{{ old('abonoaap', $expedientee->abonoaap) }}" placeholder="abonoaap"
                                     class="w-full" />
                                 <x-jet-input-error for="abonoaap" />
                             </div>
@@ -556,13 +651,10 @@
                             <div class="mb-4">
                                 <x-jet-label value="Pendiente de Pago:" />
                                 <x-jet-input type="text" name="pendientedepago"
-                                    value="{{ old('pendientedepago') }}" placeholder="pendientedepago"
-                                    class="w-full" />
+                                    value="{{ old('pendientedepago', $expedientee->pendientedepago) }}"
+                                    placeholder="pendientedepago" class="w-full" />
                                 <x-jet-input-error for="pendientedepago" />
                             </div> --}}
-
-
-
 
 
 
@@ -572,7 +664,9 @@
                                 <select name="statusfinal_id" class="py-0.7 rounded" style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
                                     @foreach ($statusfinals as $id => $statusfinal)
-                                        <option value="{{ $id }}">{{ $statusfinal }}</option>
+                                        <option value="{{ $id }}"
+                                            {{ old('statusfinal_id', $expedientee->statusfinal_id) == $id ? 'selected' : '' }}>
+                                            {{ $statusfinal }}</option>
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="statusfinal_id" />
@@ -584,7 +678,7 @@
 
 
                             {{-- <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
-                                <i class="mx-2 fa-regular fa-floppy-disk"></i> Crear Usuario
+                                <i class="mx-2 fa-regular fa-floppy-disk"></i> Actualizar Expediente
                             </x-jet-danger-button> --}}
 
 
@@ -596,8 +690,6 @@
                 </div>
 
             </div>
-
-
 
             {{--  <div class="px-3 py-4 bg-white md:col-span-2">
                         <p class="text-lg font-bold underline underline-offset-2">Roles</p>
@@ -614,27 +706,31 @@
                     </div> --}}
 
         </div>
+
         <div class="grid grid-cols-1 px-4 mx-auto mt-4 bg-white sm:px-6 lg:px-8 gap-x-6 gap-y-8">
             <div class="mb-4">
                 <x-jet-label value="Observaciones del expediente:" />
 
 
-                <textarea
-                name="observacion"
-                class="w-full form-control"
-                rows="5">{{ old('observacion') }}</textarea>
+                <textarea name="observacion" class="w-full form-control" rows="5">{{ old('observacion', $expedientee->observacion) }}</textarea>
 
             </div>
         </div>
 
-
-        <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
-            <i class="mx-2 fa-regular fa-floppy-disk"></i> Guardar Expediente
-        </x-jet-danger-button>
-
-
+        {{-- <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
+            <i class="mx-2 fa-regular fa-floppy-disk"></i> Actualizar Expediente
+        </x-jet-danger-button> --}}
 
     </form>
+
+
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <!-- Pikaday -->
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 
 
     @push('styles')
@@ -654,47 +750,21 @@
 
         <script>
             /*  new Pikaday({
-                                                            field: document.getElementById('datepicker'),
-                                                            format: 'D MMM YYYY',
+                                                                                                                field: document.getElementById('datepicker'),
+                                                                                                                format: 'D MMM YYYY',
 
-                                                        }); */
+                                                                                                            }); */
 
-            new Pikaday({
+            /* new Pikaday({
                 field: document.getElementById('datepicker2'),
                 format: 'D MMM YYYY',
 
-            });
+            }); */
         </script>
 
 
 
         <script>
-
-
-
-            document.addEventListener('DOMContentLoaded', function() {
-                var picker = new Pikaday({
-                    field: document.getElementById('datepickerfechadefacturacion'),
-                    format: 'DD-MM-YYYY',
-                    showYearDropdown: true,
-                    yearRange: [1900, moment().year()]
-                });
-
-
-            });
-
-            document.addEventListener('DOMContentLoaded', function() {
-                var picker = new Pikaday({
-                    field: document.getElementById('datepickerfechadeabonoaap'),
-                    format: 'DD-MM-YYYY',
-                    showYearDropdown: true,
-                    yearRange: [1900, moment().year()]
-                });
-
-
-            });
-
-
             document.addEventListener('DOMContentLoaded', function() {
                 var picker = new Pikaday({
                     field: document.getElementById('datepicker'),
@@ -705,56 +775,61 @@
 
 
             });
-
-            document.addEventListener('DOMContentLoaded', function() {
-                var picker = new Pikaday({
-                    field: document.getElementById('datepickerfr'),
-                    format: 'DD-MM-YYYY',
-                    showYearDropdown: true,
-                    yearRange: [1900, moment().year()]
-                });
-
-
-            });
-
-            document.addEventListener('DOMContentLoaded', function() {
-                var picker = new Pikaday({
-                    field: document.getElementById('datepickerfi'),
-                    format: 'DD-MM-YYYY',
-                    showYearDropdown: true,
-                    yearRange: [1900, moment().year()]
-                });
-
-
-            });
-
-
-            document.addEventListener('DOMContentLoaded', function() {
-                var picker = new Pikaday({
-                    field: document.getElementById('datepickerfe'),
-                    format: 'DD-MM-YYYY',
-                    showYearDropdown: true,
-                    yearRange: [1900, moment().year()]
-                });
-
-
-            });
-
-
-            document.addEventListener('DOMContentLoaded', function() {
-                var picker = new Pikaday({
-                    field: document.getElementById('datepickerfecharevision'),
-                    format: 'DD-MM-YYYY',
-                    showYearDropdown: true,
-                    yearRange: [1900, moment().year()]
-                });
-
-
-            });
-
-
+        </script>
+        <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var picker2 = new Pikaday({
+                    field: document.getElementById('datepicker2'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker3 = new Pikaday({
+                    field: document.getElementById('datepicker3'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker4 = new Pikaday({
+                    field: document.getElementById('datepicker4'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+        </script>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker5 = new Pikaday({
+                    field: document.getElementById('datepicker5'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
+
+
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker6 = new Pikaday({
                     field: document.getElementById('datepickerfechadepago'),
                     format: 'DD-MM-YYYY',
                     showYearDropdown: true,
@@ -763,12 +838,35 @@
 
 
             });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker7 = new Pikaday({
+                    field: document.getElementById('datepickerfechadefacturacion'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
 
 
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var picker8 = new Pikaday({
+                    field: document.getElementById('datepicker8'),
+                    format: 'DD-MM-YYYY',
+                    showYearDropdown: true,
+                    yearRange: [1900, moment().year()]
+                });
 
 
+            });
         </script>
     @endpush
+
+
+
 
 
 

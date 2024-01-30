@@ -250,7 +250,6 @@
 
 
 
-
                                     <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                         {{-- <a wire:click="edit({{ $clientee }})" class="btn btn-blue">Crear</a> --}}
                                         @can('Cliente Update')
@@ -284,10 +283,6 @@
                             <!-- More people... -->
                         </tbody>
                     </table>
-
-
-
-
 
 
 

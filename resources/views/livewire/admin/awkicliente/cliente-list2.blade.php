@@ -259,7 +259,7 @@
                                         @endcan --}}
 
                                         @can('Cliente Viewd')
-                                        <a href="{{ route('expediente.list.user', $clientee->id) }}"
+                                        <a href="{{ route('expediente.list.user2', $clientee->id) }}"
                                             class="btn btn-blue">
                                             <i class="fa-sharp fa-solid fa-eye"></i></a>
                                         @endcan

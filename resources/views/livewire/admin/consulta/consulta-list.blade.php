@@ -29,12 +29,10 @@
         {{-- <h1>{{ $expedientes }}</h1> --}}
         <div class="mb-6 bg-white">
             <div class="flex">
-                <div class="mb-4 ml-2 mr-2">
-
+                {{-- <div class="mb-4 ml-2 mr-2">
                     <div>
                         <x-jet-label value="Seleccione" />
                     </div>
-                    {{-- <select wire:model="awkitienda_id" name="awkitienda_id" class="py-0.7 rounded" --}}
                     <div>
                         <div>
                             <x-jet-label value="Tienda" />
@@ -48,8 +46,72 @@
                         </select>
                         <x-jet-input-error for="awkitienda_id" />
                     </div>
-
                 </div>
+ --}}
+
+
+
+                <div class="grid px-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-x-6">
+                    {{-- cuentas representadas --}}
+                    <div>
+                        <x-jet-label value="Representada Cuenta" />
+
+                        <select class="w-full form-control" wire:model="filters.awkirepresentada_id">
+
+                            <option value="" selected>Seleccione una Cuenta</option>
+
+                            @foreach ($awkirepresentadas as $id => $awkirepresentada)
+                                <option value="{{ $id }}">{{ $awkirepresentada }}</option>
+                            @endforeach
+                        </select>
+
+                        <x-jet-input-error for="filters.awkirepresentada_id" />
+                    </div>
+
+                    {{-- zonas --}}
+                    @if ($awkizonas)
+                        <div>
+                            <x-jet-label value="Zonas" />
+
+                            <select class="w-full form-control" wire:model="filters.awkizona_id">
+
+                                <option value="" disabled selected>Seleccione una Zona</option>
+
+                                @foreach ($awkizonas as $awkizona)
+                                    <option value="{{ $awkizona->id }}">{{ $awkizona->name }}</option>
+                                @endforeach
+                            </select>
+
+                            <x-jet-input-error for="filters.awkizona_id" />
+                        </div>
+                    @endif
+
+
+
+                    {{-- tiendas --}}
+                    @if ($awkitiendas)
+                        <div>
+                            <x-jet-label value="Tiendas" />
+
+                            <select class="w-full form-control" wire:model="filters.awkitienda_id">
+
+                                <option value="" disabled selected>Seleccione una tienda</option>
+
+                                @foreach ($awkitiendas as $awkitienda)
+                                    <option value="{{ $awkitienda->id }}">{{ $awkitienda->name }}</option>
+                                @endforeach
+                            </select>
+
+                            <x-jet-input-error for="filters.awkitienda_id" />
+                        </div>
+                    @endif
+                </div>
+
+
+
+
+
+
 
 
                 <div class="mb-4 ml-2 mr-2">
@@ -360,89 +422,108 @@
                     </th>
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            @if ($expedientes)
 
-                @foreach ($expedientes as $expedientee)
-                    <tr>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($expedientes as $expedientee)
+                        <tr>
 
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->id }}
-                        </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{ $expedientee->id }}
+                            </td>
 
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            @if ($expedientee->awkicliente->dni)
-                                {{ $expedientee->awkicliente->dni }}
-                            @endif
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                @if ($expedientee->awkicliente->dni)
+                                    {{ $expedientee->awkicliente->dni }}
+                                @endif
 
-                        </td>
+                            </td>
 
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->awkicliente->nombres . ' ' . $expedientee->awkicliente->apellidopaterno . ' ' . $expedientee->awkicliente->apellidomaterno }}
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{ $expedientee->awkicliente->nombres . ' ' . $expedientee->awkicliente->apellidopaterno . ' ' . $expedientee->awkicliente->apellidomaterno }}
 
-                        </td>
+                            </td>
 
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->awkitienda->name }}
-                        </td>
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->numdocumento }}
-                        </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{ $expedientee->awkitienda->name }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{ $expedientee->numdocumento }}
+                            </td>
 
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->titulo }}
-                        </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{ $expedientee->titulo }}
+                            </td>
 
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->codigodeverificacion }}
-                        </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{ $expedientee->codigodeverificacion }}
+                            </td>
 
 
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{-- {{ $expedientee->tipodeventa_id }} --}}
-                            {{-- {{ $expedientee->tipodeventa_id === 1 ? 'FACTURA' : ($expedientee->tipodeventa_id === 2 ? 'BOLETA' : 'OTRO') }} --}}
-                            {{ $expedientee->tipodeventa->nombre }}
-                        </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{-- {{ $expedientee->tipodeventa_id }} --}}
+                                {{-- {{ $expedientee->tipodeventa_id === 1 ? 'FACTURA' : ($expedientee->tipodeventa_id === 2 ? 'BOLETA' : 'OTRO') }} --}}
+                                @if ($expedientee->tipodeventa)
+                                    {{ $expedientee->tipodeventa->nombre }}
+                                @endif
 
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->numerodeplaca }}
-                        </td>
+                            </td>
 
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->categoria->nombre ?? '' }}
-                        </td>
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->certificado }}
-                        </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{ $expedientee->numerodeplaca }}
+                            </td>
 
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {{ $expedientee->statusfinall->nombre ?? '' }}
-                        </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{ $expedientee->categoria->nombre ?? '' }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{ $expedientee->certificado }}
+                            </td>
 
-                        <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                            {{-- <a wire:click="edit({{ $expedientee }})" class="btn btn-blue">Crear</a> --}}
+                            <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                {{ $expedientee->statusfinall->nombre ?? '' }}
+                            </td>
 
-                            {{--  <a href="{{ route('admin.expediente.create', $expedientee->id) }}"
+                            <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                {{-- <a wire:click="edit({{ $expedientee }})" class="btn btn-blue">Crear</a> --}}
+
+                                {{--  <a href="{{ route('admin.expediente.create', $expedientee->id) }}"
                             class="btn btn-orange">
                             <i class="mx-2 fa-regular fa-file"></i></a> --}}
-                            {{-- @can('Zona Update') --}}
-                            <a href="{{ route('admin.expediente.edit', $expedientee) }}" class="btn btn-green"><i
-                                    class="fa-solid fa-pen-to-square"></i></a>
-                            {{-- @endcan --}}
-                            {{-- @can('Zona Delete')
+                                {{-- @can('Zona Update') --}}
+                                <a href="{{ route('admin.expediente.edit', $expedientee) }}" class="btn btn-green"><i
+                                        class="fa-solid fa-pen-to-square"></i></a>
+                                {{-- @endcan --}}
+                                {{-- @can('Zona Delete')
                                 <a class="btn btn-red" wire:click="$emit('deleteZona', {{ $expedientee->id }})">
                                     <i class="fa-solid fa-trash-can"></i>
 
                                 </a>
                             @endcan  --}}
 
-                        </td>
-                    </tr>
-                @endforeach
-                <!-- More people... -->
-            </tbody>
+                            </td>
+                        </tr>
+                    @endforeach
+                    <!-- More people... -->
+                    {{-- @if ($expedientes->hasPages())
+
+                @endif --}}
+
+
+
+
+
+                </tbody>
+
+
+            @endif
         </table>
 
-
+        @if ($expedientes->hasPages())
+            <div class="px-6 py-4">
+                {{ $expedientes->links() }}
+            </div>
+        @endif
 
 
     </div>

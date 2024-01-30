@@ -154,9 +154,9 @@
 
 
 
-                            <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
+                            {{-- <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
                                 <i class="mx-2 fa-regular fa-floppy-disk"></i> Guardar
-                            </x-jet-danger-button>
+                            </x-jet-danger-button> --}}
 
 
 
@@ -283,21 +283,21 @@
                                 <x-jet-input-error for="certificado" />
                             </div>
 
-                            <div class="mb-4">
+                            {{-- <div class="mb-4">
                                 <x-jet-label value="Archivo Certificado:" />
                                 <x-jet-input type="text" name="archivocertificado"
                                     value="{{ old('archivocertificado', $expedientee->archivocertificado) }}"
                                     placeholder="Archivo Certificado" class="w-full" />
                                 <x-jet-input-error for="archivocertificado" />
-                            </div>
+                            </div> --}}
 
                             <hr>
 
 
 
-                            <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
+                            {{-- <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
                                 <i class="mx-2 fa-regular fa-floppy-disk"></i> Actualizar Expediente
-                            </x-jet-danger-button>
+                            </x-jet-danger-button> --}}
 
 
 
@@ -455,7 +455,7 @@
 
 
 
-                            <div class="mt-4 mb-4 ">
+                            {{-- <div class="mt-4 mb-4 ">
                                 <x-jet-label value="Status Sunarp" />
                                 <select name="statussunarp_id" class="py-0.7 rounded"
                                     style="height:100%; width:100%">
@@ -467,13 +467,13 @@
                                     @endforeach
                                 </select>
                                 <x-jet-input-error for="statussunarp_id" />
-                            </div>
+                            </div> --}}
 
                             <hr>
 
-                            <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
+                            {{-- <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
                                 <i class="mx-2 fa-regular fa-floppy-disk"></i> Actualizar Expediente
-                            </x-jet-danger-button>
+                            </x-jet-danger-button> --}}
 
 
 
@@ -596,20 +596,6 @@
                                 <x-jet-input-error for="confirmaciondecobro" />
                             </div>
 
-                            <div class="mt-4 mb-4 ">
-                                <x-jet-label value="Confirmación fin de Tramite" />
-                                <select name="confirmarfindetramite" class="py-0.7 rounded"
-                                    style="height:100%; width:100%">
-                                    <option value="" selected disabled>Seleccione</option>
-                                    <option value="si"
-                                        {{ old('confirmaciondecobro', $expedientee->confirmaciondecobro) == 'si' ? 'selected' : '' }}>
-                                        SI</option>
-                                    <option value="no"
-                                        {{ old('confirmaciondecobro', $expedientee->confirmaciondecobro) == 'no' ? 'selected' : '' }}>
-                                        NO</option>
-                                </select>
-                                <x-jet-input-error for="confirmarfindetramite" />
-                            </div>
 
                             <div class="mb-4">
                                 <x-jet-label value="Factura:" />
@@ -627,6 +613,22 @@
                                     placeholder="Fecha de Facturación" class="w-full" />
                                 <x-jet-input-error for="fechadefacturacion" />
                             </div>
+
+                            <div class="mt-4 mb-4 ">
+                                <x-jet-label value="Confirmación fin de Tramite" />
+                                <select name="confirmarfindetramite" class="py-0.7 rounded"
+                                    style="height:100%; width:100%">
+                                    <option value="" selected disabled>Seleccione</option>
+                                    <option value="si"
+                                        {{ old('confirmaciondecobro', $expedientee->confirmaciondecobro) == 'si' ? 'selected' : '' }}>
+                                        SI</option>
+                                    <option value="no"
+                                        {{ old('confirmaciondecobro', $expedientee->confirmaciondecobro) == 'no' ? 'selected' : '' }}>
+                                        NO</option>
+                                </select>
+                                <x-jet-input-error for="confirmarfindetramite" />
+                            </div>
+
 
                            {{--  <div class="mb-4">
                                 <x-jet-label value="Fecha de Abono AAp:" />
@@ -673,9 +675,9 @@
 
 
 
-                            <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
+                            {{-- <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
                                 <i class="mx-2 fa-regular fa-floppy-disk"></i> Actualizar Expediente
-                            </x-jet-danger-button>
+                            </x-jet-danger-button> --}}
 
 
 
@@ -713,7 +715,9 @@
             </div>
         </div>
 
-
+        <x-jet-danger-button class="w-full mt-4 mb-3" type="submit">
+            <i class="mx-2 fa-regular fa-floppy-disk"></i> Actualizar Expediente
+        </x-jet-danger-button>
 
     </form>
 

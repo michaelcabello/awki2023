@@ -133,5 +133,59 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole($adminRole);
 
+
+        /* $admin = User::create([
+            'name' => 'Luis',
+            'email' => 'luis@ticomperu.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+        $admin = User::create([
+            'name' => 'jose',
+            'email' => 'jose@ticomperu.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+
+
+        $admin = User::create([
+            'name' => 'miguel',
+            'email' => 'miguel@ticomperu.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+
+        $admin = User::create([
+            'name' => 'techi',
+            'email' => 'yechi@ticomperu.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+
+        $admin = User::create([
+            'name' => 'romel',
+            'email' => 'romel@ticomperu.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+
+
+        $admin = User::create([
+            'name' => 'stalin',
+            'email' => 'stalin@ticomperu.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]); */
+
     }
 }

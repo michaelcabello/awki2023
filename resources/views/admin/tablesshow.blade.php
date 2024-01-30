@@ -310,10 +310,10 @@
 
 
 
-    <section>
+    {{-- <section>
         <div class="mt-4 bg-white shadow">
             hola
         </div>
-    </section>
+    </section> --}}
 
 </x-app-layout>

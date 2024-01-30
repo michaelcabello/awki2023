@@ -18,7 +18,7 @@ class ExpedienteList extends Component
     public $search, $numdocumento, $titulo, $numerodeplaca, $apellidomaterno, $state, $awkitienda_id;
     public $sort = 'id';
     public $direction = 'desc';
-    public $cant = '10';
+    public $cant = '20';
     public $open_edit = false;
     public $readyToLoad = false; //para cntrolar el preloader
     public $awkitiendas;
@@ -81,9 +81,10 @@ class ExpedienteList extends Component
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);
             } else {
-                $expedientes = Expediente::select('expedientes.*', 'awkitiendas.name as tienda_name', 'awkiclientes.nombres as cliente_name')
+                $expedientes = Expediente::select('expedientes.*', 'users.name as gestor_name', 'awkitiendas.name as tienda_name', 'awkiclientes.dni as cliente_dni', 'awkiclientes.nombres as cliente_name')
                     ->join('awkitiendas', 'expedientes.awkitienda_id', '=', 'awkitiendas.id')
                     ->join('awkiclientes', 'expedientes.awkicliente_id', '=', 'awkiclientes.id')
+                    ->join('users', 'expedientes.user_id', '=', 'users.id')
                     ->whereIn('awkitiendas.id', $user->tiendas->pluck('id')) // Filtrar por tiendas del usuario
                     ->where(function ($query) {
                         $query->where('awkiclientes.nombres', 'like', '%' . $this->search . '%')

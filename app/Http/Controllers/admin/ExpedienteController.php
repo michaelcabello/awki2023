@@ -27,7 +27,6 @@ class ExpedienteController extends Controller
     {
     }
 
-
     public function create(Awkicliente $clientee)
     {
         //dd($clientee->id);
@@ -56,6 +55,7 @@ class ExpedienteController extends Controller
         //dd($request->confirmaciondeplaca);
 
         $data = $request->validate([
+            //'awkirepresentada_id' => 'nullable',//agregando para consulta
             'awkicliente_id' => 'required',
             'awkitienda_id' => 'nullable',
             'awkizona_id' => 'nullable',
@@ -240,6 +240,72 @@ class ExpedienteController extends Controller
 
         return view('admin.expedientes.edit', compact('expedientee', 'tipodedocumentos', 'tipodeventas', 'marcas', 'modellos', 'colors', 'categorias', 'oficinaregistrals', 'statussunarps', 'statusfinals', 'anios', 'clientee'));
     }
+
+
+
+    public function edit2(Expediente $expedientee)
+    {
+        $awkicliente_id = $expedientee->awkicliente_id;
+        $clientee = Awkicliente::find($awkicliente_id);
+
+        $tipodedocumentos = Tipodedocumento::pluck('nombre', 'id');
+        $tipodeventas = Tipodeventa::pluck('nombre', 'id');
+        $marcas = Marca::pluck('nombre', 'id');
+        $modellos = Modello::pluck('nombre', 'id');
+        $colors = Color::pluck('nombre', 'id');
+        $anios = Anio::pluck('nombre', 'id');
+        $categorias = Categoria::pluck('nombre', 'id');
+        $oficinaregistrals = Oficinaregistral::pluck('nombre', 'id');
+        $statussunarps = Statussunarp::pluck('nombre', 'id');
+        $statusfinals = Statusfinal::pluck('nombre', 'id');
+
+
+        if ($expedientee->fecharecepcion) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fecharecepcion = Carbon::parse($expedientee->fecharecepcion)->format('d-m-Y');
+        }
+
+        if ($expedientee->fechaventa) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fechaventa = Carbon::parse($expedientee->fechaventa)->format('d-m-Y');
+        }
+
+        if ($expedientee->fechaingreso) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fechaingreso = Carbon::parse($expedientee->fechaingreso)->format('d-m-Y');
+        }
+
+        if ($expedientee->fechadeenvio) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fechadeenvio = Carbon::parse($expedientee->fechadeenvio)->format('d-m-Y');
+        }
+
+        if ($expedientee->fechaderevision) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fechaderevision = Carbon::parse($expedientee->fechaderevision)->format('d-m-Y');
+        }
+
+        if ($expedientee->fechadepago) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fechadepago = Carbon::parse($expedientee->fechadepago)->format('d-m-Y');
+        }
+
+        if ($expedientee->fechadefacturacion) {
+            // Convertir y formatear la fecha si existe
+            $expedientee->fechadefacturacion = Carbon::parse($expedientee->fechadefacturacion)->format('d-m-Y');
+        }
+
+        /* if ($expedientee->fechadeabonoaap) {
+
+            $expedientee->fechadeabonoaap = Carbon::parse($expedientee->fechadeabonoaap)->format('d-m-Y');
+        } */
+
+
+        return view('admin.expedientes.edit2', compact('expedientee', 'tipodedocumentos', 'tipodeventas', 'marcas', 'modellos', 'colors', 'categorias', 'oficinaregistrals', 'statussunarps', 'statusfinals', 'anios', 'clientee'));
+    }
+
+
+
 
 
     public function update(Request $request, Expediente $expedientee)

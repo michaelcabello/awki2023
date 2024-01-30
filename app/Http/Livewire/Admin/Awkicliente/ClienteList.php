@@ -32,7 +32,6 @@ class ClienteList extends Component
 
     protected $listeners = ['render', 'delete'];
 
-
     protected $queryString = [
         'cant' => ['except' => '10'],
         'sort' => ['except' => 'id'],

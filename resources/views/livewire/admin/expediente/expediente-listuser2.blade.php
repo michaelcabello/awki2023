@@ -369,7 +369,7 @@
                                         class="btn btn-orange">
                                         <i class="mx-2 fa-regular fa-file"></i></a> --}}
                                         {{-- @can('Zona Update') --}}
-                                        <a href="{{ route('admin.expediente.edit', $expedientee) }}"
+                                        <a href="{{ route('admin.expediente.edit2', $expedientee) }}"
                                             class="btn btn-green"><i class="fa-solid fa-pen-to-square"></i></a>
                                         {{-- @endcan --}}
                                         {{-- @can('Zona Delete')
@@ -440,62 +440,5 @@
 
 
 
-        {{--         <x-jet-dialog-modal wire:model="open_edit">
-            <x-slot name="title">
-                Modificando la Zona
-            </x-slot>
-
-            <x-slot name="content">
-
-
-                <div class="mb-4">
-                    <x-jet-label value="Nombre" />
-                    <x-jet-input type="text" class="w-full" wire:model="awkizona.name" />
-                    <x-jet-input-error for="awkizona.name" />
-                </div>
-
-                <div class="mb-4">
-                    <x-jet-label value="Descripción" />
-                    <x-jet-input type="text" class="w-full" wire:model="awkizona.description" />
-                    <x-jet-input-error for="awkizona.description" />
-                </div>
-
-                <div class="mb-4">
-                    <x-jet-label value="Empresa- Representadaa" />
-                    <select wire:model="awkizona.awkirepresentada_id" class="py-0.7 rounded"
-                        style="height:100%; width:100%">
-                        <option value="" selected disabled>Seleccione</option>
-                        @foreach ($awkirepresentadas as $id => $razonsocial)
-                            <option value="{{ $id }}">{{ $razonsocial }}</option>
-                        @endforeach
-
-                    </select>
-                    <x-jet-input-error for="awkizona.awkirepresentada_id" />
-                </div>
-
-
-                <div>
-                    <x-jet-label value="Estado" />
-                    <x-jet-input type="checkbox" wire:model="awkizona.state" />
-                    <x-jet-input-error for="awkizona.state" />
-                </div>
-
-            </x-slot>
-
-            <x-slot name="footer">
-
-                <x-jet-button wire:click="$set('open_edit', false)" class="mr-2">
-                    <i class="mx-2 fa-sharp fa-solid fa-xmark"></i>Cancelar
-                    </x-jet-secondary-button>
-
-                    <x-jet-danger-button wire:click="update" wire:loading.attr="disabled" wire:target="save"
-                        class="disabled:opacity-25">
-                        <i class="mx-2 fa-regular fa-floppy-disk"></i> Guardar
-                    </x-jet-danger-button>
-
-            </x-slot>
-
-        </x-jet-dialog-modal> --}}
-
-
 </div>
+
