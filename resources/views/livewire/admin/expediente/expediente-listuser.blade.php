@@ -50,238 +50,118 @@
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    >
                                     ID
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    >
                                     DNI
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    >
                                     CLIENTES
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    >
                                     TIENDA
-                                    @if ($sort == 'name')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
 
                                 </th>
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    >
                                     GESTOR
-                                    @if ($sort == 'name')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
 
                                 </th>
 
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    >
                                     NUM DOCUMENTO B/F
-                                    @if ($sort == 'name')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
 
                                 </th>
 
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    >
                                     TITULO
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
 
 
-                                <th scope="col"
+                                {{-- <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    >
                                     CODIGO DE VERIFICACION
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
-                                </th>
+
+                                </th> --}}
 
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    >
                                     TIPO VENTA
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    >
                                     PLACA
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    >
                                     CATEGORIA
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    >
                                     CERTIFICADO
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
                                 <th scope="col"
                                     class="w-24 px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('id')">
+                                    >
                                     STATUS FINAL
-                                    @if ($sort == 'id')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
                                 </th>
 
                                 {{-- <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    >
                                     FECHA VENTA
-                                    @if ($sort == 'name')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
 
                                 </th>
 
                                 <th scope="col"
                                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase cursor-pointer"
-                                    wire:click="order('name')">
+                                    >
 
                                     FECHA RECEPCIÓN
-                                    @if ($sort == 'name')
-                                        @if ($direction == 'asc')
-                                            <i class="float-right mt-1 fas fa-sort-alpha-up-alt"></i>
-                                        @else
-                                            <i class="float-right mt-1 fas fa-sort-alpha-down-alt"></i>
-                                        @endif
-                                    @else
-                                        <i class="float-right mt-1 fas fa-sort"></i>
-                                    @endif
+
 
                                 </th> --}}
 
@@ -332,9 +212,9 @@
                                         {{ $expedientee->titulo }}
                                     </td>
 
-                                    <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                    {{-- <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $expedientee->codigodeverificacion }}
-                                    </td>
+                                    </td> --}}
 
 
                                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">

@@ -116,7 +116,7 @@ class ExpedienteController extends Controller
 
         $data['user_id'] = Auth()->user()->id; //le pasamos el usuario autentificado
 
-        $datafinal = Arr::except($data, ['fechaventa', 'fecharecepcion', 'fechaingreso', 'fechaderevision', 'fechadepago']);
+        $datafinal = Arr::except($data, ['fechaventa', 'fecharecepcion', 'fechaingreso', 'fechaderevision', 'fechadepago', 'fechadeenvio', 'fechadefacturacion']);
         //$user_id = Auth()->user()->id;
 
         // dd($user_id);
@@ -153,6 +153,27 @@ class ExpedienteController extends Controller
                 // Añade otros campos aquí según sea necesario
             ]);
         }
+
+
+        if ($data['fechadeenvio']) { //validamos cuando no ingresan fecha
+            $fechadeenvio = Carbon::createFromFormat('d-m-Y', $request->input('fechadeenvio'))->format('Y-m-d');
+
+            $expedientee->update([
+                'fechadeenvio' => $fechadeenvio,
+
+            ]);
+        }
+
+
+        if ($data['fechadefacturacion']) { //validamos cuando no ingresan fecha
+            $fechadefacturacion = Carbon::createFromFormat('d-m-Y', $request->input('fechadefacturacion'))->format('Y-m-d');
+
+            $expedientee->update([
+                'fechadefacturacion' => $fechadefacturacion,
+
+            ]);
+        }
+
 
         if($request->file('tarjetadepropiedad')){
             $expedientee->tarjetadepropiedad = Storage::disk('s3')->put('tarjetadepropiedad', $request->file('tarjetadepropiedad'), 'public');

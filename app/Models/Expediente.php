@@ -59,6 +59,11 @@ class Expediente extends Model
         return $this->belongsTo(Color::class);
     }
 
+    public function anio()
+    {
+        return $this->belongsTo(Anio::class);
+    }
+
     public function statusfinall()//le agregue un l porque se confunde con un campo del mismo nombre y agregue statusfinal_id
     {
         return $this->belongsTo(Statusfinal::class, 'statusfinal_id');
@@ -69,10 +74,7 @@ class Expediente extends Model
         return $this->belongsTo(Oficinaregistral::class);
     }
 
-    public function statusfinal()
-    {
-        return $this->belongsTo(Statusfinal::class);
-    }
+
 
     //query Scope
    /*  public function scopeFilter($query, $awkitienda_id){

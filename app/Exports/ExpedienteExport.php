@@ -78,14 +78,14 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             $expediente->recibo ?? null,
             $expediente->importe ?? null,
 
-            $expediente->statussunarp->nombre ?? null,
+            //$expediente->statussunarp->nombre ?? null,
             $expediente->tarjetadepropiedad ?? null,
             $expediente->cargoenvio ?? null,
 
             $expediente->numerodeplaca ?? null,
             $expediente->fechadeenvio ?? null,
             $expediente->guiaderemision ?? null,
-            $expediente->statusfinal ?? null,
+            //$expediente->statusfinall->nombre ?? null,
             $expediente->fechaderevision ?? null,
             $expediente->confirmaciondeplaca ?? null,
             $expediente->placa ?? null,
@@ -100,7 +100,7 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             $expediente->factura ?? null,
             $expediente->fechadefacturacion ?? null,
 
-            $expediente->statusfinal->nombre ?? null,
+            $expediente->statusfinall->nombre ?? null,
 
 
 
@@ -115,13 +115,13 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
     public function columnFormats(): array
     {
         return [
-            'G'=>'dd/mm/yyyy',
             'H'=>'dd/mm/yyyy',
-            'W'=>'dd/mm/yyyy',
+            'I'=>'dd/mm/yyyy',
+            'X'=>'dd/mm/yyyy',
             'AF'=>'dd/mm/yyyy',
-            'AI'=>'dd/mm/yyyy',
-            'AN'=>'dd/mm/yyyy',
-            'AT'=>'dd/mm/yyyy',
+            'AH'=>'dd/mm/yyyy',
+            'AM'=>'dd/mm/yyyy',
+            'AS'=>'dd/mm/yyyy',
 
         ];
     }
@@ -162,7 +162,7 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             'recibo',
             'importe',
 
-            'statussunarp',
+            //'statussunarp',
             'tarjetadepropiedad',
             'cargoenvio',
 
@@ -170,7 +170,7 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             'numerodeplaca',
             'fechadeenvio',
             'guiaderemision',
-            'statusfinal',
+            //'statusfinal',
             'fechaderevision',
             'confirmaciondeplaca',
             'placa',
@@ -186,8 +186,6 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             'factura',
             'fechadefacturacion',
             'Status Final',
-
-
 
             'Observacion',
         ];
@@ -243,8 +241,8 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             'AS' => 20,
             'AT' => 20,
             'AU' => 20,
-
-            'AV' => 35,
+            'AV' => 50,
+            //'AW' => 50,
         ];
     }
 
