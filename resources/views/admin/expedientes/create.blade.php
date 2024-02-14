@@ -354,12 +354,12 @@
                                 <x-jet-input-error for="statussunarp_id" />
                             </div>
 
-                            <div class="mb-4">
+                            {{-- <div class="mb-4">
                                 <x-jet-label value="Placa:" />
                                 <x-jet-input type="text" name="placa" value="{{ old('placa') }}"
                                     placeholder="Placa" class="w-full" />
                                 <x-jet-input-error for="placa" />
-                            </div>
+                            </div> --}}
 
                             <div class="mb-4">
                                 <x-jet-label value="Código Placa:" />
@@ -454,6 +454,14 @@
                                 <x-jet-input-error for="cargoenvio" />
 
                             </div>
+
+
+                           {{--  <div class="mb-4">
+                                <x-jet-label value="Placa:" />
+                                <x-jet-input type="text" name="placa" value="{{ old('placa') }}"
+                                    placeholder="Placa" class="w-full" />
+                                <x-jet-input-error for="placa" />
+                            </div> --}}
 
 
 

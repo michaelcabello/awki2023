@@ -88,7 +88,7 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             //$expediente->statusfinall->nombre ?? null,
             $expediente->fechaderevision ?? null,
             $expediente->confirmaciondeplaca ?? null,
-            $expediente->placa ?? null,
+            //$expediente->placa ?? null,
             $expediente->codigoplaca ?? null,
             $expediente->monto ?? null,
             $expediente->fechadepago ?? null,
@@ -173,7 +173,7 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             //'statusfinal',
             'fechaderevision',
             'confirmaciondeplaca',
-            'placa',
+            //'placa',
             'codigoplaca',
             'monto',
             'fechadepago',
@@ -240,8 +240,8 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             'AR' => 20,
             'AS' => 20,
             'AT' => 20,
-            'AU' => 20,
-            'AV' => 50,
+            'AU' => 50,
+            //'AV' => 50,
             //'AW' => 50,
         ];
     }

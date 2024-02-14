@@ -404,13 +404,13 @@
                             </div>
 
 
-                            <div class="mb-4">
+                            {{-- <div class="mb-4">
                                 <x-jet-label value="Placa:" />
                                 <x-jet-input type="text" name="placa"
                                     value="{{ old('placa', $expedientee->placa) }}" placeholder="Placa"
                                     class="w-full" />
                                 <x-jet-input-error for="placa" />
-                            </div>
+                            </div> --}}
 
                             <div class="mb-4">
                                 <x-jet-label value="Código Placa:" />
@@ -532,6 +532,13 @@
                             </div>
 
 
+                            {{-- <div class="mb-4">
+                                <x-jet-label value="Placa:" />
+                                <x-jet-input type="text" name="placa"
+                                    value="{{ old('placa', $expedientee->placa) }}" placeholder="Placa"
+                                    class="w-full" />
+                                <x-jet-input-error for="placa" />
+                            </div> --}}
 
                             <div class="mb-4">
                                 <x-jet-label value="Numero de Placa:" />
