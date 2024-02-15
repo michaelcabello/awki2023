@@ -134,7 +134,7 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             'Nombres',
             'Tienda',
             'Zona',
-            'Documento',
+            'Estado Civil',
             'Numero',
             'Fecha venta',
             //'Fecha Creación',

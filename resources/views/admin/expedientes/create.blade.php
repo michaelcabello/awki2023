@@ -66,7 +66,7 @@
                             </div> --}}
 
                             <div class="mb-4">
-                                <x-jet-label value="Tipo Documento" />
+                                <x-jet-label value="Estado Civil" />
                                 <select name="tipodedocumento_id" class="py-0.7 rounded"
                                     style="height:100%; width:100%">
                                     <option value="" selected disabled>Seleccione</option>
