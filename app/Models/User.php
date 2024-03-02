@@ -100,4 +100,10 @@ class User extends Authenticatable
       }
 
 
+    //uno a muchos
+    public function expedientes()
+    {
+        return $this->hasMany(Expediente::class);
+    }
+
 }

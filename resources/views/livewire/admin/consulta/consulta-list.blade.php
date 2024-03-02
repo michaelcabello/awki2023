@@ -141,7 +141,7 @@
 
                 <div>
                     <div>
-                        <x-jet-label value="Fecha de venta:" />
+                        <x-jet-label value="Fecha Recepción:" />
                     </div>
                     <div class="flex">
 

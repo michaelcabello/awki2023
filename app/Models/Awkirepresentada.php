@@ -28,8 +28,11 @@ class Awkirepresentada extends Model
         return $this->hasMany(Awkicliente::class);
     }
 
+
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
+
+
 }

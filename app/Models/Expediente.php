@@ -95,6 +95,30 @@ class Expediente extends Model
             });
         })->when($filters['status'] ?? null, function($query, $statusfinal_id){
             $query->where('statusfinal_id', $statusfinal_id);
+        })->when($filters['fromdate'] ?? null, function($query, $fecharecepcion){
+            $query->where('fecharecepcion', '>=' , $fecharecepcion);
+        })->when($filters['todate'] ?? null, function($query, $fecharecepcion){
+            $query->where('fecharecepcion', '<=' , $fecharecepcion);
+        })->when($filters['fromdaterecepcion'] ?? null, function($query, $fechaingreso){
+            $query->where('fechaingreso', '>=' , $fechaingreso);
+        })->when($filters['todaterecepcion'] ?? null, function($query, $fechaingreso){
+            $query->where('fechaingreso', '<=' , $fechaingreso);
+        });
+    }
+
+/*
+    public function scopeFilter($query, $filters){
+        $query->when($filters['awkitienda_id'] ?? null, function($query, $awkitienda_id){
+            $query->where('awkitienda_id', $awkitienda_id);
+        })->when($filters['awkizona_id'] ?? null, function($query, $awkizona_id){
+            $query->where('awkizona_id', $awkizona_id);
+        })->when($filters['awkirepresentada_id'] ?? null, function ($query, $awkirepresentada_id) {
+            // Agrega la condición para awkirepresentada_id
+            $query->whereHas('awkitienda', function ($q) use ($awkirepresentada_id) {
+                $q->where('awkirepresentada_id', $awkirepresentada_id);
+            });
+        })->when($filters['status'] ?? null, function($query, $statusfinal_id){
+            $query->where('statusfinal_id', $statusfinal_id);
         })->when($filters['fromdate'] ?? null, function($query, $fechaventa){
             $query->where('fechaventa', '>=' , $fechaventa);
         })->when($filters['todate'] ?? null, function($query, $fechaventa){
@@ -104,7 +128,7 @@ class Expediente extends Model
         })->when($filters['todaterecepcion'] ?? null, function($query, $fecharecepcion){
             $query->where('fecharecepcion', '<=' , $fecharecepcion);
         });
-    }
+    } */
 
 
 

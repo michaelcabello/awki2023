@@ -10,6 +10,8 @@ use Livewire\WithPagination;
 use App\Models\Awkirepresentada;
 use App\Exports\ExpedienteExport;
 use App\Models\Awkizona;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
 
 use Illuminate\Database\Eloquent\Builder;
 //use Maatwebsite\Excel\Facades\Excel;
@@ -54,7 +56,24 @@ class ConsultaList extends Component
 
     public function mount()
     {
-        $this->awkirepresentadas = Awkirepresentada::pluck('razonsocial', 'id');
+
+        $user = Auth::user();
+        //$user2 = $user->awkirepresentada;//capatura al usuario externo que es dueño de la tienda
+        $user2tienda = Awkitienda::where('user2_id', $user->id)->first();//usuario externo de awki metido en tienda
+        //dd($user2tienda);
+        if ($user->hasRole('Admin')) {
+            $this->awkirepresentadas = Awkirepresentada::pluck('razonsocial', 'id');
+        } elseif($user2tienda){
+            //$this->awkirepresentadas = $empresa->pluck('razonsocial', 'id');
+            $empresa = $user2tienda->awkirepresentada;
+            $this->awkirepresentadas = collect([$empresa])->pluck('razonsocial', 'id');
+        } else{
+            $this->awkirepresentadas = Awkirepresentada::pluck('razonsocial', 'id');
+        }
+
+
+        //$this->awkirepresentadas = Awkirepresentada::pluck('razonsocial', 'id');
+
         $this->awkizonas = null;
         $this->awkitiendas = null;
         //$this->awkitiendas = Awkitienda::pluck('name', 'id');
@@ -132,7 +151,25 @@ class ConsultaList extends Component
 
     public function render()
     {
-         $expedientes = Expediente::filter($this->filters)->paginate(20);
+        $user = Auth::user();//usuario gestor de awki
+        $user2tienda = Awkitienda::where('user2_id', $user->id)->first();//usuario externo de awki metido en tienda
+
+        //dd($user2tienda->expedientes);
+        //dd($user->hasRole('Admin'));
+
+        //$user2tiendas = $user->tiendass()->get();
+
+        if ($user->hasRole('Admin')) {
+            // El usuario tiene el rol de admin
+            $expedientes = Expediente::filter($this->filters)->paginate(20);
+        } elseif($user2tienda) {
+            $expedientes = $user2tienda->expedientes()->filter($this->filters)->paginate(20);
+            //dd($expedientes);
+        }else{
+            $expedientes = $user->expedientes()->filter($this->filters)->paginate(20);
+        }
+
+
         //$this->expedientes = Expediente::filter($this->filters)->paginate(2);//pasando $this->expedientes no funciona el paginate
         //$expedientesQuery = Expediente::filter($this->filters);
         //$this->expedientes = $this->cant ? $expedientesQuery->paginate($this->cant) : $expedientesQuery->get();

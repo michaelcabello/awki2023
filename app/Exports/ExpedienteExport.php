@@ -46,6 +46,9 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             $expediente->awkicliente_id,
             $expediente->awkicliente->awkizona->representada->razonsocial ?? null,
             $expediente->awkicliente->nombres ?? null,
+            $expediente->awkicliente->apellidopaterno ?? null, //agregado
+            $expediente->awkicliente->apellidomaterno ?? null, //agregado
+            $expediente->awkicliente->dni ?? null, //agregado
             $expediente->awkitienda->name ?? null,
             $expediente->awkizona->name ?? null,
             $expediente->tipodedocumento->nombre ?? null,
@@ -115,13 +118,13 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
     public function columnFormats(): array
     {
         return [
-            'H'=>'dd/mm/yyyy',
-            'I'=>'dd/mm/yyyy',
-            'X'=>'dd/mm/yyyy',
-            'AF'=>'dd/mm/yyyy',
-            'AH'=>'dd/mm/yyyy',
-            'AM'=>'dd/mm/yyyy',
-            'AS'=>'dd/mm/yyyy',
+            'K'=>'dd/mm/yyyy',//H
+            'L'=>'dd/mm/yyyy',//I
+            'AA'=>'dd/mm/yyyy',//X
+            'AI'=>'dd/mm/yyyy',//AH
+            'AK'=>'dd/mm/yyyy',//AH
+            'AP'=>'dd/mm/yyyy',//AM
+            'AV'=>'dd/mm/yyyy',//AS
 
         ];
     }
@@ -132,6 +135,9 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             'ID',
             'Empresa',
             'Nombres',
+            'apellidopaterno',
+            'apellidomaterno',
+            'dni',
             'Tienda',
             'Zona',
             'Estado Civil',
@@ -240,9 +246,10 @@ class ExpedienteExport implements FromCollection, WithCustomStartCell, Responsab
             'AR' => 20,
             'AS' => 20,
             'AT' => 20,
-            'AU' => 50,
-            //'AV' => 50,
-            //'AW' => 50,
+            'AU' => 20,
+            //'AV' => 20,
+            //'AW' => 20,
+            //'AX' => 50,
         ];
     }
 
